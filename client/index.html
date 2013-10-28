@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta http-equiv="content-type" content="text/html,charset=utf-8" />
+
+  <title>:: wunschlos ::</title>
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="vendor/normalize/normalize-2.1.3.css">
+  <link rel="stylesheet" type="text/css" href="style/base.css">
+
+  <link rel="stylesheet" type="text/css" href="style/design.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="style/mobile.css">
+  <!-- media="screen and (max-width: 800px)" -->
+  <link rel="stylesheet" type="text/css" href="style/print.css" media="print">
+
+</head>
+<body>
+
+  <div class="container">
+
+    <header>
+
+      <div class="header-title">
+
+        <!-- http://csswizardry.com/2010/10/your-logo-is-an-image-not-a-h1/ -->
+        <a href="http://wunsch-los.com" class="header-title-logo">
+          <img src="assets/img/placeholder.png" alt="wunschlos logo"/>
+        </a>
+
+        <h1 class="header-title-main">wunschlos</h1>
+        <!-- <h1 class="header-title-sub"></h1> -->
+
+      </div>
+
+      <ul class="header-options">
+
+        <li class="header-language">
+
+          <div class="header-language-current">
+            <span class="current">EN</span>
+            <span class="hidden">Language:</span>
+          </div>
+
+        </li>
+
+      </ul>
+
+    </header>
+
+    <nav>
+
+      <ol class="progress">
+
+        <li class="progress-step active">
+          <a href="#">List</a>
+        </li>
+
+        <li class="progress-step next">
+          <a href="#">Design</a>
+        </li>
+
+        <li class="progress-step next">
+          <a href="#">Share</a>
+        </li>
+
+      </ol>
+
+    </nav>
+
+    <main>
+
+      <div class="main-info">
+
+        <div class="main-info-intro">
+
+          <ol class="main-info-intro-steps">
+            <li>Add wishes below.</li>
+            <li>Choose design.</li>
+            <li>Pick date and share your wishlist.</li>
+          </ol>
+
+        </div>
+
+      </div>
+
+
+      <div class="main-wrapper">
+
+        <div class="main-box">
+
+          <div class="main-field">
+
+            <form action="#" method="POST" name="create_list" class="list-form">
+
+              <fieldset class="list-set">
+
+                <!-- <legend align="center">Wishlist</legend> -->
+
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" placeholder="Add title" /><br/>
+
+                <label for="user">User</label>
+                <input type="text" name="user" id="user" placeholder="Name of presentee" /><br/>
+
+              </fieldset>
+
+
+              <fieldset>
+
+                <label for="image">Image</label>
+                <!-- <input type="image" name="image" id="image" placeholder="Upload Image" /><br/> -->
+                <input type="file" name="image" id="image" placeholder="Upload Image" /><br/>
+
+                <label for="item">Item</label>
+                <input type="text" name="item" id="item" placeholder="Add an item" /><br/>
+
+                <label for="price">Price</label>
+                <input type="text" name="price" id="price" placeholder="Add a price" /><br/>
+
+
+                <label for="link">Link</label>
+                <input type="text" name="link" id="link" placeholder="Add a link" /><br/>
+
+
+                <label for="giver">Giver</label>
+                <input type="text" name="giver" id="giver" placeholder="Add name of giver" /><br/>
+
+                <label for="idea">Idea</label>
+                <input type="text" name="idea" id="idea" placeholder="Add your name" /><br/>
+
+                <label for="share">Share</label>
+                <input type="text" name="share" id="share" placeholder="Share of Price" /><br/>
+
+
+                <label for="comment">Comment</label>
+                <!-- <input type="textfield" name="comment" id="comment" placeholder="Add a comment" /> -->
+                <textarea id="comment" placeholder="Add a comment" cols="25" rows="5"></textarea>
+
+                <input type="submit" name="submit" value="post">
+
+              </fieldset>
+
+            </form>
+
+            <div class="add">
+
+              <ul>
+                <li class="add-plus">+</li>
+              </ul>
+
+            </div>
+
+
+            <div class="controls">
+
+              <!-- <div class="controls-buttons"> -->
+
+                <!-- <button>Previous</button> -->
+
+                <button>Next</button>
+
+              <!-- </div> -->
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+
+  </div>
+
+</body>
+</html>
