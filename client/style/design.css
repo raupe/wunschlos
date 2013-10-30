@@ -24,3 +24,14 @@
   height: 50px;
   margin: 1% auto;
 }
+
+.wishlist_item{
+
+	display: block;
+	overflow:hidden;
+    height: 130px;
+    padding: 5px;
+    margin: 5px;
+	border: solid 1px grey;
+    cursor:move;
+}
