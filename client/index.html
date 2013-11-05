@@ -21,177 +21,380 @@
   <!-- media="screen and (max-width: 800px)" -->
   <link rel="stylesheet" type="text/css" href="style/print.css" media="print">
 
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
 </head>
 <body>
 
-  <div class="container">
+  <div class="page">
 
     <header>
 
-      <div class="header-title">
+      <div class="container">
 
-        <!-- http://csswizardry.com/2010/10/your-logo-is-an-image-not-a-h1/ -->
-        <a href="http://wunsch-los.com" class="header-title-logo">
-          <img src="assets/img/placeholder.png" alt="wunschlos logo"/>
-        </a>
+        <div class="header-title center">
 
-        <h1 class="header-title-main">wunschlos</h1>
-        <!-- <h1 class="header-title-sub"></h1> -->
+          <div class="header-title-brand center-item">
 
-      </div>
+            <a href="/" class="header-title-link">
+              <!-- <img src="assets/img/placeholder.png" alt="wunschlos logo" class="header-title-logo"/> -->
+              <h1 class="header-title-main">
+                <span>wunsch</span><span>los</span>
+              </h1>
+            </a>
 
-      <ul class="header-options">
-
-        <li class="header-language">
-
-          <div class="header-language-current">
-            <span class="current">EN</span>
-            <span class="hidden">Language:</span>
           </div>
 
-        </li>
+        </div>
 
-      </ul>
+
+        <div class="header-options center">
+
+          <div class="header-language center-item">
+
+            <ul class="header-language-list">
+
+              <li class="header-language-current">EN</li>
+              <li class="header-language-current">DE</li>
+              <li class="header-language-current">SP</li>
+              <li class="header-language-current">FR</li>
+              <li class="header-language-current">IT</li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+
+      </div>
 
     </header>
 
     <nav>
 
-      <ol class="progress">
+      <div class="progress container">
 
-        <li class="progress-step active">
-          <a href="#">Wishlist</a>
-        </li>
+        <ol class="progress-wrapper">
 
-        <li class="progress-step next">
-          <a href="#">Design</a>
-        </li>
+          <li class="progress-step active">
+            <a href="#/wishlist">Wishlist</a>
+            <span class="progress-step-tooltip">Create a List</span>
+          </li>
 
-        <li class="progress-step next">
-          <a href="#">Share</a>
-        </li>
+          <li class="progress-step next">
+            <a href="#/design">Design</a>
+            <span class="progress-step-tooltip">Choose a Setting</span>
+          </li>
 
-      </ol>
+          <li class="progress-step next">
+            <a href="#/share">Share</a>
+            <span class="progress-step-tooltip">Send to Friends</span>
+          </li>
+
+        </ol>
+
+      </div>
 
     </nav>
 
     <main>
 
-      <div class="main-info">
+      <div class="main-selection">
 
-        <div class="main-info-intro">
+        <ol class="main-selection-list">
 
-          <ol class="main-info-intro-steps">
-            <li>Add wishes below.</li>
-            <li>Choose design.</li>
-            <li>Pick a date and share your wishlist.</li>
-          </ol>
+          <li class="selected-entry">
+
+            <div class="container">
+
+              <div class="main-info center">
+
+                <ol class="main-info-intro center-item">
+                  <li class="intro-step">Add wishes below.</li>
+                  <li class="intro-step">Choose design.</li>
+                  <li class="intro-step">Pick a date and share your wishlist.</li>
+                </ol>
+
+              </div>
+
+            </div>
+
+
+          </li>
+
+          <li class="selected-entry">
+
+            <div class="container">
+
+              <div class="main-info">
+
+                <ul class="main-info-gallery">
+
+
+                  <li class="gallery-entry">
+
+                    <a href="#/design/1">
+
+                      <figure>
+
+                        <img src="assets/img/placeholder.png" alt="wishlist theme - '1'"/>
+
+                        <figurecaption>Theme - 1</figurecaption>
+
+                      </figure>
+
+                    </a>
+
+                  </li>
+
+
+                  <li class="gallery-entry">
+
+                    <a href="#/design/1">
+
+                      <figure>
+
+                        <img src="assets/img/placeholder.png" alt="wishlist theme - '2'"/>
+
+                        <figurecaption>Theme - 2</figurecaption>
+
+                      </figure>
+
+                    </a>
+
+                  </li>
+
+
+                  <li class="gallery-entry">
+
+                    <a href="#/design/1">
+
+                      <figure>
+
+                        <img src="assets/img/placeholder.png" alt="wishlist theme - '3'"/>
+
+                        <figurecaption>Theme - 3</figurecaption>
+
+                      </figure>
+
+                    </a>
+
+                  </li>
+
+
+                  <li class="gallery-entry">
+
+                    <a href="#/design/1">
+
+                      <figure>
+
+                        <img src="assets/img/placeholder.png" alt="wishlist theme - '4'"/>
+
+                        <figurecaption>Theme - 4</figurecaption>
+
+                      </figure>
+
+                    </a>
+
+                  </li>
+
+
+
+                  <li class="gallery-entry">
+
+                    <a href="#/design/1">
+
+                      <figure>
+
+                        <img src="assets/img/placeholder.png" alt="wishlist theme - '5'"/>
+
+                        <figurecaption>Theme - 5</figurecaption>
+
+                      </figure>
+
+                    </a>
+
+                  </li>
+
+
+
+
+
+                </ul>
+
+
+              </div>
+
+            </div>
+
+
+          </li>
+
+          <li class="selected-entry">
+
+            <div class="container">
+
+
+
+
+            </div>
+
+
+          </li>
+
+        </ol>
+
+      </div>
+
+
+
+
+
+      <div class="main-content">
+
+        <div class="container">
+
+          <form action="#" method="POST" name="create_list" class="list-form">
+
+            <fieldset class="list-set">
+
+              <!-- <legend align="center">Wishlist</legend> -->
+
+              <label for="title">Title</label>
+              <input type="text" name="title" id="title" placeholder="Add title" /><br/>
+
+              <label for="user">To</label>
+              <input type="text" name="user" id="user" placeholder="Name of presentee" /><br/>
+
+            </fieldset>
+
+
+            <ul id="wishlist">
+
+              <li class="wishlist_item">
+
+                <button class="down" type="button">move down</button>
+                <button class="up" type="button">move up</button>
+                <button class="more" type="button">more</button>
+                <button class="less" type="button">less</button>
+
+                <fieldset class="fields">
+
+                  <label for="image">Image</label>
+                  <!-- <input type="image" name="image" id="image" placeholder="Upload Image" /><br/> -->
+                  <input type="file" name="image" id="image" placeholder="Upload Image" /><br/>
+
+                  <label for="item">Item</label>
+                  <input type="text" name="item" id="item" placeholder="Add an item" /><br/>
+
+                  <label for="price">Price</label>
+                  <input type="text" name="price" id="price" placeholder="Add a price" /><br/>
+
+
+                  <label for="link">Link</label>
+                  <input type="text" name="link" id="link" placeholder="Add a link" /><br/>
+
+
+                  <label for="giver">Giver</label>
+                  <input type="text" name="giver" id="giver" placeholder="Add name of giver" /><br/>
+
+                  <label for="idea">Idea</label>
+                  <input type="text" name="idea" id="idea" placeholder="Add your name" /><br/>
+
+                  <label for="share">Share</label>
+                  <input type="text" name="share" id="share" placeholder="Share of Price" /><br/>
+
+
+                  <label for="comment">Comment</label>
+                  <!-- <input type="textfield" name="comment" id="comment" placeholder="Add a comment" /> -->
+                  <textarea id="comment" placeholder="Add a comment" cols="25" rows="5"></textarea>
+
+                  <input type="submit" name="submit" value="post">
+
+                </fieldset>
+
+              </li>
+
+            </ul>
+
+          </form>
+
+          <div class="add">
+
+            <ul>
+              <li id="add" class="add-plus">+</li>
+            </ul>
+
+          </div>
+
+
+          <div class="controls">
+
+            <!-- <div class="controls-buttons"> -->
+
+              <!-- <button>Previous</button> -->
+
+              <button>Next</button>
+
+            <!-- </div> -->
+
+          </div>
+
 
         </div>
 
       </div>
 
+    <!--
 
-      <div class="main-wrapper">
+        <div class="main-wrapper">
 
-        <div class="main-box">
+          <div class="main-box">
 
-          <div class="main-field">
-
-            <form action="#" method="POST" name="create_list" class="list-form">
-
-              <fieldset class="list-set">
-
-                <!-- <legend align="center">Wishlist</legend> -->
-
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" placeholder="Add title" /><br/>
-
-                <label for="user">To</label>
-                <input type="text" name="user" id="user" placeholder="Name of presentee" /><br/>
-
-              </fieldset>
-
-			<ul id="wishlist">
-				<li class="wishlist_item">
-					<button class="down" type="button">move down</button> 
-					<button class="up" type="button">move up</button> 
-					<button class="more" type="button">more</button> 
-					<button class="less" type="button">less</button>
-				  <fieldset class="fields">
-
-					<label for="image">Image</label>
-					<!-- <input type="image" name="image" id="image" placeholder="Upload Image" /><br/> -->
-					<input type="file" name="image" id="image" placeholder="Upload Image" /><br/>
-
-					<label for="item">Item</label>
-					<input type="text" name="item" id="item" placeholder="Add an item" /><br/>
-
-					<label for="price">Price</label>
-					<input type="text" name="price" id="price" placeholder="Add a price" /><br/>
-
-
-					<label for="link">Link</label>
-					<input type="text" name="link" id="link" placeholder="Add a link" /><br/>
-
-
-					<label for="giver">Giver</label>
-					<input type="text" name="giver" id="giver" placeholder="Add name of giver" /><br/>
-
-					<label for="idea">Idea</label>
-					<input type="text" name="idea" id="idea" placeholder="Add your name" /><br/>
-
-					<label for="share">Share</label>
-					<input type="text" name="share" id="share" placeholder="Share of Price" /><br/>
-
-
-					<label for="comment">Comment</label>
-					<!-- <input type="textfield" name="comment" id="comment" placeholder="Add a comment" /> -->
-					<textarea id="comment" placeholder="Add a comment" cols="25" rows="5"></textarea>
-
-					<input type="submit" name="submit" value="post">
-
-				</fieldset>
-				</li>
-			</ul>
-            </form>
-
-            <div class="add">
-
-              <ul>
-                <li id="add" class="add-plus">+</li>
-              </ul>
+            <div class="main-field">
 
             </div>
-
-
-            <div class="controls">
-
-              <!-- <div class="controls-buttons"> -->
-
-                <!-- <button>Previous</button> -->
-
-                <button>Next</button>
-
-              <!-- </div> -->
-
-            </div>
-
 
           </div>
 
         </div>
-
-      </div>
+     -->
 
     </main>
 
+    <footer>
+
+      <div class="container">
+
+        <ul class="footer-references">
+
+          <li>
+            <div>2013-2014</div>
+          </li>
+
+          <li>
+            <a class="link" href="#">@raupe</a>
+          </li>
+
+          <li>
+            <span></span>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </footer>
+
+
 
   </div>
-	<!-- scripts -->
-	<script src="scripts/interface.js"></script>
-	<script src="scripts/connection.js"></script>
+
+  <!-- scripts -->
+  <script src="scripts/interface.js"></script>
+  <script src="scripts/connection.js"></script>
+
 </body>
 </html>
