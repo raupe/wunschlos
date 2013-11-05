@@ -104,6 +104,13 @@ nav {
   height: 10rem;
   background-color: #ccc;
 }
+main {
+  margin-bottom: 2rem;
+}
+footer {
+  background-color: #291a20;
+  color: #e8eae9;
+}
 
 /**
  *  Header
@@ -313,10 +320,11 @@ nav {
 .main-selection {
   background-color: #443139;
   color: #e8eae9;
-  height: 8rem;
+  height: 10rem;
   overflow: hidden;
   position: relative;
   clear: both;
+  margin-bottom: 4rem;
 }
 .main-selection-list {
   width: 300%;
@@ -346,6 +354,7 @@ nav {
 }
 .intro-step {
   font-size: 1.5rem;
+  margin: 0.5rem 0;
 }
 .gallery-entry {
   float: left;
@@ -360,6 +369,34 @@ nav {
   text-align: center;
 }
 
+/**
+ *  Footer
+ *  ======
+ *
+ *
+ */
+.ending {
+  padding: 3rem 0;
+}
+.about {
+  width: 40%;
+  display: inline-block;
+}
+.about a {
+  color: #c2c2c2;
+  text-decoration: underline;
+}
+.links {
+  display: inline-block;
+  text-align: right;
+  float: right;
+  color: #f2f2f2;
+}
+.links a {
+  color: #f2f2f2;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
 
 /**
  *  Fonts
