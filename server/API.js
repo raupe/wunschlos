@@ -42,7 +42,7 @@ Route: /wishlist
 HTTP Verb: GET
 
 Beschreibung: Anfordern einer Wunschliste
-Zum testen über Adresszeile:
+Zum testen über Adresszeile (id nur ein Beispiel hier, als id die id benutzen, die vom Server nach einem POST request zurückgesendet wurde):
 http://place2co.de/nodejs/wishlist/wishlist?id=527ab38f3c570bb421000004
 
 Rückgabe vom Server: die angeforderte Wunschliste
