@@ -30,8 +30,8 @@ app.use(allowCrossDomain); // For CORS, use function declared above
 // app.use(app.router); // not really sure what that do, so outcommented
 
 // Database
-mongoose.connect('mongodb://test:testpw@localhost:20883/test'); // online
-//mongoose.connect('mongodb://localhost:27017/test'); // local
+//mongoose.connect('mongodb://test:testpw@localhost:20883/test'); // online
+mongoose.connect('mongodb://localhost:27017/test'); // local
 var Schema = mongoose.Schema;
 var connection = mongoose.connection;
 
@@ -50,7 +50,7 @@ app.get('/hi', function (req, res) {
 
 // Routes
 app.post('/wishlist', routes.createWishlist(Wishlist));
-app.get('/wishlist', routes.getWishlist(Wishlist));
+app.get('/wishlist/:wishlistId', routes.getWishlist(Wishlist));
 
 connection.once('error', function() {
 	console.log("error: failed to connect to mongodb");
