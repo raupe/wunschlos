@@ -38,15 +38,15 @@ Request zum Server: Wishlist als JSON siehe folgende Struktur "var wishlist"
 }
 
 /*
-Route: /wishlist
+Route: /wishlist/id
 HTTP Verb: GET
 
 Beschreibung: Anfordern einer Wunschliste
 Zum testen über Adresszeile (id nur ein Beispiel hier, als id die id benutzen, die vom Server nach einem POST request zurückgesendet wurde):
-http://place2co.de/nodejs/wishlist/wishlist?id=527ab38f3c570bb421000004
+http://place2co.de/nodejs/wishlist/527ab38f3c570bb421000004
 
 Rückgabe vom Server: die angeforderte Wunschliste
-Request zum Server: Id der Wunschliste als JSON
+Request zum Server: GET request zur richtigen Route
 */
 {
 	id: String
