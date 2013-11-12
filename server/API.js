@@ -1,4 +1,4 @@
-/*
+/* ==========================================================================================================================================
 Route: /wishlist
 HTTP Verb: POST
 
@@ -12,7 +12,6 @@ Request zum Server: Wishlist als JSON siehe folgende Struktur
 	to: String,
 	items: [
 		{
-			id: number,
 			title: String,
 			price: number,
 			unit: String, // €, $, piece (Stück)
@@ -22,7 +21,6 @@ Request zum Server: Wishlist als JSON siehe folgende Struktur
 			secret: boolean,
 			share: [
 				{
-					id: number,
 					name: String,
 					amount: number,
 					secret: boolean
@@ -30,7 +28,6 @@ Request zum Server: Wishlist als JSON siehe folgende Struktur
 			],
 			comments: [
 				{
-					id: number,
 					name: String,
 					comment: String,
 					secret: boolean
@@ -40,7 +37,7 @@ Request zum Server: Wishlist als JSON siehe folgende Struktur
 	]
 }
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId
 HTTP Verb: GET
 
@@ -57,7 +54,7 @@ Request zum Server: GET request zur richtigen Route
 	vip: boolean, // dynamisch vom Server je nachdem welcher Link beim GET
 	items: [
 		{
-			id: number,
+			_id: String,
 			title: String,
 			price: number,
 			unit: String, // €, $, piece (Stück)
@@ -66,14 +63,14 @@ Request zum Server: GET request zur richtigen Route
 			position: number,
 			share: [
 				{
-					id: number,
+					_id: String,
 					name: String,
 					amount: number
     			}
 			],
 			comments: [
 				{
-					id: number,
+					_id: String,
 					name: String,
 					comment: String
     			}
@@ -82,13 +79,13 @@ Request zum Server: GET request zur richtigen Route
 	]
 }
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId
 HTTP Verb: PUT
 
 Beschreibung: Ändern einer Wunschliste
 
-Rückgabe vom Server:
+Rückgabe vom Server: ok || error als String
 Request zum Server: Änderungen in JSON siehe folgende Struktur
 */
 {
@@ -96,7 +93,7 @@ Request zum Server: Änderungen in JSON siehe folgende Struktur
 	to: String
 }
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId/item
 HTTP Verb: POST
 
@@ -115,7 +112,6 @@ Request zum Server: Item als JSON siehe folgende Struktur
 	secret: boolean,
 	share: [
 		{
-			id: number,
 			name: String,
 			amount: number,
 			secret: boolean
@@ -123,7 +119,6 @@ Request zum Server: Item als JSON siehe folgende Struktur
 	],
 	comments: [
 		{
-			id: number,
 			name: String,
 			comment: String,
 			secret: boolean
@@ -131,7 +126,7 @@ Request zum Server: Item als JSON siehe folgende Struktur
 	]
 }
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId/itemId
 HTTP Verb: PUT
 
@@ -150,7 +145,7 @@ Request zum Server: Item als JSON siehe folgende Struktur
 	secret: boolean
 }
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId/itemId
 HTTP Verb: DELETE
 
@@ -160,7 +155,7 @@ Rückgabe vom Server:
 Request zum Server: 
 */
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId/itemId/share
 HTTP Verb: POST
 
@@ -175,7 +170,7 @@ Request zum Server: Share als JSON siehe folgende Struktur
 	secret: boolean
 }
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId/itemId/share/shareId
 HTTP Verb: PUT
 
@@ -190,7 +185,7 @@ Request zum Server: Share als JSON siehe folgende Struktur
 	secret: boolean
 }
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId/itemId/share/shareId
 HTTP Verb: DELETE
 
@@ -200,7 +195,7 @@ Rückgabe vom Server:
 Request zum Server:
 */
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId/itemId/comment
 HTTP Verb: POST
 
@@ -215,7 +210,7 @@ Request zum Server: Kommentar als JSON siehe folgende Struktur
 	secret: boolean
 }
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId/itemId/comment/commentId
 HTTP Verb: PUT
 
@@ -230,7 +225,7 @@ Request zum Server: Kommentar als JSON siehe folgende Struktur
 	secret: boolean
 }
 
-/*
+/* ==========================================================================================================================================
 Route: /wishlist/wishlistId/itemId/comment/commentId
 HTTP Verb: DELETE
 
