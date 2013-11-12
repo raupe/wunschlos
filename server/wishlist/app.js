@@ -36,7 +36,7 @@ var Schema = mongoose.Schema;
 var connection = mongoose.connection;
 
 // define database schemas
-var wishlistSchema = new Schema(schemas.wishlist);
+var wishlistSchema = new Schema(schemas.wishlist, { versionKey: false });
 
 // define models build from defined schemas
 var Wishlist = mongoose.model('Wishlist', wishlistSchema);
@@ -49,8 +49,14 @@ app.get('/hi', function (req, res) {
 });
 
 // Routes
-app.post('/wishlist', routes.createWishlist(Wishlist));
+
+// Creating, Getting and Updating wishlist
+app.post('/wishlist', routes.createWishlist(Wishlist, mongoose));
 app.get('/wishlist/:wishlistId', routes.getWishlist(Wishlist));
+app.put('/wishlist/:wishlistId', routes.updateWishlist(Wishlist));
+
+app.post('/wishlist/:wishlistId/item', routes.createItem(Wishlist));
+
 
 connection.once('error', function() {
 	console.log("error: failed to connect to mongodb");
