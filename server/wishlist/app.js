@@ -1,3 +1,5 @@
+var online = false;
+
 // Load modules
 var express = require('express');
 var http = require('http');
@@ -30,8 +32,12 @@ app.use(allowCrossDomain); // For CORS, use function declared above
 // app.use(app.router); // not really sure what that do, so outcommented
 
 // Database
-//mongoose.connect('mongodb://test:testpw@localhost:20883/test'); // online
-mongoose.connect('mongodb://localhost:27017/test'); // local
+if (online) {
+	mongoose.connect('mongodb://test:testpw@localhost:20883/test'); // online
+} else {
+	mongoose.connect('mongodb://localhost:27017/test'); // local
+}
+
 var Schema = mongoose.Schema;
 var connection = mongoose.connection;
 
@@ -55,7 +61,10 @@ app.post('/wishlist', routes.createWishlist(Wishlist, mongoose));
 app.get('/wishlist/:wishlistId', routes.getWishlist(Wishlist));
 app.put('/wishlist/:wishlistId', routes.updateWishlist(Wishlist));
 
+// Creating, Updating, Deleting item 
 app.post('/wishlist/:wishlistId/item', routes.createItem(Wishlist));
+app.put('/wishlist/:wishlistId/:itemId', routes.updateItem(Wishlist));
+
 
 
 connection.once('error', function() {
