@@ -1,0 +1,22 @@
+/**
+ *  Elements
+ *  ========
+ *
+ *
+ */
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
+/**
+ *  Queries
+ *  =======
+ *
+ *
+ */
+@media all and (max-width: 800px) {
+  .header-options > li:nth-child(2) {
+    margin-left: 67%;
+  }
+}
