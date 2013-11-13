@@ -7,7 +7,7 @@ Beschreibung: Erstellen einer Wunschliste
 Rückgabe vom Server: id der Wunschliste als JSON siehe folgende Struktur
 */
 {
-	common: String,	// id für Gäste
+	publicId: String,	// id für Gäste
 	vip: String		// id für Geburtstagskind
 }
 /*
