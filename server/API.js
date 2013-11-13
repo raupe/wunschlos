@@ -4,7 +4,13 @@ HTTP Verb: POST
 
 Beschreibung: Erstellen einer Wunschliste
 
-Rückgabe vom Server: id der Wunschliste als String
+Rückgabe vom Server: id der Wunschliste als JSON siehe folgende Struktur
+*/
+{
+	common: String,	// id für Gäste
+	vip: String		// id für Geburtstagskind
+}
+/*
 Request zum Server: Wishlist als JSON siehe folgende Struktur
 */
 {
@@ -13,7 +19,7 @@ Request zum Server: Wishlist als JSON siehe folgende Struktur
 	items: [
 		{
 			title: String,
-			price: number,
+			amount: number,
 			unit: String, // €, $, piece (Stück)
 			link: String,
 			idea: String,
@@ -56,7 +62,7 @@ Request zum Server: GET request zur richtigen Route
 		{
 			_id: String,
 			title: String,
-			price: number,
+			amount: number,
 			unit: String, // €, $, piece (Stück)
 			link: String,
 			idea: String,
