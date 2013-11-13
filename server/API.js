@@ -8,7 +8,7 @@ Rückgabe vom Server: id der Wunschliste als JSON siehe folgende Struktur
 */
 {
 	publicId: String,	// id für Gäste
-	vip: String		// id für Geburtstagskind
+	vipId: String		// id für Geburtstagskind
 }
 /*
 Request zum Server: Wishlist als JSON siehe folgende Struktur
