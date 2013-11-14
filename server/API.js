@@ -1,4 +1,6 @@
 /* ==========================================================================================================================================
+Implementiert: Ja
+
 Route: /wishlist
 HTTP Verb: POST
 
@@ -44,6 +46,8 @@ Request zum Server: Wishlist als JSON siehe folgende Struktur
 }
 
 /* ==========================================================================================================================================
+Implementiert: Ja
+
 Route: /wishlist/wishlistId
 HTTP Verb: GET
 
@@ -84,6 +88,8 @@ Request zum Server: GET request zur richtigen Route
 }
 
 /* ==========================================================================================================================================
+Implementiert: Ja
+
 Route: /wishlist/wishlistId
 HTTP Verb: PUT
 
@@ -98,6 +104,8 @@ Request zum Server: Änderungen in JSON siehe folgende Struktur
 }
 
 /* ==========================================================================================================================================
+Implementiert: Ja
+
 Route: /wishlist/wishlistId/item
 HTTP Verb: POST
 
@@ -131,6 +139,8 @@ Request zum Server: Item als JSON siehe folgende Struktur
 }
 
 /* ==========================================================================================================================================
+Implementiert: Ja
+
 Route: /wishlist/wishlistId/itemId
 HTTP Verb: PUT
 
