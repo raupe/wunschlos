@@ -1,15 +1,14 @@
 exports.wishlist = {
 	title: String,
 	to: String,
-	publicId: String, // wanted to use ObjectId here but throws error
 	items: [
 		{
 			title: String,
-			price: Number,
+			amount: Number,
 			unit: String,
 			link: String,
 			idea: String,
-			position: 0,
+			position: Number,
 			secret: Boolean,
 			share: [
 				{
