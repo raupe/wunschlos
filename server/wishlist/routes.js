@@ -1,14 +1,57 @@
+function createPublicId ( vipId ) {
+	
+	var publicId = vipId + "p",
+		i,
+		publicIdEncoded = "",
+		encodedCharCode,
+		encodedChar;
+	
+	for (i = 0; i < publicId.length; i++) {
+		encodedCharCode = publicId[i].charCodeAt(0) + 1;
+		encodedChar = String.fromCharCode(encodedCharCode);
+		publicIdEncoded += encodedChar;
+	}
+	
+	return publicIdEncoded;
+}
+
+function createId ( publicId ){
+	
+	var i,
+		vipId = "",
+		decodedCharCode,
+		decodedChar,
+		vipId;
+
+	for (i = 0; i < publicId.length - 1; i++) {
+		decodedCharCode = publicId[i].charCodeAt(0) - 1;
+		decodedChar = String.fromCharCode(decodedCharCode);
+		vipId += decodedChar;
+	}
+	
+	return vipId;
+}
+
+function isPublic( urlId ) {
+	
+	if (urlId.length === 25) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 // Creating, Getting, Updating wishlist ============================================
 
 exports.createWishlist = function (dbModel, mongoose) {
 	
 	return function (req, res) {
 		
-		req.body.publicId = mongoose.Types.ObjectId();
-		
 		new dbModel(req.body).save(function (err, result) {
 			
-			res.send({ publicId: req.body.publicId, vipId: result.id});
+			var publicId = createPublicId(result.id);
+			
+			res.send({ publicId: publicId, vipId: result.id});
 		});
 	};
 };
@@ -16,25 +59,25 @@ exports.createWishlist = function (dbModel, mongoose) {
 exports.getWishlist = function (dbModel) {
 	
 	return function (req, res) {
-		var wishlistId = req.params.wishlistId;
 		
-		dbModel.find({ _id: wishlistId }, function (err, result) { // _id
-			
-			if (result && result[0]) {
-				var result = result[0].toJSON();
-				result.vip = true;
-				res.send(result);
-			}
-		});
+		var wishlistId = req.params.wishlistId,
+			public = isPublic(wishlistId),
+			resultCopy;
 		
-		dbModel.find({ publicId: wishlistId }, function (err, result) { // publicId
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({_id: wishlistId}, function(err, result) {
 			
-			if (result && result[0]) {
-				var result = result[0].toJSON();
-				result.vip = false;
-				res.send(result);
-			} else {
-				res.send("wishlist with id: '" + wishlistId + "' not found.");
+			if (!err && result !== null) {
+				resultCopy = result.toJSON();
+				if (public) {
+					resultCopy.vip = false;
+				} else {
+					resultCopy.vip = true;
+				}
+				res.send(resultCopy);
 			}
 		});
 	};
@@ -44,31 +87,21 @@ exports.updateWishlist = function (dbModel) {
 	
 	return function (req, res) {
 		
-		var wishlistId = req.params.wishlistId;
+		var wishlistId = req.params.wishlistId,
+			public = isPublic(wishlistId);
 		
-		dbModel.findOne({ _id: wishlistId }, function (err, result) { // _id
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({ _id: wishlistId }, function (err, result) {
 			
-			if (!err) {
-				if (result !== null) {
-					result.to = req.body.to;
-					result.title = req.body.title;
-					result.save(function () {
-						res.send("ok");
-					});
-				} else {
-					dbModel.findOne({publicId: wishlistId}, function (err, result2) { // publicId
-						
-						if (!err && result2 !== null) {
-							result2.to = req.body.to;
-							result2.title = req.body.title;
-							result2.save(function () {
-								res.send("ok");
-							});
-						} else {
-							res.send("error");
-						}
-					});
-				}
+			if (!err && result !== null) {
+				result.to = req.body.to;
+				result.title = req.body.title;
+				result.save(function () {
+					res.send("ok");
+				});
 			} else {
 				res.send("error");
 			}
@@ -81,42 +114,27 @@ exports.updateWishlist = function (dbModel) {
 exports.createItem = function (dbModel) {
 	
 	return function (req, res) {
-		var wishlistId = req.params.wishlistId;
 		
-		dbModel.findOne({ _id: wishlistId }, function (err, result) { // _id
+		var wishlistId = req.params.wishlistId,
+			public = isPublic(wishlistId);
+		
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({ _id: wishlistId }, function (err, result) {
 			
-			if (!err) {
-				if (result !== null) {
-					result.items.push(req.body);
-					result.save(function (err) {
-						if (err) {
-							console.log(err);
-						} else {
-							console.log("saved");
-							var idOfLast = result.items[result.items.length - 1]._id;
-							res.send(idOfLast);
-						}
-					});
-					
-				} else {
-					dbModel.findOne({publicId: wishlistId}, function (err, result2) { // publicId
-						
-						if (!err && result2 !== null) {
-							result2.items.push(req.body);
-							result2.save(function (err) {
-								if (err) {
-									console.log(err);
-								} else {
-									console.log("saved");
-									var idOfLast = result.items[result2.items.length - 1]._id;
-									res.send(idOfLast);
-								}
-							});
-						} else {
-							res.send("error");
-						}
-					});
-				}
+			if (!err && result !== null) {
+				result.items.push(req.body);
+				result.save(function (err) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log("saved");
+						var idOfLast = result.items[result.items.length - 1]._id;
+						res.send(idOfLast);
+					}
+				});
 			} else {
 				res.send("error");
 			}
@@ -127,63 +145,36 @@ exports.createItem = function (dbModel) {
 exports.updateItem = function (dbModel) {
 	
 	return function (req, res) {
-		var wishlistId = req.params.wishlistId;
-		var itemId = req.params.itemId;
 		
-		dbModel.findOne({ _id: wishlistId }, function (err, result) { // _id
+		var wishlistId = req.params.wishlistId,
+			itemId = req.params.itemId,
+			public = isPublic(wishlistId);
+		
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({ _id: wishlistId }, function (err, result) {
 			
-			if (!err) {
-				if (result !== null) {
-					
-					var currentItem,
-						i;
-					for (i = 0; i < result.items.length; i++) {
-						currentItem = result.items[i];
-						if (currentItem._id.toString() === itemId) {
-							
-							if (req.body.title) currentItem.title = req.body.title;
-							if (req.body.price) currentItem.price = req.body.price;
-							if (req.body.unit) currentItem.unit = req.body.unit;
-							if (req.body.link) currentItem.link = req.body.link;
-							if (req.body.idea) currentItem.idea = req.body.idea;
-							if (req.body.position) currentItem.position = req.body.position;
-							if (req.body.secret) currentItem.secret = req.body.secret;
-							
-							result.save(function () {
-								res.send("ok");
-							});
-							
-						}
-					}
-					
-				} else {
-					dbModel.findOne({publicId: wishlistId}, function (err, result2) { // publicId
+			if (!err && result !== null) {
+				var currentItem,
+					i;
+				for (i = 0; i < result.items.length; i++) {
+					currentItem = result.items[i];
+					if (currentItem._id.toString() === itemId) {
 						
-						if (!err && result2 !== null) {
-							
-							var currentItem,
-								i;
-							for (i = 0; i < result2.items.length; i++) {
-								currentItem = result2.items[i];
-								if (currentItem._id.toString() === itemId) {
-									
-									if (req.body.title) currentItem.title = req.body.title;
-									if (req.body.price) currentItem.price = req.body.price;
-									if (req.body.unit) currentItem.unit = req.body.unit;
-									if (req.body.link) currentItem.link = req.body.link;
-									if (req.body.idea) currentItem.idea = req.body.idea;
-									if (req.body.position) currentItem.position = req.body.position;
-									if (req.body.secret) currentItem.secret = req.body.secret;
-									
-									result2.save(function () {
-										res.send("ok");
-									});
-								}
-							}
-						} else {
-							res.send("error");
-						}
-					});
+						if (req.body.title) currentItem.title = req.body.title;
+						if (req.body.amount) currentItem.amount = req.body.amount;
+						if (req.body.unit) currentItem.unit = req.body.unit;
+						if (req.body.link) currentItem.link = req.body.link;
+						if (req.body.idea) currentItem.idea = req.body.idea;
+						if (req.body.position) currentItem.position = req.body.position;
+						if (req.body.secret) currentItem.secret = req.body.secret;
+						
+						result.save(function () {
+							res.send("ok");
+						});
+					}
 				}
 			} else {
 				res.send("error");
