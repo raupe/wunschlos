@@ -1,4 +1,7 @@
-var online = false;
+var online = true;
+
+// Load database credentials
+var credentials = require('./credentials');
 
 // Load modules
 var express = require('express');
@@ -33,7 +36,7 @@ app.use(allowCrossDomain); // For CORS, use function declared above
 
 // Database
 if (online) {
-	mongoose.connect('mongodb://test:testpw@localhost:20883/test'); // online
+	mongoose.connect('mongodb://' + credentials.user + ':' + credentials.pw + '@localhost:20883/wunsch-los'); // online
 } else {
 	mongoose.connect('mongodb://localhost:27017/test'); // local
 }
