@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html,charset=utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>WUNSCHLOS</title>
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -17,10 +17,10 @@
 		<link rel="stylesheet" type="text/css" href="style/print.css" media="print">
 
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>		
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     </head>
-	<body> 
-		<div class="header_bar"> 
+	<body>
+		<div class="header_bar">
 			<h1>WUNSCHLOS</h1>
 			<h2> CREATE A WISHLIST</h2>
 			<div class="navi">
@@ -30,14 +30,21 @@
 			</div>
 		</div>
 		<div class="content_wrap">
-			<div class="wishlist_wrap">
+			<div class="wishlist_wrap" id="wrap">
 				<div class="wishlist_top"></div>
 				<div class="wishlist_middle">
 					<div class="wishlist_content">
-						<div class="button add_item">+ADD ITEM</div>
+
+						<ol class="wishlist_content_wishes" id="wishes"></ol>
+						<!-- <div class="button add_item">+ADD ITEM</div> -->
+
 					</div>
 				</div>
-				<div class="wishlist_bottom"></div>
+				<div class="wishlist_bottom">
+
+					<div class="button button_next" id="next">NEXT</div>
+
+				</div>
 			</div>
 			<div class="navi_bottom_wrap">
 				<div class="navi_bottom">
@@ -61,10 +68,17 @@
 					If you got ideas, found bugs or like to share your opinion -
 					don't hesitate to <a href="mailto:example@examp.le">contact us</a>.
 				</p>
-				<p class="right">				
-					<a href="/sitemap.xml">SiteMap</a>	
+				<p class="right">
+					<a href="xml/sitemap.xml">SiteMap</a>
 				</p>
 			</div>
-		</div>			
+		</div>
+
+
+		<script src="scripts/interface.js"></script>
+  	<script src="scripts/creation.js"></script>
+		<script src="scripts/form.js"></script>
+
+
 	</body>
 </html>
