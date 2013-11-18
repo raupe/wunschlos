@@ -116,7 +116,7 @@ Request zum Server: Item als JSON siehe folgende Struktur
 */
 {
 	title: String,
-	price: number,
+	amount: number,
 	unit: String, // €, $, piece (Stück)
 	link: String,
 	idea: String,
@@ -151,7 +151,7 @@ Request zum Server: Item als JSON siehe folgende Struktur
 */
 {
 	title: String,
-	price: number,
+	amount: number,
 	unit: String, // €, $, piece (Stück)
 	link: String,
 	idea: String,
