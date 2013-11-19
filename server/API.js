@@ -160,6 +160,7 @@ Request zum Server: Item als JSON siehe folgende Struktur
 }
 
 /* ==========================================================================================================================================
+Implementiert: Ja
 Route: /wishlist/wishlistId/itemId
 HTTP Verb: DELETE
 
@@ -170,6 +171,7 @@ Request zum Server:
 */
 
 /* ==========================================================================================================================================
+Implementiert: Ja
 Route: /wishlist/wishlistId/itemId/share
 HTTP Verb: POST
 
@@ -185,6 +187,7 @@ Request zum Server: Share als JSON siehe folgende Struktur
 }
 
 /* ==========================================================================================================================================
+Implementiert: Ja
 Route: /wishlist/wishlistId/itemId/share/shareId
 HTTP Verb: PUT
 
@@ -200,6 +203,7 @@ Request zum Server: Share als JSON siehe folgende Struktur
 }
 
 /* ==========================================================================================================================================
+Implementiert: Ja
 Route: /wishlist/wishlistId/itemId/share/shareId
 HTTP Verb: DELETE
 
@@ -210,6 +214,7 @@ Request zum Server:
 */
 
 /* ==========================================================================================================================================
+Implementiert: Ja
 Route: /wishlist/wishlistId/itemId/comment
 HTTP Verb: POST
 
@@ -225,6 +230,7 @@ Request zum Server: Kommentar als JSON siehe folgende Struktur
 }
 
 /* ==========================================================================================================================================
+Implementiert: Ja
 Route: /wishlist/wishlistId/itemId/comment/commentId
 HTTP Verb: PUT
 
@@ -240,6 +246,7 @@ Request zum Server: Kommentar als JSON siehe folgende Struktur
 }
 
 /* ==========================================================================================================================================
+Implementiert: Ja
 Route: /wishlist/wishlistId/itemId/comment/commentId
 HTTP Verb: DELETE
 
