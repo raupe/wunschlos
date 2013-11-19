@@ -1,8 +1,11 @@
-//var url = "http://localhost:3000/wishlist";
-var url = "http://place2co.de/nodejs/wishlist/wishlist"
+var url = "http://localhost:3000/wishlist";
+//var url = "http://place2co.de/nodejs/wishlist/wishlist"
 
-var publicId = "528294ac856e73d825000004";
-var id = "52829545f11333241d000005";
+var publicId = "";
+var id = "";
+var itemId = "";
+var shareId = "";
+var commentId = "";
 
 //var foo = document.createElement("button");
 //foo.innerHTML = "foo";
@@ -11,12 +14,12 @@ var id = "52829545f11333241d000005";
 //});
 //document.body.appendChild(foo);
 
+
+// Wunschliste erstellen
 // ========================================================================================
 var button = document.createElement("button");
 button.innerHTML = "POST /wishlist";
 button.addEventListener("click", function () {
-	/*Route: /wishlist
-	HTTP Verb: POST*/
 	var request = $.ajax({
 		url: url,
 		type: "post",
@@ -27,7 +30,7 @@ button.addEventListener("click", function () {
 				{
 					id: 0,
 					title: "Power Ranger",
-					price: 20.0,
+					amount: 20.5,
 					unit: "€",
 					link: "http://www.amazon.de/Power-Rangers-Der-Film-Turbo/dp/B00DRYZC3Q",
 					idea: "Duc",
@@ -63,14 +66,13 @@ button.addEventListener("click", function () {
 });
 document.body.appendChild(button);
 
+// Wunschliste holen
 // ========================================================================================
 var button2 = document.createElement("button");
 button2.innerHTML = "GET /wishlist/" + "publicId";
 button2.addEventListener("click", function(){
-	/*Route: /wishlist
-	HTTP Verb: GET*/
 	var request = $.ajax({
-		url: url + "/" + publicId,
+		url: url + "/" + id,
 		type: "get"
 	});
 	request.done(function (msg) {
@@ -83,18 +85,17 @@ button2.addEventListener("click", function(){
 });
 document.body.appendChild(button2);
 
+// Wunschliste updaten
 // ========================================================================================
 var button3 = document.createElement("button");
-button3.innerHTML = "PUT /wishlist/" + "id";
+button3.innerHTML = "PUT /wishlist/" + "publicId";
 button3.addEventListener("click", function(){
-	/*Route: /wishlist
-	HTTP Verb: GET*/
 	var request = $.ajax({
 		url: url + "/" + id,
 		type: "put",
 		data: {
-			title: "Updated Title",
-			to: "Updated To"
+			title: "Updated id",
+			to: "Updated id"
 		}
 	});
 	request.done(function (msg) {
@@ -107,25 +108,22 @@ button3.addEventListener("click", function(){
 });
 document.body.appendChild(button3);
 
+// Item erstellen
 // ========================================================================================
 var button4 = document.createElement("button");
-button4.innerHTML = "PUT /wishlist/" + "id" + "/item";
+button4.innerHTML = "POST /wishlist/" + "id" + "/item";
 button4.addEventListener("click", function(){
-	/*Route: /wishlist
-	HTTP Verb: GET*/
 	var request = $.ajax({
 		url: url + "/" + id + "/item",
 		type: "post",
 		data: {
 			title: "Rennauto",
-			price: "20",
+			amount: "20",
 			unit: "€", // €, $, piece (Stück)
 			link: "http://ball",
 			idea: "Duc",
 			position: 1,
-			secret: true,
-			share: [],
-			comments: []
+			secret: true
 		}
 	});
 	
@@ -138,3 +136,194 @@ button4.addEventListener("click", function(){
 	});
 });
 document.body.appendChild(button4);
+
+// Item updaten
+// ========================================================================================
+var button5 = document.createElement("button");
+button5.innerHTML = "PUT /wishlist/" + "id" + "/itemId";
+button5.addEventListener("click", function(){
+	var request = $.ajax({
+		url: url + "/" + id + "/" + itemId,
+		type: "put",
+		data: {
+			title: "PUT Rennauto",
+			amount: 2000,
+			unit: "PUT €", // €, $, piece (Stück)
+			link: "PUT http://ball",
+			idea: "PUT Duc",
+			position: 3,
+			secret: true
+		}
+	});
+	
+	request.done(function (msg) {
+		console.log(msg);
+	});
+	
+	request.fail(function (jqXHR, textStatus) {
+		console.log("failed: " + textStatus);
+	});
+});
+document.body.appendChild(button5);
+
+// Item löschen
+// ========================================================================================
+var button6 = document.createElement("button");
+button6.innerHTML = "DELETE /wishlist/" + "id" + "/itemId";
+button6.addEventListener("click", function(){
+	var request = $.ajax({
+		url: url + "/" + id + "/" + itemId,
+		type: "delete"
+	});
+	
+	request.done(function (msg) {
+		console.log(msg);
+	});
+	
+	request.fail(function (jqXHR, textStatus) {
+		console.log("failed: " + textStatus);
+	});
+});
+document.body.appendChild(button6);
+
+// Share erstellen
+// ========================================================================================
+var button7 = document.createElement("button");
+button7.innerHTML = "POST /wishlist/" + "id" + "/itemId/share";
+button7.addEventListener("click", function(){
+	var request = $.ajax({
+		url: url + "/" + id + "/" + itemId + "/share",
+		type: "post",
+		data: {
+			name: "John",
+			amount: 10,
+			secret: true
+		}
+	});
+	
+	request.done(function (msg) {
+		console.log(msg);
+	});
+	
+	request.fail(function (jqXHR, textStatus) {
+		console.log("failed: " + textStatus);
+	});
+});
+document.body.appendChild(button7);
+
+// Share updaten
+// ========================================================================================
+var button8 = document.createElement("button");
+button8.innerHTML = "PUT /wishlist/" + "id" + "/itemId/share/shareId";
+button8.addEventListener("click", function(){
+	var request = $.ajax({
+		url: url + "/" + id + "/" + itemId + "/share/" + shareId,
+		type: "put",
+		data: {
+			name: "John DOE CHANGED",
+			amount: 400,
+			secret: false
+		}
+	});
+	
+	request.done(function (msg) {
+		console.log(msg);
+	});
+	
+	request.fail(function (jqXHR, textStatus) {
+		console.log("failed: " + textStatus);
+	});
+});
+document.body.appendChild(button8);
+
+// Share löschen
+// ========================================================================================
+var button9 = document.createElement("button");
+button9.innerHTML = "DELETE /wishlist/" + "id" + "/itemId/share/shareId";
+button9.addEventListener("click", function(){
+	var request = $.ajax({
+		url: url + "/" + id + "/" + itemId + "/share/" + shareId,
+		type: "delete"
+	});
+	
+	request.done(function (msg) {
+		console.log(msg);
+	});
+	
+	request.fail(function (jqXHR, textStatus) {
+		console.log("failed: " + textStatus);
+	});
+});
+document.body.appendChild(button9);
+
+// Kommentar erstellen
+// ========================================================================================
+var button10 = document.createElement("button");
+button10.innerHTML = "POST /wishlist/" + "id" + "/itemId/comment";
+button10.addEventListener("click", function(){
+	var request = $.ajax({
+		url: url + "/" + id + "/" + itemId + "/comment",
+		type: "post",
+		data: {
+			name: "John",
+			comment: "Heyho! Coole IDEE",
+			secret: true
+		}
+	});
+	
+	request.done(function (msg) {
+		console.log(msg);
+	});
+	
+	request.fail(function (jqXHR, textStatus) {
+		console.log("failed: " + textStatus);
+	});
+});
+document.body.appendChild(button10);
+
+// Share updaten
+// ========================================================================================
+var button11 = document.createElement("button");
+button11.innerHTML = "PUT /wishlist/" + "id" + "/itemId/comment/commentId";
+button11.addEventListener("click", function(){
+	var request = $.ajax({
+		url: url + "/" + id + "/" + itemId + "/comment/" + commentId,
+		type: "put",
+		data: {
+			name: "John DOE CHANGED",
+			comment: "Changed Comment",
+			secret: false
+		}
+	});
+	
+	request.done(function (msg) {
+		console.log(msg);
+	});
+	
+	request.fail(function (jqXHR, textStatus) {
+		console.log("failed: " + textStatus);
+	});
+});
+document.body.appendChild(button11);
+
+// Share löschen
+// ========================================================================================
+var button12 = document.createElement("button");
+button12.innerHTML = "DELETE /wishlist/" + "id" + "/itemId/comment/commentId";
+button12.addEventListener("click", function(){
+	var request = $.ajax({
+		url: url + "/" + id + "/" + itemId + "/comment/" + commentId,
+		type: "delete"
+	});
+	
+	request.done(function (msg) {
+		console.log(msg);
+	});
+	
+	request.fail(function (jqXHR, textStatus) {
+		console.log("failed: " + textStatus);
+	});
+});
+document.body.appendChild(button12);
+
+
