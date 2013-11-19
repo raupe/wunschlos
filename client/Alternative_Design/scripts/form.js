@@ -5,7 +5,7 @@
  *  A form using the float-pattern and progressive input fields.
  */
 
-(function(){
+//(function(){
 
   // ------------------------------------------------- //
 
@@ -41,7 +41,8 @@
 
   $wishes.on( transitionEnd, function ( e ) {
 
-    if ( e.target.classList.contains('wishlist_wish-open') ) {
+    if ( e.target.classList.contains('wishlist_wish-open')
+    	&& $wishes.children()[$wishes.children().length - 1].classList.contains('wishlist_wish-open') ) {
 
       createWish();
     }
@@ -275,4 +276,4 @@
     return 'placeholder' in el;
   }
 
-})();
+//})();

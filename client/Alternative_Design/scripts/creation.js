@@ -8,24 +8,25 @@ var url = "http://place2co.de/nodejs/wishlist/";
 
 function sendWishlist() {
 	var wishlist = {};
-	wishlist["title"] = $("#title").val();
-	wishlist["to"] = $("#user").val();
+//	wishlist["title"] = $("#title").val();
+//	wishlist["to"] = $("#user").val();
 
 	var items = [];
 
-	var pos = 0;
-	$(".fields").each(function() {
+	var i = 0;
+	$(".wishlist_wish_fields").each(function() {
 		var item = {};
 
-		if($(this).children("#item").val()) {
-			item["title"] = $(this).children("#item").val();
-			item["amount"] = parseFloat($(this).children("#price").val());
+		if($("#item-"+i).val()) {
+			item["title"] = $("#item-"+i).val();
+			item["amount"] = parseFloat($("#price-"+i).val());
 			item["unit"] = "piece";
-			item["link"] = $(this).children("#link").val();
-			item["idea"] = $(this).children("#idea").val();
-			item["position"] = pos;
+			item["link"] = $("#link-"+i).val();
+			item["idea"] = $("#idea-"+i).val();
+			item["position"] = i;
 			item["secret"] = false;
 
+			/*
 			var shares = [];
 			if($(this).children("#share").val()) {
 				var share = {};
@@ -45,14 +46,16 @@ function sendWishlist() {
 				comments.push(comment);
 			}
 			item["comments"] = comments;
+			*/
+			
+			items.push(item);
+			i++;
 		}
-
-		items.push(item);
-		pos++;
 	});
 	wishlist["items"] = items;
 
-	var str = JSON.stringify(wishlist);  // str ?! =>  || + form templates ?
+//	var str = JSON.stringify(wishlist);  // str ?! =>  || + form templates ?
+//	alert(str);
 
 	var request = $.ajax({
 		url: url + "wishlist",

@@ -1,5 +1,5 @@
-var url = "http://localhost:3000/wishlist";
-//var url = "http://place2co.de/nodejs/wishlist/wishlist"
+//var url = "http://localhost:3000/wishlist";
+var url = "http://place2co.de/nodejs/wishlist/wishlist"
 
 var publicId = "528294ac856e73d825000004";
 var id = "52829545f11333241d000005";
