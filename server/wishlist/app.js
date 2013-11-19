@@ -58,7 +58,6 @@ app.get('/hi', function (req, res) {
 });
 
 // Routes
-
 // Creating, Getting and Updating wishlist
 app.post('/wishlist', routes.createWishlist(Wishlist, mongoose));
 app.get('/wishlist/:wishlistId', routes.getWishlist(Wishlist));
@@ -67,7 +66,17 @@ app.put('/wishlist/:wishlistId', routes.updateWishlist(Wishlist));
 // Creating, Updating, Deleting item 
 app.post('/wishlist/:wishlistId/item', routes.createItem(Wishlist));
 app.put('/wishlist/:wishlistId/:itemId', routes.updateItem(Wishlist));
+app.delete('/wishlist/:wishlistId/:itemId', routes.deleteItem(Wishlist));
 
+// Creating, Updating, Deleting share
+app.post('/wishlist/:wishlistId/:itemId/share', routes.createShare(Wishlist));
+app.put('/wishlist/:wishlistId/:itemId/share/:shareId', routes.updateShare(Wishlist));
+app.delete('/wishlist/:wishlistId/:itemId/share/:shareId', routes.deleteShare(Wishlist));
+
+// Creating, Updating, Deleting comment
+app.post('/wishlist/:wishlistId/:itemId/comment', routes.createComment(Wishlist));
+app.put('/wishlist/:wishlistId/:itemId/comment/:commentId', routes.updateComment(Wishlist));
+app.delete('/wishlist/:wishlistId/:itemId/comment/:commentId', routes.deleteComment(Wishlist));
 
 
 connection.once('error', function() {
