@@ -182,3 +182,343 @@ exports.updateItem = function (dbModel) {
 		});
 	};
 };
+
+exports.deleteItem = function (dbModel) {
+	
+	return function (req, res) {
+		
+		var wishlistId = req.params.wishlistId,
+			itemId = req.params.itemId,
+			public = isPublic(wishlistId);
+		
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({ _id: wishlistId }, function (err, result) {
+			
+			if (!err && result !== null) {
+				var currentItem,
+					i;
+				for (i = 0; i < result.items.length; i++) {
+					currentItem = result.items[i];
+					if (currentItem._id.toString() === itemId) {
+						
+						result.items.splice(i, 1);
+						result.save();
+					}
+				}
+			} else {
+				res.send("error");
+			}
+		});
+	};
+};
+
+// Creating, Updating, Deleting share ============================================
+
+exports.createShare = function (dbModel) {
+	
+	return function (req, res) {
+		
+		var wishlistId = req.params.wishlistId,
+			public = isPublic(wishlistId),
+			itemId = req.params.itemId;
+		
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({ _id: wishlistId }, function (err, result) {
+			
+			if (!err && result !== null) {
+				
+				var currentItem,
+					i;
+				
+				for (i = 0; i < result.items.length; i++) {
+					
+					currentItem = result.items[i];
+					if (currentItem._id.toString() === itemId) {
+						result.items[i].shares.push(req.body);
+						result.save(function(err, result){
+							if (err) {
+								console.log(err);
+							} else {
+								console.log("saved share");
+								var shareLength = currentItem.shares.length;
+								var idOfLast = currentItem.shares[shareLength - 1]._id;
+								res.send(idOfLast);
+							}
+						});
+					}
+				}
+				
+			} else {
+				res.send("error");
+			}
+		});
+	};
+};
+
+exports.updateShare = function (dbModel) {
+	
+	return function (req, res) {
+		
+		var wishlistId = req.params.wishlistId,
+			public = isPublic(wishlistId),
+			itemId = req.params.itemId,
+			shareId = req.params.shareId;
+		
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({ _id: wishlistId }, function (err, result) {
+			
+			if (!err && result !== null) {
+				
+				var currentItem,
+					currentShare,
+					i, i2,
+					itemFound = false,
+					shareFound = false;
+				
+				for (i = 0; i < result.items.length; i++) {
+					
+					currentItem = result.items[i];
+					
+					if (currentItem._id.toString() === itemId) {
+						itemFound = true;
+						
+						for (i2 = 0; i2 < currentItem.shares.length; i2++) {
+							
+							currentShare = currentItem.shares[i2];
+							
+							if (currentShare._id.toString() === shareId) {
+								shareFound = true;
+								
+								if (req.body.name) currentShare.name = req.body.name;
+								if (req.body.amount) currentShare.amount = req.body.amount;
+								if (req.body.secret) currentShare.secret = req.body.secret;
+								
+								result.save(function(){
+									console.log("share updated");
+									res.send("ok");
+								})
+							}
+						}
+					}
+				}
+				
+				if (shareFound === false || itemFound === false) {
+					res.send("error");
+				} 
+				
+			} else {
+				res.send("error");
+			}
+		});
+	};
+};
+
+exports.deleteShare = function (dbModel) {
+	
+	return function (req, res) {
+		
+		var wishlistId = req.params.wishlistId,
+			public = isPublic(wishlistId),
+			itemId = req.params.itemId,
+			shareId = req.params.shareId;
+		
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({ _id: wishlistId }, function (err, result) {
+			
+			if (!err && result !== null) {
+				
+				var currentItem,
+					currentShare,
+					i, i2;
+				
+				for (i = 0; i < result.items.length; i++) {
+					
+					currentItem = result.items[i];
+					
+					if (currentItem._id.toString() === itemId) {
+						
+						for (i2 = 0; i2 < currentItem.shares.length; i2++) {
+							
+							currentShare = currentItem.shares[i2];
+							
+							if (currentShare._id.toString() === shareId) {
+								
+								currentItem.shares.splice(i2, 1);
+								result.save();
+							}
+						}
+					}
+				}
+				
+			} else {
+				res.send("error");
+			}
+		});
+	};
+};
+
+// Creating, Updating, Deleting comment ============================================
+
+exports.createComment = function (dbModel) {
+	
+	return function (req, res) {
+		
+		var wishlistId = req.params.wishlistId,
+			public = isPublic(wishlistId),
+			itemId = req.params.itemId;
+		
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({ _id: wishlistId }, function (err, result) {
+			
+			if (!err && result !== null) {
+				
+				var currentItem,
+					i;
+				
+				for (i = 0; i < result.items.length; i++) {
+					
+					currentItem = result.items[i];
+					if (currentItem._id.toString() === itemId) {
+						result.items[i].comments.push(req.body);
+						result.save(function(err, result){
+							if (err) {
+								console.log(err);
+							} else {
+								console.log("saved comment");
+								var length = currentItem.comments.length;
+								var idOfLast = currentItem.comments[length - 1]._id;
+								res.send(idOfLast);
+							}
+						});
+					}
+				}
+				
+			} else {
+				res.send("error");
+			}
+		});
+	};
+};
+
+exports.updateComment = function (dbModel) {
+	
+	return function (req, res) {
+		
+		var wishlistId = req.params.wishlistId,
+			public = isPublic(wishlistId),
+			itemId = req.params.itemId,
+			commentId = req.params.commentId;
+		
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({ _id: wishlistId }, function (err, result) {
+			
+			if (!err && result !== null) {
+				
+				var currentItem,
+					currentComment,
+					i, i2,
+					itemFound = false,
+					commentFound = false;
+				
+				for (i = 0; i < result.items.length; i++) {
+					
+					currentItem = result.items[i];
+					
+					if (currentItem._id.toString() === itemId) {
+						itemFound = true;
+						
+						for (i2 = 0; i2 < currentItem.comments.length; i2++) {
+							
+							currentComment = currentItem.comments[i2];
+							
+							if (currentComment._id.toString() === commentId) {
+								commentFound = true;
+								
+								if (req.body.name) currentComment.name = req.body.name;
+								if (req.body.comment) currentComment.comment = req.body.comment;
+								if (req.body.secret) currentComment.secret = req.body.secret;
+								
+								result.save(function(){
+									console.log("comment updated");
+									res.send("ok");
+								})
+							}
+						}
+					}
+				}
+				
+				if (commentFound === false || itemFound === false) {
+					res.send("error");
+				} 
+				
+			} else {
+				res.send("error");
+			}
+		});
+	};
+};
+
+exports.deleteComment = function (dbModel) {
+	
+	return function (req, res) {
+		
+		var wishlistId = req.params.wishlistId,
+			public = isPublic(wishlistId),
+			itemId = req.params.itemId,
+			commentId = req.params.commentId;
+		
+		if ( public ) {
+			wishlistId = createId(wishlistId);
+		}
+		
+		dbModel.findOne({ _id: wishlistId }, function (err, result) {
+			
+			if (!err && result !== null) {
+				
+				var currentItem,
+					currentComment,
+					i, i2;
+				
+				for (i = 0; i < result.items.length; i++) {
+					
+					currentItem = result.items[i];
+					
+					if (currentItem._id.toString() === itemId) {
+						
+						for (i2 = 0; i2 < currentItem.comments.length; i2++) {
+							
+							currentComment = currentItem.comments[i2];
+							
+							if (currentComment._id.toString() === commentId) {
+								
+								currentItem.comments.splice(i2, 1);
+								result.save();
+							}
+						}
+					}
+				}
+				
+			} else {
+				res.send("error");
+			}
+		});
+	};
+};
