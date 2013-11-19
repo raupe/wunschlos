@@ -10,7 +10,7 @@ exports.wishlist = {
 			idea: String,
 			position: Number,
 			secret: Boolean,
-			share: [
+			shares: [
 				{
 					name: String,
 					amount: Number,
