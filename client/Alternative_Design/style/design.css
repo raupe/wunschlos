@@ -130,14 +130,13 @@ button:focus {
 }
 
 .wishlist_wish-open {
-
-  height: 22rem;
+  /* depending on the items ?*/
+  height: 28rem;
 }
 
 
 .wishlist_wish_set {
 
-  /*margin: 2rem 0 10rem 0;*/
   margin:  0;
   padding: 0;
   border:  0;
@@ -180,16 +179,16 @@ button:focus {
 
   font-size: 1.5rem;
 
-  /*top: 0.25rem;*/
+  top: 0.25rem;
 
-  opacity: 1;
+  opacity: 0.8;
 
   color: #999;
 
-  -webkit-transition: top 300ms ease, opacity 300ms ease;
-     -moz-transition: top 300ms ease, opacity 300ms ease;
-       -o-transition: top 300ms ease, opacity 300ms ease;
-          transition: top 300ms ease, opacity 300ms ease;
+  -webkit-transition: top 300ms ease, opacity 300ms linear;
+     -moz-transition: top 300ms ease, opacity 300ms linear;
+       -o-transition: top 300ms ease, opacity 300ms linear;
+          transition: top 300ms ease, opacity 300ms linear;
 }
 
 
@@ -199,6 +198,7 @@ button:focus {
 
   opacity: 0;
 }
+
 
 .wishlist_wish_field_label-highlight {
 
@@ -243,4 +243,12 @@ button:focus {
   position: absolute;
   left: 45%;
   top: 35%;
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    /* display: none; */
 }

@@ -14,25 +14,34 @@
 
       <li class="wishlist_wish_field js-field">
 
-        <label for="price-{{num}}" class="wishlist_wish_field_label js-label">Price</label>
-        <input type="number" name="price" min="0" step="1" pattern="\d+" placeholder="Set a Price" tabindex="{{tab+1}}"
-        autocomplete="off" class="wishlist_wish_field_input js-input" id="price-{{num}}"/>
+        <label for="link-{{num}}" class="wishlist_wish_field_label js-label">Link</label>
+        <input type="text" name="link" placeholder="Add a Link" tabindex="{{tab+1}}"
+        autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="link-{{num}}"/>
 
       </li>
 
       <li class="wishlist_wish_field js-field">
 
-        <label for="link-{{num}}" class="wishlist_wish_field_label js-label">Link</label>
-        <input type="number" name="price" min="0" step="1" pattern="\d+" placeholder="Add a Link" tabindex="{{tab+2}}"
-        autocomplete="off" class="wishlist_wish_field_input js-input" id="link-{{num}}"/>
+        <label for="price-{{num}}" class="wishlist_wish_field_label js-label">Price</label>
+        <input type="number" name="price" min="0" step="1" pattern="\d+" placeholder="Set a Price" tabindex="{{tab+2}}"
+        autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="price-{{num}}"/>
 
       </li>
+
+
+      <li class="wishlist_wish_field js-field">
+
+        <label for="price-{{num}}" class="wishlist_wish_field_label js-label">Share</label>
+        <input type="number" name="share" min="0" step="1" pattern="\d+" placeholder="Participation (€, $)" tabindex="{{tab+3}}" autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="price-{{num}}"/>
+
+      </li>
+
 
       <li class="wishlist_wish_field js-field">
 
         <label for="giver-{{num}}" class="wishlist_wish_field_label js-label">Giver</label>
-        <input type="text" name="price" placeholder="Your Name" tabindex="{{tab+3}}"
-        autocomplete="off" class="wishlist_wish_field_input js-input" id="giver-{{num}}"/>
+        <input type="text" name="price" placeholder="Your Name" tabindex="{{tab+4}}"
+        autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="giver-{{num}}"/>
 
       </li>
 

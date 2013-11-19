@@ -27,6 +27,10 @@
 
   $wrap.on('click', function ( e ) {
 
+    var trg = e.target;
+
+    if ( trg.nodeName == 'INPUT' ) return;
+
     var input = $wishes.find(':input').filter( function( i, el ){ return !el.value; });
 
     if ( !input.length ) return;
@@ -44,7 +48,7 @@
   });
 
 
-  $wishes.on('keyup blur focus', function ( e ) {
+  $wishes.on('keypress keyup blur focus', 'input, textarea', function ( e ) {
 
     var $current  = $(e.target),
         $prev     = $current.prev(),
@@ -53,11 +57,26 @@
         first     = $parent.is(':first-child'),
         item      = $parent.closest('.wishlist_wish'),
 
+        type      = $current.attr('type'),
         val       = $current.val(),
-        type      = e.type;
+        action    = e.type;
 
 
-    if ( type === 'keyup' ) {
+    if ( action === 'keypress' && type === 'number' ) {
+
+      var key = e.which;
+
+      if ( key < 48 || key > 57 ) {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        return;
+      }
+    }
+
+
+    if ( action === 'keyup' ) {
 
       if ( val ) {
 
@@ -76,8 +95,10 @@
 
           if ( !item.hasClass('wishlist_wish-open') ) {
 
-            // title - label
+            // enable fields, disabled by default
             item.addClass('wishlist_wish-open');
+
+            item.find('.js-input').removeAttr('disabled');
           }
         }
 
@@ -86,11 +107,11 @@
         $prev.addClass('wishlist_wish_field_label-hidden');
       }
 
-    } else if ( type === 'blur' ) {
+    } else if ( action === 'blur' ) { // TODO: wont trigger
 
       $prev.removeClass('wishlist_wish_field_label-highlight');
 
-    } else if ( type === 'focus' ) {
+    } else if ( action === 'focus' ) {
 
       $prev.addClass('wishlist_wish_field_label-highlight');
     }
@@ -114,7 +135,7 @@
 
     var num  = $wishes.children().length,
 
-        tmpl = parseTemplate( template_STR, { num: num, tab: 4 * num }),
+        tmpl = parseTemplate( template_STR, { num: num, tab: 1 + num * 5 }),  // fields
 
         wish = $( tmpl );
 
