@@ -62,7 +62,16 @@ exports.getWishlist = function (dbModel) {
 		
 		var wishlistId = req.params.wishlistId,
 			public = isPublic(wishlistId),
-			resultCopy;
+			resultCopy,
+			
+			itemIndex,
+			currentItem,
+			
+			shareIndex,
+			currentShare,
+			
+			commentIndex,
+			currentComment;
 		
 		if ( public ) {
 			wishlistId = createId(wishlistId);
@@ -72,12 +81,48 @@ exports.getWishlist = function (dbModel) {
 			
 			if (!err && result !== null) {
 				resultCopy = result.toJSON();
+				
 				if (public) {
+					
 					resultCopy.vip = false;
+					res.send(resultCopy);
+					
 				} else {
+					
 					resultCopy.vip = true;
+					for (itemIndex = 0; itemIndex < resultCopy.items.length; itemIndex++) {
+						
+						currentItem = resultCopy.items[itemIndex];
+						
+						if (currentItem.secret) {
+							
+							resultCopy.items.splice(itemIndex, 1);
+							
+						} else {
+							
+							for (shareIndex = 0; shareIndex < currentItem.shares.length; shareIndex++) {
+								
+								currentShare = currentItem.shares[shareIndex];
+								
+								if (currentShare.secret) {
+									
+									currentItem.shares.splice(shareIndex, 1);
+								}
+							}
+							
+							for (commentIndex = 0; commentIndex < currentItem.comments.length; commentIndex++) {
+								
+								currentComment = currentItem.comments[commentIndex];
+								
+								if (currentComment.secret) {
+									
+									currentItem.comments.splice(shareIndex, 1);
+								}
+							}
+						}
+					}
+					res.send(resultCopy);
 				}
-				res.send(resultCopy);
 			}
 		});
 	};
@@ -158,10 +203,14 @@ exports.updateItem = function (dbModel) {
 			
 			if (!err && result !== null) {
 				var currentItem,
+					itemFound = false,
 					i;
+				
 				for (i = 0; i < result.items.length; i++) {
 					currentItem = result.items[i];
 					if (currentItem._id.toString() === itemId) {
+						
+						itemFound = true;
 						
 						if (req.body.title) currentItem.title = req.body.title;
 						if (req.body.amount) currentItem.amount = req.body.amount;
@@ -175,6 +224,9 @@ exports.updateItem = function (dbModel) {
 							res.send("ok");
 						});
 					}
+					
+					if (!itemFound) res.send("error");
+					
 				}
 			} else {
 				res.send("error");
