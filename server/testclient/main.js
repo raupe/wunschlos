@@ -281,7 +281,7 @@ button10.addEventListener("click", function(){
 });
 document.body.appendChild(button10);
 
-// Share updaten
+// Kommentar updaten
 // ========================================================================================
 var button11 = document.createElement("button");
 button11.innerHTML = "PUT /wishlist/" + "id" + "/itemId/comment/commentId";
@@ -306,7 +306,7 @@ button11.addEventListener("click", function(){
 });
 document.body.appendChild(button11);
 
-// Share löschen
+// Kommentar löschen
 // ========================================================================================
 var button12 = document.createElement("button");
 button12.innerHTML = "DELETE /wishlist/" + "id" + "/itemId/comment/commentId";
