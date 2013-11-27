@@ -39,6 +39,6 @@ body{
 @media screen and (min-width: 1450px){
 
 	.design_bg{
-		background-size: 100%;
+		//background-size: 100%;
 	}	
 }
