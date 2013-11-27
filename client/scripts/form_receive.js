@@ -5,7 +5,7 @@
  *  A form using the float-pattern and progressive input fields.
  */
 
-(function(){
+//(function(){
 
   // ------------------------------------------------- //
 
@@ -18,7 +18,7 @@
       $wishes = $wrap.find('#wishes');
 
   // config
-  var template_URL = 'partial/template.html',
+  var template_URL = 'partial/template_receive.html',
       template_STR = '';
 
 
@@ -37,16 +37,6 @@
 
     input.get(0).focus();
   });
-
-
-  $wishes.on( transitionEnd, function ( e ) {
-
-    if ( e.target.classList.contains('wishlist_wish-open') ) {
-
-      createWish();
-    }
-  });
-
 
   $wishes.on('keypress keyup blur focus', 'input, textarea', function ( e ) {
 
@@ -122,7 +112,7 @@
   // -------------------------------------------------- //
 
 
-  getTemplate( template_URL, createWish );
+  getTemplate( template_URL, function(){} );
 
 
   /**
@@ -130,12 +120,13 @@
    *
    *  @return {[type]} [description]
    */
+  /* @Stefan
+   * num muss nicht unbedingt wishes.length sein, da ein Wish zwischendurch gelöscht worden sein könnte
+   * deswegen als Parameter
+   */
+  function createWish(num){
 
-  function createWish(){
-
-    var num  = $wishes.children().length,
-
-        tmpl = parseTemplate( template_STR, { num: num, tab: 1 + num * 5 }),  // fields
+    var tmpl = parseTemplate( template_STR, { num: num, tab: 1 + num * 5 }),  // fields
 
         wish = $( tmpl );
 
@@ -275,4 +266,23 @@
     return 'placeholder' in el;
   }
 
-})();
+//})();
+
+/*
+	@Stefan
+	Folgende Funktionen betreffen das Aussehen/Design.
+	Deswegen hab ich sie hier her verlegt.
+	Vielleicht willst du das noch etwas schöner gestalten.
+*/
+
+function makeEditable(wish) {
+	wish.find('.js-input').attr('disabled', false);
+}
+
+function makeNotEditable(wish) {
+	wish.find('.js-input').attr('disabled', true);
+}
+
+function removeWish(wish) {
+	wish.remove();
+}

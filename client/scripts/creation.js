@@ -35,7 +35,7 @@ function sendWishlist() {
 				share["secret"] = false;
 				shares.push(share);
 			}
-			item["share"] = shares;
+			item["shares"] = shares;
 
 			var comments = [];
 			if($(this).children("#comment").val()) {
