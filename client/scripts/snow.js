@@ -30,6 +30,20 @@ $(document).ready(function(){
 		contentHeight =  designDiv.height();
 		contentWidth = designDiv.width();
 		generateInitSnow();
+		
+		$('body').prepend(		
+	
+
+		$('<img>') // new image
+			.attr('src', "assets/img/xmas.png")
+			.attr("id","bg_image")
+			.css('position', 'fixed')
+			.css('width', 'auto')
+			.css('max-width', 'none')
+		
+		);
+		
+		positionBackgroundImage();
 	}
  
 	
@@ -39,6 +53,7 @@ $(document).ready(function(){
 			designDiv.trigger('change');
 	});*/
  
+		// if wish list grows/shrinks, more/less snowflakes are needed
 	designDiv.bind('change', function() {
 
 		contentHeight =  designDiv.height();
@@ -67,11 +82,33 @@ $(document).ready(function(){
 		
 			for(var i =0; i < xRaster; i++){
 		
-				createSnowflake(i);
+				createSnowflake(i); 
 			}			
 		}
 		
 	});
+
+		// change background position according to scroll	
+	$(document).scroll(function () {
+
+		positionBackgroundImage();
+
+	});
+
+		// ensure that snowman stands on the ground
+	function positionBackgroundImage(){
+			var footerPos = $("#footer_pos").offset().top ;
+			var scrollAmount = $(window).scrollTop() + $(window).height();
+
+			if(scrollAmount > footerPos){
+			
+				var footerPosCurrent = ($(window).height() - (footerPos - $(window).scrollTop()));
+				$("#bg_image").css("bottom", footerPosCurrent);							
+			}else{
+				$("#bg_image").css("bottom", "auto");
+			}	
+	
+	}
 	
 	$( window ).resize(function() {
 	
@@ -87,6 +124,8 @@ $(document).ready(function(){
 						
 		contentHeight =  designDiv.height();
 		contentWidth = designDiv.width();
+		positionBackgroundImage();
+
 	});
 
 	$(window).bind('resizeEnd', function() {
