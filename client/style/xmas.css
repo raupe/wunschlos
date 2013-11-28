@@ -1,0 +1,45 @@
+body{
+	background: #42608D;
+
+}
+
+.design_bg{
+	height:100%;
+	width:100%;
+	/*padding-bottom: 2rem;
+	background-image:url(../assets/img/xmas.png);
+	background-attachment: fixed;
+	background-repeat: x-repeat;
+	background-position: -350px 0;*/
+}
+
+.snow{
+	background:rgba(255,255,255,0.5);
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+
+.wishlist_middle {
+	min-height: 30rem;
+}
+
+.footer{
+	width: 100%;
+	height: 20rem;
+	padding-top: 2em;
+	background: #ffffff;
+}
+
+.footer_text p,h3,a{	
+	color: #818CB1;
+}
+
+
+/*  responsive  */
+@media screen and (min-width: 1450px){
+
+	.design_bg{
+		//background-size: 100%;
+	}	
+}

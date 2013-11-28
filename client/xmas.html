@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="style/base.css">
 
 		<link rel="stylesheet" type="text/css" href="style/design.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="style/xmas.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="style/mobile.css">
 		<!-- media="screen and (max-width: 800px)" -->
 		<link rel="stylesheet" type="text/css" href="style/print.css" media="print">
@@ -20,40 +21,27 @@
 		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     </head>
 	<body>
-		<div class="header_bar">
-			<h1>WUNSCHLOS</h1>
-			<h2> CREATE A WISHLIST</h2>
-			<div class="navi">
-				<div class="button right">+EN</div>
-				<div class="button">SELECT DESIGN</div>
-				<div class="button">SHARE WISHLIST</div>
+		<div class="design_bg" id="design">
+			<div class="header_bar">
+				<h1>WUNSCHLOS</h1>
+				<h2> CREATE A WISHLIST</h2>
 			</div>
-		</div>
-		<div class="content_wrap">
-			<div class="wishlist_wrap" id="wrap">
-				<div class="wishlist_top"></div>
-				<div class="wishlist_middle">
-					<div class="wishlist_content">
+			<div class="content_wrap">
+				<div class="wishlist_wrap" id="wrap">
+					<div class="wishlist_top"></div>
+					<div class="wishlist_middle">
+						<div class="wishlist_content">
 
-						<ol class="wishlist_content_wishes" id="wishes"></ol>
-						<!-- <div class="button add_item">+ADD ITEM</div> -->
+							<ol class="wishlist_content_wishes" id="wishes"></ol>
+							<!-- <div class="button add_item">+ADD ITEM</div> -->
 
+						</div>
 					</div>
-				</div>
-				<div class="wishlist_bottom">
-
-					<div class="button button_next" id="next">NEXT</div>
-
-				</div>
-			</div>
-			<div class="navi_bottom_wrap">
-				<div class="navi_bottom">
-					<div class="button">SELECT DESIGN</div>
-					<div class="button">SHARE WISHLIST</div>
+					<div class="wishlist_bottom"></div>
 				</div>
 			</div>
 		</div>
-		<div class="footer">
+		<div class="footer" id="footer_pos">
 			<div class="footer_text">
 				<h3>ABOUT US</h3>
 				<p>
@@ -74,9 +62,9 @@
 			</div>
 		</div>
 
-
+		<script src="scripts/snow.js"></script>
 		<script src="scripts/interface.js"></script>
-  	<script src="scripts/creation.js"></script>
+		<script src="scripts/creation.js"></script>
 		<script src="scripts/form.js"></script>
 
 
