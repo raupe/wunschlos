@@ -166,7 +166,7 @@ HTTP Verb: DELETE
 
 Beschreibung: Löschen eines items in einer bestehenden Wunschliste
 
-Rückgabe vom Server:
+Rückgabe vom Server: deleted
 Request zum Server: 
 */
 
@@ -209,7 +209,7 @@ HTTP Verb: DELETE
 
 Beschreibung: Löschen einer Beteiligung in einer bestehenden Wunschliste
 
-Rückgabe vom Server:
+Rückgabe vom Server: deleted
 Request zum Server:
 */
 
@@ -252,6 +252,6 @@ HTTP Verb: DELETE
 
 Beschreibung: Löschen eines Kommentars in einer bestehenden Wunschliste
 
-Rückgabe vom Server:
+Rückgabe vom Server: deleted
 Request zum Server:
 */

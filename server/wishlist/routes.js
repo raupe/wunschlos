@@ -258,6 +258,7 @@ exports.deleteItem = function (dbModel) {
 						
 						result.items.splice(i, 1);
 						result.save();
+                        res.send("deleted");
 					}
 				}
 			} else {
@@ -409,6 +410,7 @@ exports.deleteShare = function (dbModel) {
 								
 								currentItem.shares.splice(i2, 1);
 								result.save();
+                                res.send("deleted");
 							}
 						}
 					}
@@ -563,6 +565,7 @@ exports.deleteComment = function (dbModel) {
 								
 								currentItem.comments.splice(i2, 1);
 								result.save();
+                                res.send("deleted");
 							}
 						}
 					}
