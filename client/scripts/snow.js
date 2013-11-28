@@ -34,10 +34,10 @@ $(document).ready(function(){
  
 	
 	//if height of wishlist grows, more snowflakes
-	designDiv.click(function(){
+	/*designDiv.click(function(){
 		designDiv.css("height", 300);
 			designDiv.trigger('change');
-	});
+	});*/
  
 	designDiv.bind('change', function() {
 
