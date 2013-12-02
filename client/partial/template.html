@@ -6,36 +6,43 @@
 
       <li class="wishlist_wish_field js-field">
 
-        <label for="item-{{num}}" class="wishlist_wish_field_label js-label">Item</label>
-        <input type="text" name="item" placeholder="Item OR Link" tabindex="{{tab}}"
+        <label for="item-{{num}}" class="wishlist_wish_field_label js-label">Wish</label>
+        <input type="text" name="item" placeholder="Name of your Wish" tabindex="{{tab}}"
         autocomplete="off" class="wishlist_wish_field_input js-input" id="item-{{num}}"/>
 
       </li>
 
       <li class="wishlist_wish_field js-field">
 
-        <label for="link-{{num}}" class="wishlist_wish_field_label js-label">Link</label>
-        <input type="text" name="link" placeholder="Add a Link" tabindex="{{tab+1}}"
-        autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="link-{{num}}"/>
+        <label for="details-{{num}}" class="wishlist_wish_field_label js-label">Details</label>
+        <input type="text" name="details" placeholder="Add more Information" tabindex="{{tab+1}}"
+        autocomplete="off" class="wishlist_wish_field_input js-input" id="details-{{num}}"/>
 
       </li>
 
       <li class="wishlist_wish_field js-field">
 
         <label for="price-{{num}}" class="wishlist_wish_field_label js-label">Price</label>
-        <input type="number" name="price" min="0" step="1" pattern="\d+" placeholder="Set a Price" tabindex="{{tab+2}}"
+        <input type="number" name="price" min="0" step="1" pattern="\d+" placeholder="Tell the Price" tabindex="{{tab+2}}"
         autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="price-{{num}}"/>
 
       </li>
 
+      <li class="wishlist_wish_field js-field">
 
+        <label for="link-{{num}}" class="wishlist_wish_field_label js-label">Link</label>
+        <input type="text" name="link" placeholder="Add a Link" tabindex="{{tab+3}}"
+        autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="link-{{num}}"/>
+
+      </li>
+<!--
       <li class="wishlist_wish_field js-field">
 
         <label for="price-{{num}}" class="wishlist_wish_field_label js-label">Share</label>
         <input type="number" name="share" min="0" step="1" pattern="\d+" placeholder="Participation (€, $)" tabindex="{{tab+3}}" autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="price-{{num}}"/>
 
-      </li>
-
+      </li> -->
+<!--
 
       <li class="wishlist_wish_field js-field">
 
@@ -44,11 +51,28 @@
         autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="giver-{{num}}"/>
 
       </li>
-
+ -->
     </ul>
 
   </fieldset>
 
-  <hr class="wishlist_wish_seperator"/>
+  <section class="wishlist_wish_edit">
+
+    <button class="edit_button edit_button-more js-edit-buttons">
+      <div class="edit_button_text">more</div>
+      <div class="edit_button_icon edit_button_icon_more"></div>
+    </button>
+
+    <button class="edit_button edit_button-delete js-edit-buttons invisible">
+      <div class="edit_button_icon edit_button_icon_delete"></div>
+      <div class="edit_button_text">delete</div>
+    </button>
+
+    <button class="edit_button edit_button-less js-edit-buttons invisible">
+      <div class="edit_button_text">less</div>
+      <div class="edit_button_icon edit_button_icon_less"></div>
+    </button>
+
+  </section>
 
 </li>

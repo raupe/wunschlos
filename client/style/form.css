@@ -1,0 +1,362 @@
+
+/**
+ *  Form
+ *  ====
+ *
+ *
+ */
+
+.wishlist_content_wishes {
+
+  margin  : 2rem 0;
+  padding : 0;
+
+  width   : 90%;
+  height  : 100%;
+
+  color: rgb(164, 114, 65);
+
+  /*cursor: pointer;*/
+
+  counter-reset: steper;
+}
+
+.wishlist_wish {
+
+  width: 90%;
+
+  margin-left: 5%;
+
+  height: 7.5rem;
+
+  /*5.5*/
+
+  margin-bottom: 2rem;
+
+  border-radius: 3px;
+
+  list-style: none;
+
+
+  position: relative;
+
+  background-color: rgb(229, 199, 149);
+
+  -webkit-transition: height 2s ease-in-out;
+     -moz-transition: height 2s ease-in-out;
+       -o-transition: height 2s ease-in-out;
+          transition: height 2s ease-in-out;
+}
+
+.wishlist_wish::before {
+
+  content: counter(steper) '.';
+  counter-increment: steper;
+
+  position: absolute;
+
+  margin: 3rem 0 0 -5%;
+
+  font-size: 1.5rem;
+}
+
+
+.intro-step {
+
+  font-size: 1.5rem;
+
+  margin: 0.5rem 0;
+}
+
+
+.wishlist_wish-ready {
+
+  opacity: 1;
+}
+
+
+.wishlist_wish-open {
+
+  /** 4 * 6 + 1.5 + 2 **/
+  height: 26rem;
+}
+
+
+
+.wishlist_wish_set {
+
+  width:   80%;
+  height: 100%;
+
+  float: left;
+
+  margin:  1rem 0;
+  padding: 0;
+  border:  0;
+
+  overflow-y: hidden;
+}
+
+
+
+/** Fields **/
+
+.wishlist_wish_fields {
+
+  margin  : 0;
+  padding : 0;
+  height  : 100%;
+}
+
+
+.wishlist_wish_field {
+
+  position: relative;
+
+  list-style: none;
+
+  width: 90%;
+
+  height: 6rem;
+
+  /*5*/
+
+  margin: 0 auto;
+
+  opacity: 0;
+
+  -webkit-transition: opacity 1s ease-in-out;
+     -moz-transition: opacity 1s ease-in-out;
+       -o-transition: opacity 1s ease-in-out;
+          transition: opacity 1s ease-in-out;
+}
+
+
+.wishlist_wish_field-visible {
+
+  opacity: 1;
+}
+
+
+.wishlist_wish_field_label {
+
+  position: absolute;
+
+  top: 0.75rem;
+
+  padding-left: 0.5rem;
+
+  font-size: 1rem;
+
+  font-weight: 500;
+
+  opacity: 0.8;
+
+  -webkit-transition: top 300ms ease, opacity 300ms linear;
+     -moz-transition: top 300ms ease, opacity 300ms linear;
+       -o-transition: top 300ms ease, opacity 300ms linear;
+          transition: top 300ms ease, opacity 300ms linear;
+}
+
+
+.wishlist_wish_field_label-hidden {
+
+  top: 2rem;
+
+  opacity: 0;
+}
+
+
+.wishlist_wish_field_label-highlight {
+
+  /*color: rgb(65, 122, 165);*/
+}
+
+
+.wishlist_wish_field_input {
+
+  display: inline-block;
+
+  width: 100%;
+
+  height: 3rem;
+
+  padding-left: 0.5rem;
+
+  margin-top: 2rem;
+
+  font-size: 2rem;
+
+  border: 0;
+
+  border-bottom: 0.2rem solid rgb(164, 114, 65);
+
+  background-color: rgb(242, 220, 174);
+
+  color: rgb(164, 114, 65);
+}
+
+
+
+
+/** Edit **/
+
+.wishlist_wish_edit {
+
+  width: 20%;
+
+  height: 100%;
+
+  float: right;
+
+  position: relative;
+}
+
+
+.wishlist_wish_field_input:focus {
+
+  outline: 0;
+
+  border-bottom: 0.2rem solid rgb(164, 114, 65);
+}
+
+
+.edit_button {
+
+  height: 4rem;
+
+  right: 1rem;
+
+  background-color: rgb(229, 199, 149);
+
+  color: rgb(164, 114, 65);
+
+  position: absolute;
+
+  opacity: 1;
+
+  -webkit-transition: opacity 300ms ease-out;
+     -moz-transition: opacity 300ms ease-out;
+       -o-transition: opacity 300ms ease-out;
+          transition: opacity 300ms ease-out;
+}
+
+
+.invisible {
+
+  opacity: 0;
+}
+
+
+.edit_button-more {
+
+  top: 3rem;
+}
+
+
+.edit_button-delete {
+
+  top: 11rem; /* 50% */
+}
+
+.edit_button-less {
+
+  bottom: 1.5rem;
+}
+
+
+
+
+.edit_button_text {
+
+  height: 1rem;
+
+  text-decoration: underline;
+}
+
+.edit_button_icon {
+
+  height: 2rem;
+}
+
+
+.edit_button_icon {
+
+  background-repeat: no-repeat;
+
+  background-position: center center;
+
+  background-size: 50%;
+}
+
+/*
+
+  height: 3rem;
+
+  1rem text
+  2rem icon
+
+ */
+
+.edit_button_icon_less {
+
+  background-image: url('../assets/icons/less.png');
+}
+
+.edit_button_icon_delete {
+
+  background-image: url('../assets/icons/delete.png');
+}
+
+.edit_button_icon_more {
+
+  background-image: url('../assets/icons/more.png');
+}
+
+
+
+
+/*
+.button_next {
+
+  position: absolute;
+  left: 45%;
+  top: 35%;
+}*/
+
+
+
+
+
+/** Overwriting Default **/
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*
+input[type=number] {
+    -webkit-appearance: textfield;
+       -moz-appearance: textfield;
+            appearance: textfield;
+}
+*/
+
+::-webkit-input-placeholder {
+    color: rgb(164, 114, 65);
+    opacity: 0.4;
+}
+:-moz-placeholder {
+    color: rgb(164, 114, 65);
+    opacity: 0.4;
+}
+::-moz-placeholder {
+    color: rgb(164, 114, 65);
+    opacity: 0.4;
+}
+:-ms-input-placeholder {
+    color: rgb(164, 114, 65);
+    opacity: 0.4;
+}

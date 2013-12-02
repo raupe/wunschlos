@@ -14,8 +14,9 @@
       supportPlaceholder  = checkPlaceholderSupport();
 
   // elements
-  var $wrap   = $('#wrap'),
-      $wishes = $wrap.find('#wishes');
+  var $wrap    = $('#wrap'),
+      $wishes  = $wrap.find('#wishes'),
+      $buttons = $wrap.find('.js-share-button');
 
   // config
   var template_URL = 'partial/template.html',
@@ -29,19 +30,46 @@
 
     var trg = e.target;
 
-    if ( trg.nodeName == 'INPUT' ) return;
+    // TODO:
+    //
+    // handle showing more / less
 
-    var input = $wishes.find(':input').filter( function( i, el ){ return !el.value; });
+    if ( trg.classList.contains('js-edit-button') ) {
 
-    if ( !input.length ) return;
+      console.log(trg);
+    }
 
-    input.get(0).focus();
   });
 
+
+  function enableMore(){
+
+  }
+
+
+  function enableLess(){
+
+  }
+
+
+
+
+
+
+
+  var VISIBLE = false;
 
   $wishes.on( transitionEnd, function ( e ) {
 
     if ( e.target.classList.contains('wishlist_wish-open') ) {
+
+      if ( !VISIBLE ) {
+
+        VISIBLE = true;
+
+        $buttons.removeAttr('disabled');
+        $buttons.removeClass('invisible');
+      }
 
       createWish();
     }
@@ -84,21 +112,28 @@
 
         if ( first ) {
 
-          if ( val.indexOf('http://') > -1 ) {
-
-            $prev.text('Link');
-
-          } else {
-
-            $prev.text('Item');
-          }
-
           if ( !item.hasClass('wishlist_wish-open') ) {
 
             // enable fields, disabled by default
             item.addClass('wishlist_wish-open');
 
-            item.find('.js-input').removeAttr('disabled');
+            var inputs = item.find('.js-input');
+
+            for ( var i = 0, l = inputs.length; i < l; i++ ) {
+
+              setTimeout( showFields, i * 500, inputs.get(i) );
+            }
+
+
+            var buttons = item.find('.js-edit-buttons');
+
+            $(buttons.get(0)).addClass('invisible');
+
+            for ( i = 1, l = buttons.length; i < l; i++ ) {
+
+              setTimeout( showButtons, i * 1000, buttons.get(i) );
+            }
+
           }
         }
 
@@ -119,6 +154,22 @@
   });
 
 
+  function showFields ( el ) {
+
+    $(el).removeAttr('disabled').parent().addClass('wishlist_wish_field-visible');
+  }
+
+
+  function showButtons ( el ) {
+
+    $(el).removeClass('invisible');
+  }
+
+
+
+
+
+
   // -------------------------------------------------- //
 
 
@@ -131,11 +182,13 @@
    *  @return {[type]} [description]
    */
 
+  var FIELDS = 4;
+
   function createWish(){
 
     var num  = $wishes.children().length,
 
-        tmpl = parseTemplate( template_STR, { num: num, tab: 1 + num * 5 }),  // fields
+        tmpl = parseTemplate( template_STR, { num: num, tab: 1 + num * FIELDS }),
 
         wish = $( tmpl );
 
@@ -144,11 +197,17 @@
       wish.find('.js-label').addClass('wishlist_wish_field_label-hidden');
     }
 
+    // TODO:
+    //
+    // increase container before inserting a new wish: $wishes
+
     $wishes.append( wish );
 
-    var fields = wish.find('.js-field'); fields.offset();
+    var first = wish.find('.js-field').first();
 
-    fields.addClass('wishlist_wish_field-visible');
+    first.offset();
+
+    first.addClass('wishlist_wish_field-visible');
   }
 
 
@@ -222,57 +281,6 @@
 
       callback( e );
     });
-  }
-
-
-  // -------------------------------------------------- //
-
-
-  /** Helper **/
-
-
-  /**
-   *  [getTransitionEnd description]
-   *
-   *  @return {[type]} [description]
-   */
-
-  function getTransitionEnd(){
-
-    var prefix = {
-
-        'WebkitTransition'  : 'webkitTransitionEnd',
-        'MozTransition'     : 'transitionend',
-        'MSTransition'      : 'msTransitionEnd',
-        'OTransition'       : 'oTransitionEnd',
-        'transition'        : 'transitionEnd'
-      },
-
-      temp = document.createElement('div'),
-      keys = Object.keys( prefix ),
-
-      i, l; // iterator
-
-    for ( i = 0, l = keys.length; i < l; i++ ) {
-
-      if ( temp.style[ keys[i] ] !== undefined ) return prefix[ keys[i] ];
-    }
-
-    console.log('TransitionEnd - is not supported');
-  }
-
-
-  /**
-   *  [checkPlaceholderSupport description]
-   *
-   *  @return {[type]} [description]
-   */
-
-  function checkPlaceholderSupport(){
-
-    var el = document.createElement('input');
-
-    return 'placeholder' in el;
   }
 
 })();
