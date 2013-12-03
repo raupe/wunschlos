@@ -39,6 +39,8 @@
 
 
   position: relative;
+  
+  cursor: move;
 
   background-color: rgb(229, 199, 149);
 
