@@ -25,8 +25,21 @@
 
   // ------------------------------------------------- //
 
+  
+   $wrap.on('click', function( e ){
+   
+		var trg = e.target;
+    // TODO:
+    //
+    // handle showing more / less
+ 
+		if ( trg.parentNode.className.split(' ').indexOf('js-edit-buttons') > -1) {
 
-  $wrap.on('click', function ( e ) {
+		  console.log(trg);
+		}
+	});
+
+/*  $wrap.on('click', function ( e ) {
 
     var trg = e.target;
 
@@ -40,6 +53,7 @@
     }
 
   });
+  */
 
 
   function enableMore(){
@@ -52,7 +66,10 @@
   }
 
 
-
+	 $(function() {
+	 
+		$( "#wishes" ).sortable();
+	});
 
 
 
