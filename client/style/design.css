@@ -72,7 +72,7 @@ button:active {
   filter: none;
   outline: 0;
   /*border: 0;*/
-  background-color: rgb(224, 212, 183);
+  background-color: #e9d0a6;
 }
 button:focus {
   opacity: 1;

@@ -1,5 +1,5 @@
 body{
-	background: #AFC094;
+	background: #ACBB87;
 }
 
 .header_bar > h1, .header_bar >h2 {
@@ -40,7 +40,7 @@ body{
 }
 
 .wishlist_middle {
-	background: #dcd9d3;
+	background: #E7E4DD;
 }
 
 .wishlist_content {
@@ -56,9 +56,24 @@ body{
 }
 
 .wishlist_wish_field_input {
-	background-color: #dcd9d3;	
+	background-color: #E7E4DD;	
 	border-bottom: 0.2rem solid #7f375b;
 	color: #7f375b;
+}
+
+.edit_button_icon_less {
+
+  background-image: url('../assets/icons/less_pink.png');
+}
+
+.edit_button_icon_delete {
+
+  background-image: url('../assets/icons/delete_pink.png');
+}
+
+.edit_button_icon_more {
+
+  background-image: url('../assets/icons/more_pink.png');
 }
 
 ::-webkit-input-placeholder {
@@ -86,8 +101,12 @@ body{
 }
 
 .edit_button {
-	background-color: #dcd9d3;
+	background-color: rgb(207, 207, 207);
 	color: #7f375b;
+}
+
+button:active {
+  background-color: #d9d9d9;
 }
 
 .footer{
