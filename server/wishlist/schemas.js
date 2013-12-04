@@ -1,9 +1,11 @@
 exports.wishlist = {
 	title: String,
 	to: String,
+	design: Number,
 	items: [
 		{
 			title: String,
+			description: String,
 			amount: Number,
 			unit: String,
 			link: String,

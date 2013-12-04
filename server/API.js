@@ -18,9 +18,11 @@ Request zum Server: Wishlist als JSON siehe folgende Struktur
 {
 	title: String,
 	to: String,
+	design: number,
 	items: [
 		{
 			title: String,
+			description: String,
 			amount: number,
 			unit: String, // €, $, piece (Stück)
 			link: String,
