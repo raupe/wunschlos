@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html,charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>:: Wunschlos ::</title>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="vendor/normalize/normalize-2.1.3.css">
+	<link rel="stylesheet" type="text/css" href="style/base.css">
+
+	<link rel="stylesheet" type="text/css" href="style/form.css">
+
+	<link rel="stylesheet" type="text/css" href="style/design.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="style/love.css" media="screen">
+	<link rel="stylesheet" type="text/css" href="style/mobile.css">
+	<!-- media="screen and (max-width: 800px)" -->
+	<link rel="stylesheet" type="text/css" href="style/print.css" media="print">
+
+	<!-- // <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
+	<!-- // <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> -->
+</head>
+<body>
+
+	<div class="design_bg" id="design">
+
+		<div class="header_bar">
+			<h1>WUNSCHLOS</h1>
+			<h2> CREATE A WISHLIST</h2>
+		</div>
+
+		<div class="content_wrap">
+			<div class="wishlist_wrap" id="wrap">
+
+				<div class="wishlist_top"></div>
+
+				<div class="wishlist_middle">
+					<div class="wishlist_content">
+
+						<div class="wishlist_content_wishes_wrap">
+							<div class="content_description">Fill in your Wishes below:</div>
+							<button class="wishlist_share_button invisible js-share-button" disabled>Share Wishlist</button>
+						</div>
+
+						<ol class="wishlist_content_wishes" id="wishes">
+						<li class="wishlist_wish wishlist_wish-open">
+
+  <fieldset class="wishlist_wish_set">
+
+    <ul class="wishlist_wish_fields">
+
+      <li class="wishlist_wish_field js-field wishlist_wish_field-visible">
+
+        <label for="item-0" class="wishlist_wish_field_label js-label">Wish</label>
+        <input type="text" name="item" placeholder="Name of your Wish" tabindex="1" autocomplete="off" class="wishlist_wish_field_input js-input" id="item-0">
+
+      </li>
+
+      <li class="wishlist_wish_field js-field wishlist_wish_field-visible">
+
+        <label for="details-0" class="wishlist_wish_field_label js-label wishlist_wish_field_label-hidden">Details</label>
+        <input type="text" name="details" placeholder="Add more Information" tabindex="2" autocomplete="off" class="wishlist_wish_field_input js-input" id="details-0">
+
+      </li>
+
+      <li class="wishlist_wish_field js-field wishlist_wish_field-visible">
+
+        <label for="price-0" class="wishlist_wish_field_label js-label wishlist_wish_field_label-hidden">Price</label>
+        <input type="number" name="price" min="0" step="1" pattern="\d+" placeholder="Tell the Price" tabindex="3" autocomplete="off" class="wishlist_wish_field_input js-input" id="price-0">
+
+      </li>
+
+      <li class="wishlist_wish_field js-field wishlist_wish_field-visible">
+
+        <label for="link-0" class="wishlist_wish_field_label js-label wishlist_wish_field_label-hidden">Link</label>
+        <input type="text" name="link" placeholder="Add a Link" tabindex="4" autocomplete="off" class="wishlist_wish_field_input js-input" id="link-0">
+
+      </li>
+<!--
+      <li class="wishlist_wish_field js-field">
+
+        <label for="price-0" class="wishlist_wish_field_label js-label">Share</label>
+        <input type="number" name="share" min="0" step="1" pattern="\d+" placeholder="Participation (€, $)" tabindex="4" autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="price-0"/>
+
+      </li> -->
+<!--
+
+      <li class="wishlist_wish_field js-field">
+
+        <label for="giver-0" class="wishlist_wish_field_label js-label">Giver</label>
+        <input type="text" name="price" placeholder="Your Name" tabindex="5"
+        autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="giver-0"/>
+
+      </li>
+ -->
+    </ul>
+
+  </fieldset>
+
+  <section class="wishlist_wish_edit">
+
+    <button class="edit_button edit_button-more js-edit-buttons invisible">
+      <div class="edit_button_text">more</div>
+      <div class="edit_button_icon edit_button_icon_more"></div>
+    </button>
+
+    <button class="edit_button edit_button-delete js-edit-buttons">
+      <div class="edit_button_icon edit_button_icon_delete"></div>
+      <div class="edit_button_text">delete</div>
+    </button>
+
+    <button class="edit_button edit_button-less js-edit-buttons">
+      <div class="edit_button_text">less</div>
+      <div class="edit_button_icon edit_button_icon_less"></div>
+    </button>
+
+  </section>
+
+</li><li class="wishlist_wish">
+
+  <fieldset class="wishlist_wish_set">
+
+    <ul class="wishlist_wish_fields">
+
+      <li class="wishlist_wish_field js-field wishlist_wish_field-visible">
+
+        <label for="item-1" class="wishlist_wish_field_label js-label wishlist_wish_field_label-hidden">Wish</label>
+        <input type="text" name="item" placeholder="Name of your Wish" tabindex="5" autocomplete="off" class="wishlist_wish_field_input js-input" id="item-1">
+
+      </li>
+
+      <li class="wishlist_wish_field js-field">
+
+        <label for="details-1" class="wishlist_wish_field_label js-label wishlist_wish_field_label-hidden">Details</label>
+        <input type="text" name="details" placeholder="Add more Information" tabindex="6" autocomplete="off" class="wishlist_wish_field_input js-input" id="details-1">
+
+      </li>
+
+      <li class="wishlist_wish_field js-field">
+
+        <label for="price-1" class="wishlist_wish_field_label js-label wishlist_wish_field_label-hidden">Price</label>
+        <input type="number" name="price" min="0" step="1" pattern="\d+" placeholder="Tell the Price" tabindex="7" autocomplete="off" disabled="" class="wishlist_wish_field_input js-input" id="price-1">
+
+      </li>
+
+      <li class="wishlist_wish_field js-field">
+
+        <label for="link-1" class="wishlist_wish_field_label js-label wishlist_wish_field_label-hidden">Link</label>
+        <input type="text" name="link" placeholder="Add a Link" tabindex="8" autocomplete="off" disabled="" class="wishlist_wish_field_input js-input" id="link-1">
+
+      </li>
+<!--
+      <li class="wishlist_wish_field js-field">
+
+        <label for="price-1" class="wishlist_wish_field_label js-label">Share</label>
+        <input type="number" name="share" min="0" step="1" pattern="\d+" placeholder="Participation (€, $)" tabindex="8" autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="price-1"/>
+
+      </li> -->
+<!--
+
+      <li class="wishlist_wish_field js-field">
+
+        <label for="giver-1" class="wishlist_wish_field_label js-label">Giver</label>
+        <input type="text" name="price" placeholder="Your Name" tabindex="9"
+        autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="giver-1"/>
+
+      </li>
+ -->
+    </ul>
+
+  </fieldset>
+
+  <section class="wishlist_wish_edit">
+
+    <button class="edit_button edit_button-more js-edit-buttons">
+      <div class="edit_button_text">more</div>
+      <div class="edit_button_icon edit_button_icon_more"></div>
+    </button>
+
+    <button class="edit_button edit_button-delete js-edit-buttons invisible">
+      <div class="edit_button_icon edit_button_icon_delete"></div>
+      <div class="edit_button_text">delete</div>
+    </button>
+
+    <button class="edit_button edit_button-less js-edit-buttons invisible">
+      <div class="edit_button_text">less</div>
+      <div class="edit_button_icon edit_button_icon_less"></div>
+    </button>
+
+  </section>
+
+</li></ol>
+
+						<div class="wishlist_content_wishes_wrap wishlist_content_wishes_wrap_bottom">
+							<button class="wishlist_share_button invisible js-share-button" disabled>Share Wishlist</button>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="wishlist_bottom"></div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="footer" id="footer_pos">
+		<div class="footer_text">
+			<h3>ABOUT US</h3>
+			<p>
+				<em>WUNSCHLOS</em> is a web based wishlist - which can
+				be shared with others.
+			</p>
+			<p>
+				We created the project as part of our studies in Web Applications
+				at the HTW Berlin, 2013.
+			</p>
+			<p>
+				If you got ideas, found bugs or like to share your opinion -
+				don't hesitate to <a href="mailto:example@examp.le">contact us</a>.
+			</p>
+			<p class="right">
+				<a href="xml/sitemap.xml">SiteMap</a>
+			</p>
+		</div>
+	</div>
+
+<script src="vendor/jQuery/jquery-2.0.3.min.js"></script>
+<script src="vendor/jQueryUI/jquery-ui-1.10.3.min.js"></script>
+
+<script src="scripts/adapter.js"></script>
+<script src="scripts/interface.js"></script>
+<script src="scripts/creation.js"></script>
+<script src="scripts/form.js"></script>
+
+</body>
+</html>
