@@ -56,23 +56,43 @@
 
   </fieldset>
 
-  <section class="wishlist_wish_edit">
+  <section class="wishlist_wish_edit js-edit">
 
-    <button class="edit_button edit_button-more js-edit-buttons">
-      <div class="edit_button_text">more</div>
-      <div class="edit_button_icon edit_button_icon_more"></div>
-    </button>
+    <div class="edit_content">
 
-    <button class="edit_button edit_button-delete js-edit-buttons invisible">
-      <div class="edit_button_icon edit_button_icon_delete"></div>
-      <div class="edit_button_text">delete</div>
-    </button>
+      <button class="edit_button edit_button-more js-edit-buttons">
+        <div class="edit_button_text">more</div>
+        <div class="edit_button_icon edit_button_icon_more"></div>
+      </button>
 
-    <button class="edit_button edit_button-less js-edit-buttons invisible">
-      <div class="edit_button_text">less</div>
-      <div class="edit_button_icon edit_button_icon_less"></div>
-    </button>
+      <button class="edit_button edit_button-delete js-edit-buttons invisible" disabled>
+        <div class="edit_button_icon edit_button_icon_delete"></div>
+        <div class="edit_button_text">delete</div>
+      </button>
+
+      <button class="edit_button edit_button-less js-edit-buttons invisible" disabled>
+        <div class="edit_button_text">less</div>
+        <div class="edit_button_icon edit_button_icon_less"></div>
+      </button>
+
+    </div>
+
+
+    <div class="edit_position">
+
+      <button class="edit_button edit_button-move-up js-edit-buttons invisible">
+        <div class="edit_button_icon edit_button_icon_move_up"></div>
+      </button>
+
+      <button class="edit_button edit_button-move-down js-edit-buttons invisible">
+        <div class="edit_button_icon edit_button_icon_move_down"></div>
+      </button>
+
+    </div>
 
   </section>
+
+
+
 
 </li>

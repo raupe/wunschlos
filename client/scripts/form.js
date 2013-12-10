@@ -25,19 +25,34 @@
 
   // ------------------------------------------------- //
 
-  
-   $wrap.on('click', function( e ){
-   
+
+  var $selection        = $('#selection'),
+      $selectionWrap    = $selection.children().first(),
+      $selectionContent = $selectionWrap.children().first().children();
+
+  $wrap.on('click', function( e ){
+
 		var trg = e.target;
-    // TODO:
-    //
-    // handle showing more / less
- 
+
+    if ( trg.className.indexOf('js-share-button') > -1 ) {
+
+      $selection.toggleClass('selection_wrap-show');
+
+      $selectionWrap.toggleClass('selection_overlay-show');
+
+      $selectionContent.toggleClass('selection_content-show ');
+
+      return;
+    }
+
+
 		if ( trg.parentNode.className.split(' ').indexOf('js-edit-buttons') > -1) {
 
-		  console.log(trg);
+      console.log(trg);
 		}
+
 	});
+
 
 /*  $wrap.on('click', function ( e ) {
 
@@ -66,8 +81,8 @@
   }
 
 
-	 $(function() {
-	 
+	(function() {
+
 		$( "#wishes" ).sortable();
 	});
 
@@ -75,6 +90,8 @@
 
 
   var VISIBLE = false;
+
+  $edit = $('.js-edit');
 
   $wishes.on( transitionEnd, function ( e ) {
 
@@ -144,7 +161,7 @@
 
             var buttons = item.find('.js-edit-buttons');
 
-            $(buttons.get(0)).addClass('invisible');
+            $(buttons.get(0)).addClass('invisible').attr('disabled', '');
 
             for ( i = 1, l = buttons.length; i < l; i++ ) {
 
@@ -179,7 +196,7 @@
 
   function showButtons ( el ) {
 
-    $(el).removeClass('invisible');
+    $(el).removeAttr('disabled').removeClass('invisible');
   }
 
 

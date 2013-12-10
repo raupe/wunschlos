@@ -23,7 +23,7 @@
 
 .wishlist_wish {
 
-  width: 90%;
+  width: 100%;
 
   margin-left: 5%;
 
@@ -39,7 +39,7 @@
 
 
   position: relative;
-  
+
   cursor: move;
 
   background-color: rgb(229, 199, 149);
@@ -50,6 +50,7 @@
           transition: height 2s ease-in-out;
 }
 
+
 .wishlist_wish::before {
 
   content: counter(steper) '.';
@@ -58,7 +59,7 @@
   position: absolute;
 
   left: -1.5rem;
-  
+
   top: 2.8rem;
 
   font-size: 1.5rem;
@@ -89,7 +90,7 @@
 
 .wishlist_wish_set {
 
-  width:   80%;
+  width:   70%;
   height: 100%;
 
   float: left;
@@ -201,22 +202,6 @@
 }
 
 
-
-
-/** Edit **/
-
-.wishlist_wish_edit {
-
-  width: 20%;
-
-  height: 100%;
-
-  float: right;
-
-  position: relative;
-}
-
-
 .wishlist_wish_field_input:focus {
 
   outline: 0;
@@ -225,112 +210,10 @@
 }
 
 
-.edit_button {
-
-  width: 5rem;
-  
-  height: 4rem;
-
-  right: 1rem;
-
-  background-color: rgb(229, 199, 149);
-
-  color: rgb(164, 114, 65);
-
-  position: absolute;
-
-  opacity: 1;
-
-  -webkit-transition: opacity 300ms ease-out;
-     -moz-transition: opacity 300ms ease-out;
-       -o-transition: opacity 300ms ease-out;
-          transition: opacity 300ms ease-out;
-}
+/*********/
 
 
-.invisible {
-
-  opacity: 0;
-}
-
-
-.edit_button-more {
-
-  top: 3rem;
-}
-
-
-.edit_button-delete {
-
-  top: 9rem; /* 50% */
-}
-
-.edit_button-less {
-
-  bottom: 1.5rem;
-}
-
-
-
-
-.edit_button_text {
-
-  height: 1rem;
-
-  text-decoration: underline;
-}
-
-.edit_button_icon {
-
-  height: 2rem;
-}
-
-
-.edit_button_icon {
-
-  background-repeat: no-repeat;
-
-  background-position: center center;
-
-  /* background-size: 50%; */
-}
-
-/*
-
-  height: 3rem;
-
-  1rem text
-  2rem icon
-
- */
-
-.edit_button_icon_less {
-
-  background-image: url('../assets/icons/less.png');
-}
-
-.edit_button_icon_delete {
-
-  background-image: url('../assets/icons/delete.png');
-}
-
-.edit_button_icon_more {
-
-  background-image: url('../assets/icons/more.png');
-}
-
-
-
-
-/*
-.button_next {
-
-  position: absolute;
-  left: 45%;
-  top: 35%;
-}*/
-
-
+/**** insert edit !****/
 
 
 

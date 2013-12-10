@@ -1,0 +1,175 @@
+
+/** Edit **/
+
+.wishlist_wish_edit {
+
+  width: 30%;
+
+  height: 100%;
+
+  float: right;
+}
+
+
+
+.edit_content {
+
+  float: left;
+  height: 100%;
+  width: 60%;
+
+  position: relative;
+}
+
+
+.edit_position {
+
+  float: right;
+  height: 100%;
+  width: 40%;
+  background: rgb(242, 221, 174);
+
+  position: relative;
+}
+
+
+
+.edit_button {
+
+  width: 5rem;
+
+  height: 4rem;
+
+  right: 1rem;
+
+  background-color: rgb(229, 199, 149);
+
+  color: rgb(164, 114, 65);
+
+  position: absolute;
+
+  opacity: 1;
+
+  -webkit-transition: opacity 300ms ease-out;
+     -moz-transition: opacity 300ms ease-out;
+       -o-transition: opacity 300ms ease-out;
+          transition: opacity 300ms ease-out;
+}
+
+
+.invisible {
+
+  opacity: 0;
+}
+
+
+.edit_button-more {
+
+  top: 3rem;
+}
+
+
+.edit_button-delete {
+
+  top: 9rem; /* 50% */
+}
+
+.edit_button-less {
+
+  bottom: 1.5rem;
+}
+
+
+.edit_button-move-up {
+
+  position: relative;
+
+  margin-bottom: 1rem;
+
+  width: 4rem;
+
+  height: 3rem;
+
+  margin-left: 1rem;
+
+  right: 0;
+}
+
+.edit_button-move-down {
+
+  position: relative;
+
+  height: 3rem;
+
+  width: 4rem;
+
+  margin-left: 1rem;
+
+  right: 0;
+}
+
+
+
+
+
+.edit_button_text {
+
+  height: 1rem;
+
+  text-decoration: underline;
+}
+
+.edit_button_icon {
+
+  height: 2rem;
+}
+
+
+.edit_button_icon {
+
+  background-repeat: no-repeat;
+
+  background-position: center center;
+
+  /* background-size: 50%; */
+}
+
+/*
+
+  height: 3rem;
+
+  1rem text
+  2rem icon
+
+ */
+
+.edit_button_icon_less {
+
+  background-image: url('../assets/icons/less.png');
+}
+
+.edit_button_icon_delete {
+
+  background-image: url('../assets/icons/delete.png');
+}
+
+.edit_button_icon_more {
+
+  background-image: url('../assets/icons/more.png');
+}
+
+
+.edit_button_icon_move_up {
+
+  height: 1.5rem;
+
+  background-image: url('../assets/icons/up.png');
+}
+
+
+.edit_button_icon_move_down {
+
+  height: 1.5rem;
+
+  background-image: url('../assets/icons/down.png');
+}

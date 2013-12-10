@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="style/base.css">
 
 	<link rel="stylesheet" type="text/css" href="style/form.css">
+	<link rel="stylesheet" type="text/css" href="style/edit.css">
 
 	<link rel="stylesheet" type="text/css" href="style/design.css" media="screen">
 	<link rel="stylesheet" type="text/css" href="style/mobile.css">
@@ -27,8 +28,104 @@
 
 		<div class="header_bar">
 			<h1>WUNSCHLOS</h1>
-			<h2> CREATE A WISHLIST</h2>
+			<h2>CREATE A WISHLIST</h2>
 		</div>
+
+
+		<div class="selection_wrap" id="selection">
+
+			<div class="selection_overlay">
+
+				<div class="selection_overlay_center">
+
+
+
+					<div class="selection_gallery">
+
+						<ul class="gallery_entries">
+
+							<li class="gallery_entry">
+								<img src="assets/img/placeholder.png" class="gallery_entry_image">
+								<div class="gallery_entry_title">Christmas</div>
+							</li>
+
+							<li class="gallery_entry">
+								<img src="assets/img/placeholder.png" class="gallery_entry_image">
+								<div class="gallery_entry_title">Birthday</div>
+							</li>
+
+							<li class="gallery_entry">
+								<img src="assets/img/placeholder.png" class="gallery_entry_image">
+								<div class="gallery_entry_title">Opening</div>
+							</li>
+
+							<li class="gallery_entry">
+								<img src="assets/img/placeholder.png" class="gallery_entry_image">
+								<div class="gallery_entry_title">Valentine</div>
+							</li>
+
+						</ul>
+
+					</div>
+
+
+
+					<div class="selection_form">
+
+						<fieldset class="selection_form_set">
+
+							<ul class="selection_form_fields">
+
+								<li class="selection_form_field">
+
+									<label for="wishlist-title">Title</label>
+									<input type="text" name="title" placeholder="Add a Title for the Wishlist" id="wishlist-title" />
+
+								</li>
+
+								<li class="selection_form_field">
+
+									<label for="wishlist-title">Created By</label>
+									<input type="text" name="title" placeholder="Add your name" id="wishlist-title" />
+
+								</li>
+
+								<li class="selection_form_field">
+
+									<label for="wishlist-role">I am the presentee</label>
+									<input type="checkbox" name="role" id="whishlist-role" />
+
+								</li>
+
+
+								<li class="selection_form_field">
+
+									<label for="wishlist-audience">Presents for</label>
+									<input type="text" name="audience" placeholder="Add name of the presentee" id="wishlist-audience" />
+
+								</li>
+
+
+								<li class="selection_form_field">
+
+									<button class="selection_form_submit">Share wishlist</button>
+
+								</li>
+
+							</ul>
+
+						</fieldset>
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+
 
 		<div class="content_wrap">
 			<div class="wishlist_wrap" id="wrap">
