@@ -140,7 +140,7 @@ button {
 
 .selection_wrap-show {
 
-	height: 17rem;
+	height: 22rem;
 }
 
 
@@ -164,7 +164,7 @@ button {
 
 .selection_overlay-show {
 
-	height: 17rem;
+	height: 22rem;
 }
 
 
@@ -204,11 +204,23 @@ button {
 	background-color: #fff;
 }
 
-
-
+button.selection_form_submit {
+	background: #f9fafb;
+	border: solid 2px #72899b;
+}
+	
+button.selection_form_submit:active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  outline: 0;
+  /*border: 0;*/
+  background-color: #fff;
+}
 
 .gallery_entries {
 
+	min-width: 22rem;
 	width: 100%;
 	height: 100%;
 
@@ -217,16 +229,15 @@ button {
 
 
 .gallery_entry {
-
 	float: left;
-
-	width: 15%;
-	margin: 0 5%;
+	width: 20%;
+	min-width: 4rem;
+	margin: 1.8rem 2%;
 }
 
-.gallery_entry_image {
+.gallery_entry_image_active {
 
-	border: 2px solid #000;
+	border: 2px solid #3d4f5b;
 }
 
 .gallery_entry_title {
@@ -279,11 +290,27 @@ button {
 .selection_form_field > input {
 
 	background-color: #fff;
+	padding: 0.5rem;
+	margin-top: 0.5rem;
+	color: #737c83;
+}
+
+.selection_form_field > input::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #86a4b5;
+}
+.selection_form_field > input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #86a4b5;
+}
+.selection_form_field > input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #86a4b5;
+}
+.selection_form_field > input:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #86a4b5;
 }
 
 .selection_form_field > input:focus {
 
-	background-color: #eee;
+	background-color: #f0f8ff;
 }
 
 
@@ -510,4 +537,52 @@ button {
   src: local('Colaborate'),url("../assets/fonts/Colaborate/ColabReg.otf") format('opentype');
   font-weight: 500;
   font-style: bold;
+}
+
+
+/*  developing visible*/
+.selection_wrap {
+
+	height: 32rem;
+
+	-webkit-transition: height 300ms ease-out;
+		 -moz-transition: height 300ms ease-out;
+		   -o-transition: height 300ms ease-out;
+					transition: height 300ms ease-out;
+}
+
+.selection_wrap-show {
+
+	height: 17rem;
+}
+
+
+
+.selection_overlay {
+
+	height: 32rem;
+	width: 100%;
+
+	/*position: absolute;*/
+	background-color: rgba(255,255,255,0.8);
+
+	z-index: 2;
+
+	-webkit-transition: height 300ms ease-out;
+		 -moz-transition: height 300ms ease-out;
+		   -o-transition: height 300ms ease-out;
+					transition: height 300ms ease-out;
+}
+.selection_form {
+width: 40%;
+height: 100%;
+float: right;
+opacity: 1;
+}
+
+.selection_gallery {
+width: 60%;
+height: 100%;
+float: left;
+opacity: 1;
 }
