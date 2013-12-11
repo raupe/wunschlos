@@ -237,7 +237,7 @@ button.selection_form_submit:active {
 
 .gallery_entry_image_active {
 
-	border: 2px solid #3d4f5b;
+	border: solid 6px #fff;
 }
 
 .gallery_entry_title {
@@ -288,11 +288,17 @@ button.selection_form_submit:active {
 
 
 .selection_form_field > input {
-
+	width: 13rem;
 	background-color: #fff;
 	padding: 0.5rem;
 	margin-top: 0.5rem;
 	color: #737c83;
+}
+
+.selection_form_field > span{
+	width: 1rem;
+	margin-top: 0.5rem;
+	display: block;
 }
 
 .selection_form_field > input::-webkit-input-placeholder { /* WebKit browsers */
@@ -541,8 +547,9 @@ button.selection_form_submit:active {
 
 
 /*  developing visible*/
+/*
 .selection_wrap {
-
+	min-width: 50rem;
 	height: 32rem;
 
 	-webkit-transition: height 300ms ease-out;
@@ -563,7 +570,7 @@ button.selection_form_submit:active {
 	height: 32rem;
 	width: 100%;
 
-	/*position: absolute;*/
+
 	background-color: rgba(255,255,255,0.8);
 
 	z-index: 2;
@@ -586,3 +593,5 @@ height: 100%;
 float: left;
 opacity: 1;
 }
+
+*/
