@@ -21,7 +21,13 @@
   // config
   var template_URL = 'partial/template.html',
       template_STR = '';
-
+      
+  var wishlist = {},
+      wishlistId = 0,
+      wishCount = 0,
+      creationMode = true;
+      
+  var activeDesign = 0;
 
   // ------------------------------------------------- //
 
@@ -32,9 +38,11 @@
 
   $wrap.on('click', function( e ){
 
-		var trg = e.target;
+    var trg = $(e.target).closest('button');
+    if(!trg || !trg.attr('class'))
+      return;
 
-    if ( trg.className.indexOf('js-share-button') > -1 ) {
+    if ( trg.attr('class').indexOf('js-share-button') > -1 ) {
 
       $selection.toggleClass('selection_wrap-show');
 
@@ -44,13 +52,38 @@
 
       return;
     }
+    
+    if ( trg.attr('class').indexOf('edit_button-more') > -1) {
+      var wish = $(trg).closest('.wishlist_wish');
+      more(wish);
+      return;
+    }
+    
+    if ( trg.attr('class').indexOf('edit_button-less') > -1) {
+      var wish = $(trg).closest('.wishlist_wish');
+      less(wish);
+      return;
+    }
 
+	});
+	
+	$selectionWrap.on('click', function( e ){
 
-		if ( trg.parentNode.className.split(' ').indexOf('js-edit-buttons') > -1) {
-
-      console.log(trg);
-		}
-
+		var trg = $(e.target).closest('button');
+		if(!trg || !trg.attr('class'))
+      return;
+    
+		if ( trg.attr('class').indexOf('selection_form_submit') > -1) {
+      sendWishlist();
+    }
+    
+    if (trg.attr('class').indexOf('gallery_button') > -1) {
+      var design = trg.parent().index();
+      
+      if(design != activeDesign)
+        switchDesign(design);
+    }
+    
 	});
 
 
@@ -95,7 +128,8 @@
 
   $wishes.on( transitionEnd, function ( e ) {
 
-    if ( e.target.classList.contains('wishlist_wish-open') ) {
+    if (creationMode && e.target.classList.contains('wishlist_wish-open') 
+        && $('.wishlist_wish:last .js-input:first').val()) {
 
       if ( !VISIBLE ) {
 
@@ -103,8 +137,10 @@
 
         $buttons.removeAttr('disabled');
         $buttons.removeClass('invisible');
+        
       }
 
+      $('.edit_position .edit_button').removeAttr('disabled').removeClass('invisible');
       createWish();
     }
   });
@@ -145,30 +181,9 @@
         $prev.removeClass('wishlist_wish_field_label-hidden');
 
         if ( first ) {
+            
+            more(item);
 
-          if ( !item.hasClass('wishlist_wish-open') ) {
-
-            // enable fields, disabled by default
-            item.addClass('wishlist_wish-open');
-
-            var inputs = item.find('.js-input');
-
-            for ( var i = 0, l = inputs.length; i < l; i++ ) {
-
-              setTimeout( showFields, i * 500, inputs.get(i) );
-            }
-
-
-            var buttons = item.find('.js-edit-buttons');
-
-            $(buttons.get(0)).addClass('invisible').attr('disabled', '');
-
-            for ( i = 1, l = buttons.length; i < l; i++ ) {
-
-              setTimeout( showButtons, i * 1000, buttons.get(i) );
-            }
-
-          }
         }
 
       } else {
@@ -188,27 +203,204 @@
   });
 
 
-  function showFields ( el ) {
+  // -------------------------------------------------- //
+  
+  getTemplate( template_URL, setup );
+  
+  // Check for creation mode
+  function setup() {
+    var query = location.search.substring(1);
+    
+    if(query) {
+      creationMode = false;
+      CONNECTION.requestWishlist(query, loadWishlist);
+    } else {
+      creationMode = true;
+      createWish();
+    }
+  };
 
-    $(el).removeAttr('disabled').parent().addClass('wishlist_wish_field-visible');
+  function loadWishlist(param) {
+    wishlist = param;
+    $('.content_description').first().text(wishlist.title);
+    switchDesign(wishlist.design);
+    
+    for(var i=0; i<wishlist.items.length; i++) {
+      var wish = createWish(),
+          inputs = wish.find('.js-input');
+          buttons = wish.find('.js-edit-buttons');
+          item = wishlist.items[i];
+          
+      if(item.title) {
+        var $title = $("#item-" + i);
+        $title.val(item.title);
+        $title.prev().removeClass('wishlist_wish_field_label-hidden');
+      }
+      
+      if(item.amount) {
+        var $amount = $("#price-" + i);
+        $amount.val(item.amount);
+        $amount.prev().removeClass('wishlist_wish_field_label-hidden');
+      }
+      
+      if(item.link) {
+        var $link = $("#link-" + i);
+        $link.val(item.link);
+        $link.prev().removeClass('wishlist_wish_field_label-hidden');
+      }
+    }
+  }
+  
+  function sendWishlist() {
+    wishlist = {};
+    var items = [],
+        myName = $('#wishlist-by').val(),
+        secret = $('#wishlist-role:checked').val() ? true : false;
+    
+    wishlist.title = $('#wishlist-title').val();
+    wishlist.design = activeDesign;
+    if(secret)
+      wishlist.to = myName;
+    else
+      wishlist.to = $('#wishlist-presentee').val();
+      
+    $(".wishlist_wish").each(function() {
+      var $wish = $(this);
+      if(! $wish.is(':last-child') ) {
+        var item = {};
+        item.title = $wish.find('[name="item"]').val();
+        item.description = $wish.find('[name="details"]').val();
+        item.amount = $wish.find('[name="price"]').val();
+        item.unit = '€';
+        item.link = $wish.find('[name="link"]').val();
+        item.idea = myName;
+        item.secret = secret;
+        
+        items.push(item);
+      }
+    });
+    
+    wishlist.items = items;
+    CONNECTION.sendWishlist(wishlist, switchToReceiveMode);
+  }
+  
+  function switchToReceiveMode(vipId, publicId) {
+    var id = $('#wishlist-role:checked').val() ? vipId : publicId;
+    history.pushState(null, '', window.location + '?' + id);
+    
+    $wishes.empty();
+    wishCount = 0;
+    $buttons.attr('disabled', '');
+    $buttons.addClass('invisible');
+    $selection.toggleClass('selection_wrap-show');
+    $selectionWrap.toggleClass('selection_overlay-show');
+    $selectionContent.toggleClass('selection_content-show ');
+    
+    creationMode = false;
+    loadWishlist(wishlist);
+  }
+  
+  function showFields ( el ) {
+    $(el).parent().addClass('wishlist_wish_field-visible');
+    if(creationMode)
+      $(el).removeAttr('disabled');
+  }
+  
+  function hideFields ( el ) {
+    $(el).parent().removeClass('wishlist_wish_field-visible');
+    $(el).attr('disabled');
   }
 
-
   function showButtons ( el ) {
-
     $(el).removeAttr('disabled').removeClass('invisible');
   }
 
+  function hideButtons ( el ) {
+   $(el).attr('disabled', '').addClass('invisible'); 
+  }
+  
+  function hideWish( wish ) {
+    wish.removeClass('wishlist_wish-open');
+  }
+  
+  function more(wish) {
+    if ( !wish.hasClass('wishlist_wish-open') ) {
 
+      // enable fields, disabled by default
+      wish.addClass('wishlist_wish-open');
+      wish.addClass('wishlist_wish-editable');
 
+      var inputs = wish.find('.js-input');
+      for ( var i = 1, l = inputs.length; i < l; i++ ) {
+        setTimeout( showFields, i * 500, inputs.get(i) );
+      }
 
+      var buttons = wish.find('.js-edit-buttons');
+      hideButtons(buttons.get(0));
+      for ( i = creationMode? 2 : 1, l = buttons.length-2; i < l; i++ ) {
+        setTimeout( showButtons, (i-1) * 1000, buttons.get(i) );
+      }
 
+    }
+  }
+  
+  function less(wish) {
+    if ( wish.hasClass('wishlist_wish-open') ) {
+      setTimeout( hideWish, 500, wish );
 
-  // -------------------------------------------------- //
+      var inputs = wish.find('.js-input');
+      for ( var i = 1, l = inputs.length; i < l; i++ ) {
+        setTimeout( hideFields, (l-i-1) * 500, inputs.get(i) );
+      }
 
+      var buttons = wish.find('.js-edit-buttons');
+      for ( i = 1, l = buttons.length-2; i < l; i++ ) {
+        setTimeout( hideButtons, (l-i-1) * 1000, buttons.get(i) );
+      }
+      setTimeout( showButtons, 2000, buttons.get(0) );
+    }
+  }
 
-  getTemplate( template_URL, createWish );
+  function switchDesign(design) {
+    $('.gallery_button:eq('+activeDesign+')').find('img').removeClass('gallery_entry_image_active');
+    $('.gallery_button:eq('+design+')').find('img').addClass('gallery_entry_image_active');
 
+    //TODO: try changing the design without reloading it every time
+
+    //remove old design
+    switch(activeDesign){
+      case 1: // Butterfly
+        $('link[href$="butterfly.css"]').remove();
+        break;
+      case 2: // Christmas
+        $('link[href$="xmas.css"]').remove();
+        snow.stop();
+        break;
+      case 3: // Wedding
+        $('link[href$="love.css"]').remove();
+        break;
+    }
+    
+    activeDesign = design;
+    
+    // add new design
+    switch(activeDesign){
+      case 1: // Butterfly
+        $('link[href$="style/design.css"]').after('<link rel="stylesheet" type="text/css" href="style/butterfly.css" media="screen">');
+        break;
+      case 2: // Christmas
+        $('link[href$="style/design.css"]').after('<link rel="stylesheet" type="text/css" href="style/xmas.css" media="screen">');
+        if(typeof snow === 'undefined')
+          $('body').append('<script src="scripts/snow.js"></script>');        
+        else
+          snow.init();
+        break;
+      case 3: // Wedding
+        $('link[href$="style/design.css"]').after('<link rel="stylesheet" type="text/css" href="style/love.css" media="screen">');
+        break;
+    }
+    
+  }
 
   /**
    *  [createWish description]
@@ -220,7 +412,7 @@
 
   function createWish(){
 
-    var num  = $wishes.children().length,
+    var num  = wishCount++;
 
         tmpl = parseTemplate( template_STR, { num: num, tab: 1 + num * FIELDS }),
 
@@ -242,7 +434,26 @@
     first.offset();
 
     first.addClass('wishlist_wish_field-visible');
+    
+    if(creationMode) {
+      wish.find('.js-input').first().attr('disabled', false);
+      
+      var buttons = wish.find('.js-edit-buttons');
+      hideButtons(buttons.get(0));
+    }
+    
+    return wish;
   }
+
+  function setWishStyle_Fixed(wish) {
+    wish.find('.js-input').attr('disabled', true);
+  }
+  
+  function setWishStyle_Editable(wish) {
+    wish.find('.js-input').attr('disabled', false);
+  }
+  
+  
 
 
   // -------------------------------------------------- //

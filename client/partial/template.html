@@ -8,7 +8,7 @@
 
         <label for="item-{{num}}" class="wishlist_wish_field_label js-label">Wish</label>
         <input type="text" name="item" placeholder="Name of your Wish" tabindex="{{tab}}"
-        autocomplete="off" class="wishlist_wish_field_input js-input" id="item-{{num}}"/>
+        autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="item-{{num}}"/>
 
       </li>
 
@@ -16,7 +16,7 @@
 
         <label for="details-{{num}}" class="wishlist_wish_field_label js-label">Details</label>
         <input type="text" name="details" placeholder="Add more Information" tabindex="{{tab+1}}"
-        autocomplete="off" class="wishlist_wish_field_input js-input" id="details-{{num}}"/>
+        autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="details-{{num}}"/>
 
       </li>
 
@@ -63,6 +63,10 @@
       <button class="edit_button edit_button-more js-edit-buttons">
         <div class="edit_button_text">more</div>
         <div class="edit_button_icon edit_button_icon_more"></div>
+      </button>
+      <button class="edit_button edit_button-edit js-edit-buttons invisible" disabled>
+        <div class="edit_button_text">edit</div>
+        <div class="edit_button_icon edit_button_icon_edit"></div>
       </button>
 
       <button class="edit_button edit_button-delete js-edit-buttons invisible" disabled>

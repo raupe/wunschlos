@@ -57,7 +57,7 @@ $(document).ready(function(){
 			window.clearInterval(window.snowtimer);
 			var canvas = document.getElementById('snowCanvas');
 			canvas.parentNode.removeChild(canvas);
-			window.snowtimer = snow = null;
+			window.snowtimer = null;
 			$bg_image.remove();
 		},		
 		draw: function() {

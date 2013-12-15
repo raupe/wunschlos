@@ -60,10 +60,16 @@
 .invisible {
 
   opacity: 0;
+  display: none;
 }
 
 
 .edit_button-more {
+
+  top: 3rem;
+}
+
+.edit_button-edit {
 
   top: 3rem;
 }
@@ -156,6 +162,11 @@
 .edit_button_icon_more {
 
   background-image: url('../assets/icons/more.png');
+}
+
+.edit_button_icon_edit {
+
+  background-image: url('../assets/icons/edit.png');
 }
 
 

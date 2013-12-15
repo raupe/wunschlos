@@ -245,8 +245,13 @@ button.selection_form_submit:active {
 	text-align: center;
 }
 
+.gallery_button {
+  padding : 0;
+}
 
-
+.gallery_button:active {
+  background-color: #e9ebe8;
+}
 
 .selection_form {
 

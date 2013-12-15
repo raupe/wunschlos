@@ -209,6 +209,9 @@
   border-bottom: 0.2rem solid rgb(164, 114, 65);
 }
 
+.wishlist_wish_field_input:disabled {
+  background-color: inherit;
+}
 
 /*********/
 
