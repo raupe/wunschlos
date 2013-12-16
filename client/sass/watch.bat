@@ -1,0 +1,1 @@
+sass --watch donate.scss:../style/donate.css
