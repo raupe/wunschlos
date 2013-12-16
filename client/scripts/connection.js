@@ -29,6 +29,21 @@ var CONNECTION = new function() {
       request.fail(function (jqXHR, textStatus) {
         console.log("failed: " + textStatus);
       });
+    },
+    
+    deleteWish : function(wishlistId, itemId) {
+      var request = $.ajax({
+        url: url + "wishlist/" + wishlistId + "/" + itemId,
+        type: "delete"
+      });
+      
+      request.done(function (msg) {
+        console.log(msg);
+      });
+      
+      request.fail(function (jqXHR, textStatus) {
+        console.log("failed: " + textStatus);
+      });
     }
     
   }

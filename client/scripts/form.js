@@ -54,14 +54,31 @@
     }
     
     if ( trg.attr('class').indexOf('edit_button-more') > -1) {
-      var wish = $(trg).closest('.wishlist_wish');
-      more(wish);
+      var $wish = $(trg).closest('.wishlist_wish');
+      more($wish);
       return;
     }
     
     if ( trg.attr('class').indexOf('edit_button-less') > -1) {
-      var wish = $(trg).closest('.wishlist_wish');
-      less(wish);
+      var $wish = $(trg).closest('.wishlist_wish');
+      less($wish);
+      return;
+    }
+    
+    if ( trg.attr('class').indexOf('edit_button-delete') > -1) {
+      var $wish = $(trg).closest('.wishlist_wish');
+          titleId = $wish.find('[name="item"]').attr('id'),
+          i = titleId.substring(titleId.lastIndexOf('-')+1);
+
+      $wish.remove();
+      
+      if(! creationMode) {
+        var itemId = wishlist.items[i]._id;
+        delete wishlist.items[i]; // sets to null, so that following entries not get effected
+
+        CONNECTION.deleteWish(wishlistId, itemId);
+      }
+      
       return;
     }
 
@@ -213,6 +230,7 @@
     
     if(query) {
       creationMode = false;
+      wishlistId = query;
       CONNECTION.requestWishlist(query, loadWishlist);
     } else {
       creationMode = true;
@@ -287,6 +305,7 @@
   function switchToReceiveMode(vipId, publicId) {
     var id = $('#wishlist-role:checked').val() ? vipId : publicId;
     history.pushState(null, '', window.location + '?' + id);
+    wishlistId = id;
     
     $wishes.empty();
     wishCount = 0;
