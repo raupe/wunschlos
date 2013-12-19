@@ -40,14 +40,16 @@
 
   position: relative;
 
-  cursor: move;
-
   background-color: rgb(229, 199, 149);
 
   -webkit-transition: height 2s ease-in-out;
      -moz-transition: height 2s ease-in-out;
        -o-transition: height 2s ease-in-out;
           transition: height 2s ease-in-out;
+}
+
+.ui-sortable .wishlist_wish:not(:last-child) {
+  cursor: move;
 }
 
 

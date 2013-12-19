@@ -44,6 +44,9 @@
 
     if ( trg.attr('class').indexOf('js-share-button') > -1 ) {
 
+      if($selection.attr('class').indexOf('selection_wrap-show') == -1)
+        $('html, body').animate({scrollTop: 0}, 1000);
+      
       $selection.toggleClass('selection_wrap-show');
 
       $selectionWrap.toggleClass('selection_overlay-show');
@@ -66,7 +69,7 @@
     }
     
     if ( trg.attr('class').indexOf('edit_button-delete') > -1) {
-      var $wish = $(trg).closest('.wishlist_wish');
+      var $wish = $(trg).closest('.wishlist_wish'),
           titleId = $wish.find('[name="item"]').attr('id'),
           i = titleId.substring(titleId.lastIndexOf('-')+1);
 
@@ -80,6 +83,22 @@
       }
       
       return;
+    }
+    
+    if ( trg.attr('class').indexOf('edit_button-move-down') > -1) {
+      var $wish = $(trg).closest('.wishlist_wish'),
+          $nextWish = $wish.next('li:not(:last-child)');
+      
+      if($nextWish)
+        $nextWish.after($wish);
+    }
+    
+    if ( trg.attr('class').indexOf('edit_button-move-up') > -1) {
+      var $wish = $(trg).closest('.wishlist_wish'),
+          $prevWish = $wish.prev('li');
+      
+      if($prevWish)
+        $prevWish.before($wish);
     }
 
 	});
@@ -102,6 +121,10 @@
     }
     
 	});
+	
+	window.onpopstate = function(event) {
+	    location.reload();
+	}
 
 
 /*  $wrap.on('click', function ( e ) {
@@ -129,15 +152,6 @@
   function enableLess(){
 
   }
-
-
-	(function() {
-
-		$( "#wishes" ).sortable();
-	});
-
-
-
 
   var VISIBLE = false;
 
@@ -234,6 +248,7 @@
       CONNECTION.requestWishlist(query, loadWishlist);
     } else {
       creationMode = true;
+      $( "#wishes" ).sortable({ items : "> li:not(:last-child)" });
       createWish();
     }
   };
@@ -309,11 +324,16 @@
     
     $wishes.empty();
     wishCount = 0;
+    // disable sortable:
     $buttons.attr('disabled', '');
     $buttons.addClass('invisible');
-    $selection.toggleClass('selection_wrap-show');
-    $selectionWrap.toggleClass('selection_overlay-show');
-    $selectionContent.toggleClass('selection_content-show ');
+    $('#wishes').sortable('disable');
+    $('#wishes').removeClass('ui-sortable');
+    $('#wishes').removeClass('ui-sortable-disabled');
+    // remove wihlist options:
+    $selection.removeClass('selection_wrap-show');
+    $selectionWrap.removeClass('selection_overlay-show');
+    $selectionContent.removeClass('selection_content-show ');
     
     creationMode = false;
     loadWishlist(wishlist);
