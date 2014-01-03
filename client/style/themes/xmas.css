@@ -1,0 +1,42 @@
+/**
+ *  Themes - Xmas
+ *  =============
+ *
+ *
+ */
+
+
+body{
+	background: #42608D;
+}
+
+
+.design_bg {
+	width:  100%;
+	height: 100%;
+	background-image:url('../../assets/img/present.png');
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+
+
+.snow{
+	background:rgba(255,255,255,0.5);
+	-webkit-border-radius: 50%;
+		 -moz-border-radius: 50%;
+					border-radius: 50%;
+}
+
+
+.footer{
+	width: 100%;
+	height: 20rem;
+	padding-top: 2em;
+	background: #ffffff;
+}
+
+
+.footer_text p,h3,a{
+	color: #818CB1;
+}
