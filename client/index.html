@@ -1,43 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<meta http-equiv="content-type" content="text/html,charset=utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
 	<title>:: Wunschlos ::</title>
+
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" type="text/css" href="vendor/normalize/normalize-2.1.3.css">
+
 	<link rel="stylesheet" type="text/css" href="style/base.css">
+	<link rel="stylesheet" type="text/css" href="style/design.css">
+	<link rel="stylesheet" type="text/css" href="style/media.css">
+	<link rel="stylesheet" type="text/css" href="style/donate.css"> <!-- Donatestuff -->
 
-	<link rel="stylesheet" type="text/css" href="style/form.css">
-	<link rel="stylesheet" type="text/css" href="style/edit.css">
-
-	<link rel="stylesheet" type="text/css" href="style/design.css" media="screen">
-	<link rel="stylesheet" type="text/css" href="style/mobile.css">
-	<!-- media="screen and (max-width: 800px)" -->
-	<link rel="stylesheet" type="text/css" href="style/print.css" media="print">
-
-	<!-- // <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
-	<!-- // <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> -->
 </head>
 <body>
 
-	<div class="design_bg" id="design">
 
-		<div class="header_bar">
-			<h1>WUNSCHLOS</h1>
-			<h2>CREATE A WISHLIST</h2>
-		</div>
+	<header class="header_bar">
+		<h1>wunschlos</h1>
+		<h2>create a wishlist</h2>
+	</header>
 
+
+	<main class="design_bg" id="design">
 
 		<div class="selection_wrap" id="selection">
 
 			<div class="selection_overlay">
 
 				<div class="selection_overlay_center">
-
 
 
 					<div class="selection_gallery">
@@ -75,7 +72,6 @@
 						</ul>
 
 					</div>
-
 
 
 					<div class="selection_form">
@@ -130,10 +126,7 @@
 				</div>
 
 			</div>
-
 		</div>
-
-
 
 		<div class="content_wrap">
 			<div class="wishlist_wrap" id="wrap">
@@ -162,12 +155,13 @@
 			</div>
 		</div>
 
-	</div>
+	</main>
 
 
-	<div class="footer" id="footer_pos">
+	<footer class="footer" id="footer_pos">
+
 		<div class="footer_text">
-			<h3>ABOUT US</h3>
+			<h3>about us</h3>
 			<p>
 				<em>WUNSCHLOS</em> is a web based wishlist - which can
 				be shared with others.
@@ -184,7 +178,15 @@
 				<a href="xml/sitemap.xml">SiteMap</a>
 			</p>
 		</div>
-	</div>
+
+	</footer>
+
+
+	<div id="donate_wrapper"></div> <!-- Donatestuff -->
+	<div id="donate_bg" class="donate_bg"></div> <!-- Donatestuff -->
+
+
+<!-- Scripts -->
 
 <script src="vendor/jQuery/jquery-2.0.3.min.js"></script>
 <script src="vendor/jQueryUI/jquery-ui-1.10.3.min.js"></script>
@@ -193,6 +195,7 @@
 <script src="scripts/interface.js"></script>
 <script src="scripts/connection.js"></script>
 <script src="scripts/form.js"></script>
+<script src="scripts/donate.js"></script>
 
 </body>
 </html>
