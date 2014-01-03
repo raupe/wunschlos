@@ -25,7 +25,7 @@ $donate_border_radius: 6px;
 	font-size: 1.6rem;
 	padding: 0.2rem 0rem .6rem .4rem;
 	border-bottom: 0.2rem #909090 solid;
-	
+
 	&.name_input { width: 14rem; }
 	&.donation_input { width: 10rem; }
 }
@@ -70,10 +70,10 @@ section.donate_wrapper {
 	margin: 0 auto;
 	z-index:1002;
 	width: 37rem;
-	
+
 	header {
 		@include donate_innerStructure;
-		
+
 		label {
 			font-size: 2rem;
 			font-family: "Calibri";
@@ -82,17 +82,17 @@ section.donate_wrapper {
 
 	div.status {
 		@include donate_innerStructure;
-	
+
 		label {
 			@include label;
 		}
 
 		input {
 			@include input;
-	
+
 			&.price_input { width: 7rem; margin-bottom: 2rem; }
 		}
-	
+
 		div.outerbar {
 			border-radius: 2px;
 			width: 26rem;
@@ -100,7 +100,7 @@ section.donate_wrapper {
 			background: #f3f3f3;
 			float: left;
 			margin-bottom: 3rem;
-		
+
 			div.innerbar {
 				border-radius: 2px;
 				background: #95d371;
@@ -128,11 +128,11 @@ section.donate_wrapper {
 		padding-left: 0;
 		li {
 			@include donate_innerStructure;
-		
+
 			list-style: none;
 			margin-top: .8rem;
 			margin-bottom: 0;
-		
+
 			label {
 				@include label;
 			}
@@ -150,7 +150,7 @@ section.donate_wrapper {
 				text-decoration: underline;
 				margin-top: .5rem;
 				margin-left: 4rem;
-	
+
 				&.edit_button {
 					background: url(../assets/icons/edit_grey.png) no-repeat top center;
 				}
