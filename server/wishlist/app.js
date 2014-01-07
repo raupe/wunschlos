@@ -1,4 +1,4 @@
-var online = true;
+var online = false;
 
 // Load database credentials
 var credentials = require('./credentials');
@@ -29,26 +29,36 @@ var allowCrossDomain = function (req, res, next) {
 app.set('port', 3000);
 app.use(express.urlencoded()); // use that instead of bodyParser() because bodyParser is deprecated
 app.use(express.methodOverride()); // to use app.delete and app.put for better semantic than using post all the time: http://stackoverflow.com/questions/8378338/what-does-connect-js-methodoverride-do
-app.use(express.cookieParser('d3(1KIPGKhDqQbYn')); // to use cookies
-app.use(express.session()); // to use sessions
 app.use(allowCrossDomain); // For CORS, use function declared above
-// app.use(app.router); // not really sure what that do, so outcommented
 
-// Database
+// define database schemas
+var Schema = mongoose.Schema;
+var wishlistSchema = new Schema(schemas.wishlist, { versionKey: false });
+
+// define models build from defined schemas
+var Wishlist = mongoose.model('Wishlist', wishlistSchema);
+
+// Connect to database
+var connection = mongoose.connection;
+
 if (online) {
 	mongoose.connect('mongodb://' + credentials.user + ':' + credentials.pw + '@localhost:20883/wunsch-los'); // online
 } else {
 	mongoose.connect('mongodb://localhost:27017/test'); // local
 }
 
-var Schema = mongoose.Schema;
-var connection = mongoose.connection;
+connection.once('error', function() {
+	console.log("error: failed to connect to mongodb");
+});
 
-// define database schemas
-var wishlistSchema = new Schema(schemas.wishlist, { versionKey: false });
-
-// define models build from defined schemas
-var Wishlist = mongoose.model('Wishlist', wishlistSchema);
+connection.once('open', function callback() {
+	console.log("DB Connection to mongodb opened");
+	
+	// Start the server
+	http.createServer(app).listen(app.get('port'), function () {
+		console.log('Express server listening on port ' + app.get('port'));
+	});
+});
 
 // Routes http://localhost:3000/hi and http://place2co.de/nodejs/wishlist/hi
 // Testroute
@@ -78,16 +88,3 @@ app.post('/wishlist/:wishlistId/:itemId/comment', routes.createComment(Wishlist)
 app.put('/wishlist/:wishlistId/:itemId/comment/:commentId', routes.updateComment(Wishlist));
 app.delete('/wishlist/:wishlistId/:itemId/comment/:commentId', routes.deleteComment(Wishlist));
 
-
-connection.once('error', function() {
-	console.log("error: failed to connect to mongodb");
-});
-
-connection.once('open', function callback() {
-	console.log("DB Connection to mongodb opened");
-	
-	// Start the server
-	http.createServer(app).listen(app.get('port'), function () {
-		console.log('Express server listening on port ' + app.get('port'));
-	});
-});
