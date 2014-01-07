@@ -1,0 +1,98 @@
+/**
+ *  Design - Mix
+ *  ============
+ *
+ *
+ */
+
+.list-form input {
+  margin: 1%;
+}
+
+
+.list-set {
+  border: none;
+}
+
+
+.add {
+  width: 100%;
+  height: 50px;
+  margin: 1% 0;
+  background-color: #488f5c;
+}
+
+
+.add-plus {
+  color: #f2f2f2;
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: right;
+  margin-right: 2%;
+  cursor: pointer;
+}
+
+
+.add_item {
+  background: #C7A06B;
+  color: rgb(246, 243, 232);
+}
+
+
+.controls {
+  width: 0;
+  height: 50px;
+  margin: 1% auto;
+}
+
+
+.fields {
+  width: 85%;
+  float: left;
+  margin: 0;
+  border: 0;
+}
+
+
+.item-actions {
+  width: 15%;
+  float: right;
+  text-align: center;
+}
+
+
+.item-action {
+  margin: 2rem 0;
+  background-color: #e1e1e1;
+}
+
+
+button {
+  border: 0;
+  padding: 0.5rem 1rem;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+
+
+button:active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  outline: 0;
+  background-color: #e9d0a6;
+}
+
+
+button:focus {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  outline: 0;
+}
+
+
+.next-button {
+  background-color: #f00;
+}

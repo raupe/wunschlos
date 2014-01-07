@@ -1,0 +1,31 @@
+/**
+ *  Design - Footer
+ *  =============
+ *
+ *
+ */
+
+.footer{
+  width:  100%;
+  height: auto;
+  min-height: 20rem;
+  padding-top: 2em;
+  position: absolute;
+  background:#3d4f5b;
+}
+
+.footer_text{
+  width: 46rem;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer_text p, h3, a {
+  color: #e9ebe8;
+  font-family: 'Colaborate', sans-serif;
+}
+
+.footer_text > h3 {
+  text-transform: uppercase;
+}

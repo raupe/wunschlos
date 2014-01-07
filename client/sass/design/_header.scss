@@ -1,0 +1,35 @@
+/**
+ *  Design - Header
+ *  ===============
+ *
+ *
+ */
+
+.header_bar{
+  height: 5.5rem;
+  width: 46rem;
+  margin-left: auto;
+  margin-right: auto;
+  clear: both;
+  text-transform: uppercase;
+}
+
+.header_bar > h1{
+  font-size: 2.5rem;
+  color: #e9ebe8;
+  display: block;
+  margin: 1rem 1rem 1rem 0;
+  font-family: 'Colaborate', sans-serif;
+  font-weight:400;
+  float: left;
+}
+
+.header_bar > h2{
+  font-size: 1.1rem;
+  color: #e9ebe8;
+  display: block;
+  margin: 2.1rem 1rem 1rem 0;
+  font-family: 'Colaborate', sans-serif;
+  font-weight:400;
+  float: left;
+}

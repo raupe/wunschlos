@@ -1,0 +1,20 @@
+/**
+ *  Base - Fonts
+ *  ============
+ *
+ *
+ */
+
+@font-face {
+  font-family: 'Colaborate';
+  src: local('Colaborate'), url('../assets/fonts/Colaborate/ColabLig.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Colaborate';
+  src: local('Colaborate'), url('../assets/fonts/Colaborate/ColabReg.otf') format('opentype');
+  font-weight: 500;
+  font-style: bold;
+}

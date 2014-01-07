@@ -1,0 +1,178 @@
+/**
+ *  Design - Edit
+ *  =============
+ *
+ *
+ */
+
+$color-vanille:  rgb(242, 221, 174);
+$color-creme:    rgb(229, 199, 149);
+$color-choclate: rgb(164, 114,  65);
+
+$icon-less:   "../assets/icons/less.png";
+$icon-more:   "../assets/icons/more.png";
+$icon-edit:   "../assets/icons/edit.png";
+$icon-delete: "../assets/icons/delete.png";
+$icon-up:     "../assets/icons/up.png";
+$icon-down:   "../assets/icons/down.png";
+
+
+
+.wishlist_wish_edit {
+
+  width:   30%;
+  height: 100%;
+  float: right;
+}
+
+
+.edit_content {
+
+  float:  left;
+  width:   60%;
+  height: 100%;
+  position: relative;
+}
+
+
+.edit_position {
+
+  float: right;
+  width:   40%;
+  height: 100%;
+  position: relative;
+  background: $color-vanille;
+}
+
+
+.edit_button {
+
+  width: 5rem;
+  height: 4rem;
+  right: 1rem;
+
+  position: absolute;
+
+  color: $color-choclate;
+  background-color: $color-creme;
+
+  opacity: 1;
+
+  -webkit-transition: opacity 300ms ease-out;
+     -moz-transition: opacity 300ms ease-out;
+       -o-transition: opacity 300ms ease-out;
+          transition: opacity 300ms ease-out;
+}
+
+
+// .invisible {
+
+//   opacity: 0;
+
+//   display: none;
+// }
+
+
+.edit_button-more {
+
+  top: 3rem;
+}
+
+.edit_button-edit {
+
+  top: 3rem;
+}
+
+
+.edit_button-delete {
+
+  top: 9rem; /* 50% */
+}
+
+
+.edit_button-less {
+
+  bottom: 1.5rem;
+}
+
+
+.edit_button-move-up {
+
+  width:  4rem;
+  height: 3rem;
+  right:     0;
+
+  margin-left:   1rem;
+  margin-bottom: 1rem;
+
+  position: relative;
+}
+
+
+.edit_button-move-down {
+
+  width:  4rem;
+  height: 3rem;
+  right:     0;
+
+  margin-left: 1rem;
+
+  position: relative;
+}
+
+
+.edit_button_text {
+
+  height: 1rem;
+  text-decoration: underline;
+}
+
+.edit_button_icon {
+
+  height: 2rem;
+}
+
+
+.edit_button_icon {
+
+  background-repeat:       no-repeat;
+  background-position: center center;
+}
+
+
+.edit_button_icon_less {
+
+  background-image: url($icon-less);
+}
+
+
+.edit_button_icon_delete {
+
+  background-image: url($icon-delete);
+}
+
+
+.edit_button_icon_more {
+
+  background-image: url($icon-more);
+}
+
+
+.edit_button_icon_edit {
+
+  background-image: url($icon-edit);
+}
+
+
+.edit_button_icon_move_up {
+
+  height: 1.5rem;
+  background-image: url($icon-up);
+}
+
+
+.edit_button_icon_move_down {
+
+  height: 1.5rem;
+  background-image: url($icon-down);
+}

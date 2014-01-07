@@ -1,0 +1,41 @@
+/**
+ *  Design - Gallery
+ *  ================
+ *
+ *
+ */
+
+.gallery_entries {
+
+  min-width: 22rem;
+  width: 100%;
+  height: 100%;
+
+  list-style: none;
+}
+
+
+.gallery_entry {
+  float: left;
+  width: 20%;
+  min-width: 4rem;
+  margin: 1.8rem 2%;
+}
+
+.gallery_entry_image_active {
+
+  border: solid 6px #fff;
+}
+
+.gallery_entry_title {
+
+  text-align: center;
+}
+
+.gallery_button {
+  padding : 0;
+}
+
+.gallery_button:active {
+  background-color: #e9ebe8;
+}
