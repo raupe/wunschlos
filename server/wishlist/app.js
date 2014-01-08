@@ -6,7 +6,6 @@ var credentials = require('./credentials');
 // Load modules
 var express = require('express');
 var http = require('http');
-var path = require('path');
 var mongoose = require('mongoose');
 
 // Load own modules
