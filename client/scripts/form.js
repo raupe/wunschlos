@@ -84,6 +84,14 @@
 
       return;
     }
+    
+    if ( trg.attr('class').indexOf('edit_button-edit') > -1) {
+      var $wish = $(trg).closest('.wishlist_wish');
+      hideButtons($wish.find('.js-edit-buttons').get(1));
+      setWishStyle_Editable($wish);
+      
+      return;
+    }
 
     if ( trg.attr('class').indexOf('edit_button-move-down') > -1) {
       var $wish = $(trg).closest('.wishlist_wish'),
@@ -315,6 +323,24 @@
 
     wishlist.items = items;
     CONNECTION.sendWishlist(wishlist, switchToReceiveMode);
+  }
+  
+  function saveWish($wish) {
+    setWishStyle_Fixed($wish);
+    showButtons($wish.find('.js-edit-buttons').get(1));
+      
+    var titleId = $wish.find('[name="item"]').attr('id'),
+        i = titleId.substring(titleId.lastIndexOf('-')+1),
+        item = wishlist.items[i];
+            
+    item.title = $wish.find('[name="item"]').val();
+    item.description = $wish.find('[name="details"]').val();
+    item.amount = $wish.find('[name="price"]').val();
+    item.unit = '€';
+    item.link = $wish.find('[name="link"]').val();
+    item.secret = !wishlist.vip;
+    
+    CONNECTION.editWish(wishlistId, item);
   }
 
   function switchToReceiveMode(vipId, publicId) {
