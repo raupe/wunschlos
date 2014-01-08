@@ -43,7 +43,7 @@ function isPublic( urlId ) {
 
 // Creating, Getting, Updating wishlist ============================================
 
-exports.createWishlist = function (dbModel, mongoose) {
+exports.createWishlist = function (dbModel) {
 	
 	return function (req, res) {
 		

@@ -68,7 +68,7 @@ app.get('/hi', function (req, res) {
 
 // Routes
 // Creating, Getting and Updating wishlist
-app.post('/wishlist', routes.createWishlist(Wishlist, mongoose));
+app.post('/wishlist', routes.createWishlist(Wishlist));
 app.get('/wishlist/:wishlistId', routes.getWishlist(Wishlist));
 app.put('/wishlist/:wishlistId', routes.updateWishlist(Wishlist));
 
