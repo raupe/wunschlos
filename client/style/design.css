@@ -329,7 +329,7 @@ button.selection_form_submit:active {
   border-radius: 50%;
 }
 
-.wishlist_share_button {
+.wishlist_share_button, .edit_button-cancel, .edit_button-save {
   float: right;
   text-transform: uppercase;
   color: #a47241;
@@ -591,6 +591,26 @@ button.selection_form_submit:active {
 .edit_button_icon_move_down {
   height: 1.5rem;
   background-image: url("../assets/icons/down.png");
+}
+
+/**
+ *  Design - Confirm
+ *  ================
+ *
+ *
+ */
+.edit_button-cancel {
+  position: absolute;
+  bottom: -2.3rem;
+  right: 5rem;
+  font-size: 0.8rem;
+}
+
+.edit_button-save {
+  position: absolute;
+  bottom: -2.3rem;
+  right: 11rem;
+  font-size: 0.8rem;
 }
 
 /**

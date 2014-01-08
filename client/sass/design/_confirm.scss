@@ -1,0 +1,60 @@
+/**
+ *  Design - Confirm
+ *  ================
+ *
+ *
+ */
+
+
+// $color-mocha: #D26427;
+
+// .wishlist_wish_edit_confirm {
+
+//   background-color: $color-mocha;
+
+//   border-radius: 10px;
+
+//   // 70% + 30% * 0.6  || 70 + 18
+//   width: 88%;
+
+
+//   position: relative;
+// }
+
+// .edit_confirm {
+
+
+  // background-color: $color-mocha;
+
+  // border-radius: 10px;
+
+  // // 70% + 30% * 0.6  || 70 + 18
+  // width: 88%;
+
+
+  // position: relative;
+
+  // height: 100%;
+// }
+
+
+.edit_button-cancel {
+
+  @extend .wishlist_share_button;
+
+  position: absolute;
+  bottom: -2.3rem;
+  right: 5rem;
+   font-size: 0.8rem
+}
+
+
+.edit_button-save {
+
+  @extend .wishlist_share_button;
+
+  position: absolute;
+  bottom: -2.3rem;
+  right: 11rem;
+  font-size: 0.8rem
+}
