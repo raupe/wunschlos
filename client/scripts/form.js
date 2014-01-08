@@ -144,7 +144,7 @@
 	});
 
 	window.onpopstate = function(event) {
-	    // location.reload();
+	  location.reload();
 	}
 
 
@@ -304,6 +304,12 @@
         var $link = $("#link-" + i);
         $link.val(item.link);
         $link.prev().removeClass('wishlist_wish_field_label-hidden');
+      }
+      
+      if(item.description) {
+        var $desc = $("#details-" + i);
+        $desc.val(item.description);
+        $desc.prev().removeClass('wishlist_wish_field_label-hidden');
       }
     }
   }
