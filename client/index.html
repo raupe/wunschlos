@@ -16,21 +16,23 @@
 	<link rel="stylesheet" type="text/css" href="style/base.css">
 	<link rel="stylesheet" type="text/css" href="style/design.css">
 	<link rel="stylesheet" type="text/css" href="style/media.css">
-	<link rel="stylesheet" type="text/css" href="style/donate.css"> <!-- Donatestuff -->
+
+	<!-- Donatestuff -->
+	<link rel="stylesheet" type="text/css" href="style/donate.css">
 
 </head>
 <body>
 
 
-	<header class="header_bar">
+	<header role="banner" class="header_bar">
 		<h1>wunschlos</h1>
 		<h2>create a wishlist</h2>
 	</header>
 
 
-	<main class="design_bg" id="design">
+	<main role="main" class="design_bg" id="design">
 
-		<div class="selection_wrap" id="selection">
+		<section class="selection_wrap" id="selection">
 
 			<div class="selection_overlay">
 
@@ -81,39 +83,27 @@
 							<ul class="selection_form_fields">
 
 								<li class="selection_form_field">
-
 									<label for="wishlist-title">Title</label>
 									<input type="text" name="title" placeholder="Add a Title for the Wishlist" id="wishlist-title" />
-
 								</li>
 
 								<li class="selection_form_field">
-
 									<label for="wishlist-title">Created By</label>
 									<input type="text" name="title" placeholder="Add your name" id="wishlist-by" />
-
 								</li>
 
 								<li class="selection_form_field">
-
 									<label for="wishlist-role">I am the presentee</label>
 									<span><input type="checkbox" name="role" id="wishlist-role" /></span>
-
 								</li>
 
-
 								<li class="selection_form_field">
-
 									<label for="wishlist-audience">Presents for</label>
 									<input type="text" name="audience" placeholder="Add name of the presentee" id="wishlist-presentee" />
-
 								</li>
 
-
 								<li class="selection_form_field">
-
 									<button class="selection_form_submit">SHARE WISHLIST</button>
-
 								</li>
 
 							</ul>
@@ -126,9 +116,12 @@
 				</div>
 
 			</div>
-		</div>
 
-		<div class="content_wrap">
+		</section>
+
+
+		<section class="content_wrap">
+
 			<div class="wishlist_wrap" id="wrap">
 
 				<div class="wishlist_top"></div>
@@ -154,18 +147,19 @@
 				<div class="wishlist_bottom"></div>
 
 			</div>
-		</div>
+
+		</section>
 
 	</main>
 
 
-	<footer class="footer" id="footer_pos">
+
+	<footer role="contentinfo" class="footer" id="footer_pos">
 
 		<div class="footer_text">
 			<h3>about us</h3>
 			<p>
-				<em>WUNSCHLOS</em> is a web based wishlist - which can
-				be shared with others.
+				<em>WUNSCHLOS</em> is a web based wishlist - which can be shared with others.
 			</p>
 			<p>
 				We created the project as part of our studies in Web Applications
@@ -182,20 +176,19 @@
 
 	</footer>
 
-
-	<div id="donate_wrapper"></div> <!-- Donatestuff -->
-	<div id="donate_bg" class="donate_bg"></div> <!-- Donatestuff -->
+	<!-- Donatestuff -->
+	<div id="donate_wrapper"></div>
+	<div id="donate_bg" class="donate_bg"></div>
 
 
 <!-- Scripts -->
-
 <script src="vendor/jQuery/jquery-2.0.3.min.js"></script>
 <script src="vendor/jQueryUI/jquery-ui-1.10.3.min.js"></script>
 
-<script src="scripts/adapter.js"></script>
+<script src="scripts/render.js"></script>
 <script src="scripts/interface.js"></script>
 <script src="scripts/connection.js"></script>
-<script src="scripts/form.js"></script>
+<script src="scripts/wishlist.js"></script>
 <script src="scripts/donate.js"></script>
 
 </body>
