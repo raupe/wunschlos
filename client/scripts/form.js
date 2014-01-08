@@ -108,7 +108,20 @@
       if($prevWish)
         $prevWish.before($wish);
     }
-
+    
+    if ( trg.attr('class').indexOf('edit_button-cancel') > -1) {
+      var $wish = $(trg).closest('.wishlist_wish');
+      cancelEdit($wish);
+    }
+    
+    if ( trg.attr('class').indexOf('edit_button-save') > -1 ) {
+      var $wish = $(trg).closest('.wishlist_wish');
+      saveWish($wish);
+    }
+    
+    if ( trg.attr('class').indexOf('js-new-button') > -1 ) {
+      addNewWish();
+    }
 	});
 
 	$selectionWrap.on('click', function( e ){
@@ -254,6 +267,9 @@
       creationMode = false;
       wishlistId = query;
       CONNECTION.requestWishlist(query, loadWishlist);
+      var $newButton = $wrap.find('.js-new-button');
+      $newButton.removeAttr('disabled');
+      $newButton.removeClass('invisible');
     } else {
       creationMode = true;
       $( "#wishes" ).sortable({ items : "> li:not(:last-child)" });
@@ -342,7 +358,38 @@
     
     CONNECTION.editWish(wishlistId, item);
   }
-
+  
+  function cancelEdit($wish) {
+    setWishStyle_Fixed($wish);
+    showButtons($wish.find('.js-edit-buttons').get(1));
+    
+    var titleId = $wish.find('[name="item"]').attr('id'),
+        i = titleId.substring(titleId.lastIndexOf('-')+1),
+        item = wishlist.items[i];
+        
+    if(item._id) {
+      $wish.find('[name="item"]').val(item.title);
+      $wish.find('[name="details"]').val(item.description);
+      $wish.find('[name="price"]').val(item.amount);
+      $wish.find('[name="link"]').val(item.link);
+    } else {
+      $wish.remove();
+      delete wishlist.items[i]; // sets to null, so that following entries not get effected
+    }
+  }
+  
+  function addNewWish() {
+    var $wish = createWish(),
+        item = {};
+    item.unit = "€";
+    item.secret = !wishlist.vip;
+    item.shares = [];
+    item.comments = [];
+    wishlist.items[wishCount - 1] = item;
+      
+    setWishStyle_Editable($wish)
+  }
+  
   function switchToReceiveMode(vipId, publicId) {
     var id = $('#wishlist-role:checked').val() ? vipId : publicId;
     history.pushState(null, '', window.location + '?' + id);
@@ -360,6 +407,10 @@
     $selection.removeClass('selection_wrap-show');
     $selectionWrap.removeClass('selection_overlay-show');
     $selectionContent.removeClass('selection_content-show ');
+    
+    var $newButton = $wrap.find('.js-new-button');
+    $newButton.removeAttr('disabled');
+    $newButton.removeClass('invisible');
 
     creationMode = false;
     loadWishlist(wishlist);
@@ -402,7 +453,8 @@
 
       var buttons = wish.find('.js-edit-buttons');
       hideButtons(buttons.get(0));
-      for ( i = creationMode? 2 : 1, l = buttons.length-2; i < l; i++ ) {
+      var dontShowEdit = creationMode || !inputs.first().attr('disabled');
+      for ( i = dontShowEdit? 2 : 1, l = 4; i < l; i++ ) {
         setTimeout( showButtons, (i-1) * 1000, buttons.get(i) );
       }
 
@@ -419,7 +471,7 @@
       }
 
       var buttons = wish.find('.js-edit-buttons');
-      for ( i = 1, l = buttons.length-2; i < l; i++ ) {
+      for ( i = 1, l = 4; i < l; i++ ) {
         setTimeout( hideButtons, (l-i-1) * 1000, buttons.get(i) );
       }
       setTimeout( showButtons, 2000, buttons.get(0) );
