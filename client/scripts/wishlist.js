@@ -144,6 +144,14 @@
     }
 
   });
+  
+  $('#wishlist-role').on('change', function(e) {
+    var isChecked = $(this).prop('checked');
+    if(isChecked)
+      $('#wishlist-presentee').attr('disabled', '');
+    else
+      $('#wishlist-presentee').removeAttr('disabled');
+  });
 
   window.onpopstate = function(event) {
     if(event.state && event.state.creationMode !== creationMode)
@@ -295,14 +303,14 @@
     wishlist = {};
     var items = [],
         myName = $('#wishlist-by').val(),
-        secret = $('#wishlist-role:checked').val() ? true : false;
+        secret = ! ($('#wishlist-role:checked').val() ? true : false);
 
     wishlist.title = $('#wishlist-title').val();
     wishlist.design = activeDesign;
     if(secret)
-      wishlist.to = myName;
-    else
       wishlist.to = $('#wishlist-presentee').val();
+    else
+      wishlist.to = myName;
 
     $(".wishlist_wish").each(function() {
       var $wish = $(this);
@@ -383,6 +391,9 @@
 
     $wishes.empty();
     wishCount = 0;
+    creationMode = false;
+    CONNECTION.requestWishlist(wishlistId, loadWishlist);
+      
     // disable sortable:
     $buttons.attr('disabled', '');
     $buttons.addClass('invisible');
@@ -397,9 +408,6 @@
     var $newButton = $wrap.find('.js-new-button');
     $newButton.removeAttr('disabled');
     $newButton.removeClass('invisible');
-
-    creationMode = false;
-    loadWishlist(wishlist);
   }
 
   function showFields ( el ) {
@@ -410,7 +418,7 @@
 
   function hideFields ( el ) {
     $(el).parent().removeClass('wishlist_wish_field-visible');
-    $(el).attr('disabled');
+    $(el).attr('disabled', '');
   }
 
   function showButtons ( el ) {
