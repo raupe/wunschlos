@@ -145,11 +145,10 @@
 
   });
 
-  // TODO: fix Chrome History API
-  /** window.onpopstate = function(event) {
-    location.reload();
-  };**/
-
+  window.onpopstate = function(event) {
+    if(event.state && event.state.creationMode !== creationMode)
+      location.reload();
+  };
 
 
   var VISIBLE = false;
@@ -375,8 +374,11 @@
   }
 
   function switchToReceiveMode(vipId, publicId) {
+    console.log('vip:' + vipId);
+    console.log('public:' + publicId);
     var id = $('#wishlist-role:checked').val() ? vipId : publicId;
-    history.pushState(null, '', window.location + '?' + id);
+    history.replaceState({creationMode:true}, '', window.location);
+    history.pushState({creationMode:false}, '', window.location + '?' + id);
     wishlistId = id;
 
     $wishes.empty();
@@ -556,7 +558,7 @@
   function setWishStyle_Editable(wish, creation) {
     wish.find('.js-input').attr('disabled', false);
 
-    if ( creation ) return; // prevent showing on new creation
+    //if ( creation ) return; // prevent showing on new creation
 
     wish.find('.edit_button-save').removeClass('invisible');
     wish.find('.edit_button-cancel').removeClass('invisible');
