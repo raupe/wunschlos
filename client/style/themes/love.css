@@ -20,7 +20,7 @@ body{
 	background-image:url('../../assets/img/pair.png');
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	background-position: top right;
+	background-position: 100% 45%;
 }
 
 
@@ -130,7 +130,11 @@ button:active {
 	background-image: url("../../assets/icons/up_pink.png");
 }
 
-.wishlist_share_button {
+.edit_button_icon_edit {
+background-image: url("../../assets/icons/edit_pink.png");
+}
+
+.edit_button-cancel, .edit_button-save, .wishlist_share_button {
 	background-color: #E9E0E8;
 	border: 2px solid #7f375b;
 	color: #7f375b;
