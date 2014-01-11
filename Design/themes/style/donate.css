@@ -1,0 +1,179 @@
+div.donate_bg {
+  display: none;
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: #0c243c;
+  z-index: 1001;
+  opacity: .6;
+}
+
+section.donate_wrapper {
+  position: absolute;
+  display: none;
+  top: 7.5rem;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  z-index: 1002;
+  width: 37rem;
+}
+section.donate_wrapper header {
+  margin-bottom: 1.4rem;
+  background: white;
+  padding: 1.4rem 1.2rem;
+  border-radius: 6px;
+}
+section.donate_wrapper header label {
+  font-size: 2rem;
+  font-family: "Calibri";
+}
+section.donate_wrapper div.status {
+  margin-bottom: 1.4rem;
+  background: white;
+  padding: 1.4rem 1.2rem;
+  border-radius: 6px;
+}
+section.donate_wrapper div.status label {
+  color: #8d8c8c;
+  font-size: 1rem;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+section.donate_wrapper div.status input {
+  background: #f3f3f3;
+  color: #414141;
+  font-size: 1.6rem;
+  padding: 0.2rem 0rem .6rem .4rem;
+  border-bottom: 0.2rem #909090 solid;
+}
+section.donate_wrapper div.status input.name_input {
+  width: 14rem;
+}
+section.donate_wrapper div.status input.donation_input {
+  width: 10rem;
+}
+section.donate_wrapper div.status input.price_input {
+  width: 7rem;
+  margin-bottom: 2rem;
+}
+section.donate_wrapper div.status div.outerbar {
+  border-radius: 2px;
+  width: 26rem;
+  height: 3.5rem;
+  background: #f3f3f3;
+  float: left;
+  margin-bottom: 3rem;
+}
+section.donate_wrapper div.status div.outerbar div.innerbar {
+  border-radius: 2px;
+  background: #95d371;
+  height: inherit;
+}
+section.donate_wrapper div.status label.currentAmount {
+  color: #414141;
+  line-height: 3.4rem;
+  font-size: 1.6rem;
+  margin-left: 1rem;
+}
+section.donate_wrapper div.status span {
+  color: #c1c1c1;
+  line-height: 3.4rem;
+  font-size: 1.6rem;
+  margin: 0 1.4rem;
+}
+section.donate_wrapper div.status button {
+  margin-top: 3rem;
+  margin-right: 1rem;
+  color: #606060;
+  background: #f3f3f3;
+  text-decoration: underline;
+  padding: 0 .5rem .2rem .5rem;
+  opacity: 1;
+}
+section.donate_wrapper ul {
+  padding-left: 0;
+}
+section.donate_wrapper ul li {
+  margin-bottom: 1.4rem;
+  background: white;
+  padding: 1.4rem 1.2rem;
+  border-radius: 6px;
+  list-style: none;
+  margin-top: .8rem;
+  margin-bottom: 0;
+}
+section.donate_wrapper ul li label {
+  color: #8d8c8c;
+  font-size: 1rem;
+  display: inline-block;
+  margin-bottom: 0.4rem;
+}
+section.donate_wrapper ul li span {
+  color: #c1c1c1;
+  line-height: 3.4rem;
+  font-size: 1.6rem;
+  margin: 0 1.4rem;
+}
+section.donate_wrapper ul li input {
+  background: #f3f3f3;
+  color: #414141;
+  font-size: 1.6rem;
+  padding: 0.2rem 0rem .6rem .4rem;
+  border-bottom: 0.2rem #909090 solid;
+}
+section.donate_wrapper ul li input.name_input {
+  width: 14rem;
+}
+section.donate_wrapper ul li input.donation_input {
+  width: 10rem;
+}
+section.donate_wrapper ul li button {
+  padding: 1.6rem 0.2rem 0;
+  text-decoration: underline;
+  margin-top: .5rem;
+  margin-left: 4rem;
+}
+section.donate_wrapper ul li button.edit_button {
+  background: url(../assets/icons/edit_grey.png) no-repeat top center;
+}
+section.donate_wrapper ul li button.delete_button {
+  background: url(../assets/icons/delete_grey.png) no-repeat top center;
+  margin-left: 3.2rem;
+}
+section.donate_wrapper ul li.edit {
+  border: .3rem #fc8e00 solid;
+  border-radius: 8px 8px 0 0;
+}
+section.donate_wrapper ul div.edit_buttons {
+  background: #fc8e00;
+  border-radius: 0 0 8px 8px;
+  padding: .2rem 1.6rem;
+  padding-bottom: .4rem;
+}
+section.donate_wrapper ul div.edit_buttons button {
+  margin-top: 3rem;
+  margin-right: 1rem;
+  color: #606060;
+  background: #f3f3f3;
+  text-decoration: underline;
+  padding: 0 .5rem .2rem .5rem;
+  opacity: 1;
+  margin-top: 0;
+}
+
+/* Helpers */
+.left {
+  float: left;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}

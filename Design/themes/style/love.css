@@ -17,7 +17,7 @@ body{
 
 
 .design_bg{
-	background-image:url('../../assets/img/pair.png');
+	background-image:url('../assets/img/pair.png');
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-position: top right;
@@ -72,10 +72,6 @@ body{
 	color: #7f375b;
 }
 
-.edit_position {
-	background: #E7E4DD;
-}
-
 .edit_button_icon_less {
   background-image: url('../../assets/icons/less_pink.png');
 }
@@ -118,16 +114,6 @@ body{
 
 button:active {
   background-color: #d9d9d9;
-}
-
-.edit_button_icon_move_down {
-	height: 1.5rem;
-	background-image: url("../../assets/icons/down_pink.png");
-}
-
-.edit_button_icon_move_up {
-	height: 1.5rem;
-	background-image: url("../../assets/icons/up_pink.png");
 }
 
 .wishlist_share_button {

@@ -14,10 +14,10 @@ body{
 .design_bg {
 	width:  100%;
 	height: 100%;
-	/*background-image:url('../../assets/img/present.png');
+	background-image:url('../../assets/img/present.png');
 	background-attachment: fixed;
 	background-repeat: no-repeat;
-	background-position: top right;*/
+	background-position: top right;
 }
 
 

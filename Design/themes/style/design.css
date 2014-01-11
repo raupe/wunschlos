@@ -216,8 +216,6 @@ button.selection_form_submit:active {
  *
  *
  */
- 
-
 .wishlist_content {
   width: 100%;
   height: 100%;
@@ -331,7 +329,7 @@ button.selection_form_submit:active {
   border-radius: 50%;
 }
 
-.wishlist_share_button, .edit_button-cancel, .edit_button-save {
+.wishlist_share_button {
   float: right;
   text-transform: uppercase;
   color: #a47241;
@@ -596,26 +594,6 @@ button.selection_form_submit:active {
 }
 
 /**
- *  Design - Confirm
- *  ================
- *
- *
- */
-.edit_button-cancel {
-  position: absolute;
-  bottom: -2.3rem;
-  right: 5rem;
-  font-size: 0.8rem;
-}
-
-.edit_button-save {
-  position: absolute;
-  bottom: -2.3rem;
-  right: 11rem;
-  font-size: 0.8rem;
-}
-
-/**
  *  Design - Footer
  *  =============
  *
@@ -627,7 +605,7 @@ button.selection_form_submit:active {
   min-height: 20rem;
   padding-top: 2em;
   position: absolute;
-  background: #2D415F;
+  background: #3d4f5b;
 }
 
 .footer_text {
