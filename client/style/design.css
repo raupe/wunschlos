@@ -603,14 +603,14 @@ button.selection_form_submit:active {
  */
 .edit_button-cancel {
 	position: absolute;
-	bottom: -3.3rem;
+	bottom: -2.5rem;
 	left: 9rem;
 	font-size: 0.8rem;
 }
 
 .edit_button-save {
 	position: absolute;
-	bottom: -3.3rem;
+	bottom: -2.5rem;
 	left: 0;
 	font-size: 0.8rem;
 }

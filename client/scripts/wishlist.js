@@ -91,6 +91,9 @@
       $wish = $(trg).closest('.wishlist_wish');
       hideButtons($wish.find('.js-edit-buttons').get(1));
       setWishStyle_Editable($wish);
+	  
+	  // create space for buttons
+	  $wish.css( "margin-bottom", "5rem" );
 
       return;
     }
@@ -114,17 +117,22 @@
     if ( trg.attr('class').indexOf('edit_button-cancel') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
       cancelEdit($wish);
+	  $wish.css( "margin-bottom", "2rem" );
     }
 
     if ( trg.attr('class').indexOf('edit_button-save') > -1 ) {
       $wish = $(trg).closest('.wishlist_wish');
       saveWish($wish);
+	  $wish.css( "margin-bottom", "2rem" );
     }
 
     if ( trg.attr('class').indexOf('js-new-button') > -1 ) {
       addNewWish();
 	  
-	  //if snow design is active, its backgroundimage needs to be positioned
+	  // create space for buttons
+	  $("#wishes li:last-child").css( "margin-bottom", "5rem" );
+	  
+	  // if snow design is active, its backgroundimage needs to be positioned
 	  if(activeDesign === 2) positionBackgroundImage();
     }
   });
