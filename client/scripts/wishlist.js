@@ -123,6 +123,9 @@
 
     if ( trg.attr('class').indexOf('js-new-button') > -1 ) {
       addNewWish();
+	  
+	  //if snow design is active, its backgroundimage needs to be positioned
+	  if(activeDesign === 2) positionBackgroundImage();
     }
   });
 
