@@ -20,6 +20,7 @@
 
   // config
   var template_URL = 'partial/template.html',
+	  template_query = 'partial/template_query.html',
       template_STR = '';
 
   var wishlist = {},
@@ -91,7 +92,8 @@
       $wish = $(trg).closest('.wishlist_wish');
       hideButtons($wish.find('.js-edit-buttons').get(1));
       setWishStyle_Editable($wish);
-	  
+
+	  //showShare($wish,wishlist);
 	  // create space for buttons
 	  $wish.css( "margin-bottom", "5rem" );
 
@@ -244,12 +246,7 @@
 
 
 
-
-
-
-
-
-  getTemplate( template_URL, setup );
+	getTemplate( template_URL, setup );
 
 
   // Check for creation mode
@@ -266,8 +263,9 @@
       var $newButton = $wrap.find('.js-new-button');
       $newButton.removeAttr('disabled');
       $newButton.removeClass('invisible');
+	  
     } else {
-      creationMode = true;
+      creationMode = true;	  
       $( "#wishes" ).sortable({ items : "> li:not(:last-child)" });
       createWish();
     }
@@ -275,6 +273,7 @@
 
   function loadWishlist(param) {
     wishlist = param;
+	
     $('.content_description').first().text(wishlist.title);
     switchDesign(wishlist.design);
 
@@ -422,9 +421,14 @@
   }
 
   function showFields ( el ) {
-    $(el).parent().addClass('wishlist_wish_field-visible');
-    if(creationMode)
-      $(el).removeAttr('disabled');
+    
+    if(creationMode){
+		if(!$(el).hasClass("options")) $(el).parent().addClass('wishlist_wish_field-visible');
+		$(el).removeAttr('disabled');
+		
+	  }else{
+		$(el).parent().addClass('wishlist_wish_field-visible');
+	  }
   }
 
   function hideFields ( el ) {
@@ -441,14 +445,24 @@
   }
 
   function hideWish( wish ) {
-    wish.removeClass('wishlist_wish-open');
+	  	if(creationMode){
+			wish.removeClass('wishlist_wish-open');
+		}else{
+			wish.removeClass('wishlist_wish-open_donate');
+		}
   }
 
   function more(wish) {
-    if ( !wish.hasClass('wishlist_wish-open') ) {
+    if ( (!wish.hasClass('wishlist_wish-open')) || (!wish.hasClass('wishlist_wish-open_donate'))  ) {
 
       // enable fields, disabled by default
-      wish.addClass('wishlist_wish-open');
+      
+	  	if(creationMode){
+			wish.addClass('wishlist_wish-open');
+		}else{
+			wish.addClass('wishlist_wish-open_donate');
+		}
+
       wish.addClass('wishlist_wish-editable');
 
       var inputs = wish.find('.js-input');
@@ -467,7 +481,7 @@
   }
 
   function less(wish) {
-    if ( wish.hasClass('wishlist_wish-open') ) {
+    if ( (wish.hasClass('wishlist_wish-open')) || (wish.hasClass('wishlist_wish-open_donate')) ) {
       setTimeout( hideWish, 500, wish );
 
       var inputs = wish.find('.js-input');
@@ -563,6 +577,7 @@
       var buttons = wish.find('.js-edit-buttons');
       hideButtons(buttons.get(0));
     }
+	wish.find('.donate_button').attr('disabled', false);
 
     return wish;
   }
@@ -576,7 +591,7 @@
 
   function setWishStyle_Editable(wish, creation) {
     wish.find('.js-input').attr('disabled', false);
-
+	wish.find('.wishlist_wish_field_sum').attr('disabled', true);
     //if ( creation ) return; // prevent showing on new creation
 
     wish.find('.edit_button-save').removeClass('invisible');

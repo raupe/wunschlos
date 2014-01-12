@@ -401,6 +401,11 @@ button.selection_form_submit:active {
   height: 22rem;
 }
 
+.wishlist_wish-open_donate {
+  /** 4 * 6 + 1.5 + 2 **/
+  height: 30rem;
+}
+
 .wishlist_wish_set {
   width: 70%;
   height: 100%;
@@ -480,6 +485,46 @@ button.selection_form_submit:active {
   background-color: inherit;
 }
 
+.sum_label{
+	font-weight: 500;
+}
+.wishlist_wish_field_sum {
+  display: inline-block;
+  width: 35%;
+  height: 2.5rem;
+  text-align: center;
+  margin-top: 1.4rem;
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  border: 0;
+  color: #a47241;
+  background-color: #f2dcae;
+}
+
+.donate_button{
+	width: 7.2rem;
+	height: 2.6rem;
+	font-size: 1.1rem;
+	background: #a47241;
+	color: #f2dcae;
+	margin-left: 1.2rem;
+	margin-top: -0.2rem;
+}
+
+.donate_button:active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  outline: 0;
+  background-color: #CA833C;
+}
+
+.comments{
+	width: 20%;
+	text-decoration: underline;
+	font-size: 1.1rem;
+	cursor: pointer;
+}
 /**
  *  Design - Edit
  *  =============

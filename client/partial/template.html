@@ -37,6 +37,18 @@
           autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="link-{{num}}"/>
 
         </li>
+        <li class="wishlist_wish_field js-field">
+
+          <label for="sum-{{num}}" disabled class="sum_label js-input options">Open Sum:</label>
+          <input type="text" name="link" placeholder="0" tabindex="{{tab+4}}"
+          autocomplete="off" disabled class="wishlist_wish_field_sum js-input options" id="sum-{{num}}"/>
+		  <button disabled class="donate_button js-input options" tabindex="{{tab+5}}" id="donate-{{num}}" >DONATE</button>
+        </li>	
+        <li class="wishlist_wish_field js-field">
+
+		  <p disabled class="js-input comments options" tabindex="{{tab+6}}" id="comments-{{num}}" >comments(0)</p>
+
+        </li>		
   <!--
         <li class="wishlist_wish_field js-field">
 
