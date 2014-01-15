@@ -520,7 +520,8 @@ button.selection_form_submit:active {
 }
 
 .comments{
-	width: 20%;
+	padding:0;
+	background: rgba(0,0,0,0);
 	text-decoration: underline;
 	font-size: 1.1rem;
 	cursor: pointer;

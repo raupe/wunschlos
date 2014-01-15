@@ -70,7 +70,16 @@
       less($wish);
       return;
     }
-
+	
+    if ( trg.attr('class').indexOf('comments') > -1 ) {
+      $wish = $(trg).closest('.wishlist_wish');
+      var titleId = $wish.find('[name="item"]').attr('id'),
+                itemIndex = titleId.substring(titleId.lastIndexOf('-')+1);
+		// calling comment.js		
+		comment.initCommentLightbox(itemIndex, wishlist);
+		return;
+    }
+	
     if ( trg.attr('class').indexOf('edit_button-delete') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
       var titleId = $wish.find('[name="item"]').attr('id'),
@@ -93,7 +102,6 @@
       hideButtons($wish.find('.js-edit-buttons').get(1));
       setWishStyle_Editable($wish);
 
-	  //showShare($wish,wishlist);
 	  // create space for buttons
 	  $wish.css( "margin-bottom", "5rem" );
 
@@ -137,6 +145,7 @@
 	  // if snow design is active, its backgroundimage needs to be positioned
 	  if(activeDesign === 2) positionBackgroundImage();
     }
+	
   });
 
   $selectionWrap.on('click', function( e ){
@@ -192,6 +201,7 @@
       $('.edit_position .edit_button').removeAttr('disabled').removeClass('invisible');
       createWish();
     }
+
   });
 
 
@@ -428,6 +438,7 @@
 		
 	  }else{
 		$(el).parent().addClass('wishlist_wish_field-visible');
+		if(!$(el).hasClass("wishlist_wish_field_sum")) $(el).removeAttr('disabled');
 	  }
   }
 
@@ -467,7 +478,7 @@
 
       var inputs = wish.find('.js-input');
       for ( var i = 1, l = inputs.length; i < l; i++ ) {
-        setTimeout( showFields, i * 500, inputs.get(i) );
+        setTimeout( showFields, i * 400, inputs.get(i) );
       }
 
       var buttons = wish.find('.js-edit-buttons');
@@ -486,7 +497,7 @@
 
       var inputs = wish.find('.js-input');
       for ( var i = 1, l = inputs.length; i < l; i++ ) {
-        setTimeout( hideFields, (l-i-1) * 500, inputs.get(i) );
+        setTimeout( hideFields, (l-i-1) * 100, inputs.get(i) );
       }
 
       var buttons = wish.find('.js-edit-buttons');
@@ -577,7 +588,7 @@
       var buttons = wish.find('.js-edit-buttons');
       hideButtons(buttons.get(0));
     }
-	wish.find('.donate_button').attr('disabled', false);
+	//wish.find('.donate_button').attr('disabled', false);
 
     return wish;
   }
