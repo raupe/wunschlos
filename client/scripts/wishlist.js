@@ -19,9 +19,9 @@
       $buttons = $wrap.find('.js-share-button');
 
   // config
-  var template_URL = 'partial/template.html',
-	  template_query = 'partial/template_query.html',
-      template_STR = '';
+  var template_URL   = 'partial/template.html',
+      template_query = 'partial/template_query.html',
+      template_STR   = '';
 
   var wishlist = {},
       wishlistId = 0,
@@ -29,6 +29,12 @@
       creationMode = true;
 
   var activeDesign = 0;
+
+
+  var CURRENCIES    = [ '\\$', '€', '£', 'Dollar', 'dollar', 'Euro', 'euro' ],
+
+      PATTERN_PRICE = new RegExp('^(\\d*\\.?\\d+).*?(' + CURRENCIES.join('|') + ')');
+
 
   // ------------------------------------------------- //
 
@@ -335,13 +341,17 @@
     $(".wishlist_wish").each(function() {
       var $wish = $(this);
       if(! $wish.is(':last-child') ) {
-        var item = {};
+
+        var item = {},
+            price = $wish.find('[name="price"]').val().match(PATTERN_PRICE);
+
         item.title = $wish.find('[name="item"]').val();
         item.description = $wish.find('[name="details"]').val();
+        item.value  = price[1];
+        item.unit   = price[2] || '€';
         item.amount = $wish.find('[name="price"]').val();
-        item.unit = '€';
-        item.link = $wish.find('[name="link"]').val();
-        item.idea = myName;
+        item.link   = $wish.find('[name="link"]').val();
+        item.idea   = myName;
         item.secret = secret;
 
         items.push(item);
