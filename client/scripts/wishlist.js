@@ -7,6 +7,8 @@
 
 (function(){
 
+  $('#design').removeClass('preload');
+
   // ------------------------------------------------- //
 
   // helper
