@@ -163,7 +163,7 @@
 	transition: opacity 300ms ease-out;
 }
 
-.edit_content button:last-child{
+.lightbox_edit_content button:last-child{
 
 	position: absolute;
 	top: 5rem;
