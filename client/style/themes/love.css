@@ -72,6 +72,21 @@ body{
 	color: #7f375b;
 }
 
+.wishlist_wish-presentee:before {
+	color: #E7E4DD;
+	background-color: #7f375b;
+}
+
+.wishlist_wish_field_sum {
+	color: #7f375b;
+	background-color: #E7E4DD;
+}
+
+.donate_button {
+	background: #7f375b;
+	color: #E7E4DD;
+}
+
 .edit_position {
 	background: #E7E4DD;
 }

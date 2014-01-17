@@ -501,6 +501,25 @@ button.selection_form_submit:active {
   background-color: #f2dcae;
 }
 
+.wishlist_wish-presentee:before {
+	content: "VIP";
+	padding: 0.5rem;
+	color: #F1DFB8;
+	width: 3rem;
+	height: 2.4rem;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background-color: #CA935C;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	position: absolute;
+	left: 31.4rem;
+	z-index: 99;
+	top: 2.8rem;
+	font-size: 1.5rem;
+}
+
 .donate_button{
 	width: 7.2rem;
 	height: 2.6rem;
