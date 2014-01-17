@@ -394,10 +394,14 @@
   function switchToReceiveMode(vipId, publicId) {
     console.log('vip:' + vipId);
     console.log('public:' + publicId);
-    var id = $('#wishlist-role:checked').val() ? vipId : publicId;
+    var isPresentee = $('#wishlist-role:checked').val();
+        id = isPresentee ? vipId : publicId,
+        vipLink = window.location + '?' + vipId;
+        publicLink = window.location + '?' + publicId;
     history.replaceState({creationMode:true}, '', window.location);
     history.pushState({creationMode:false}, '', window.location + '?' + id);
     wishlistId = id;
+    showLinks(vipLink, publicLink, isPresentee);
 
     $wishes.empty();
     wishCount = 0;
@@ -418,6 +422,17 @@
     var $newButton = $wrap.find('.js-new-button');
     $newButton.removeAttr('disabled');
     $newButton.removeClass('invisible');
+  }
+  
+  function showLinks(vipLink, publicLink, isPresentee) {
+    // TODO: Show lightbox
+    if(isPresentee) {
+      alert("Send this link to your friends: " + publicLink + "\n"
+        + "You should only visit this link: " + vipLink);
+    } else {
+      alert("Send this link to your friends: " + publicLink + "\n"
+        + "Send this link to the presentee: " + vipLink);
+    }
   }
 
   function showFields ( el ) {
