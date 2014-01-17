@@ -306,6 +306,10 @@
         $desc.val(item.description);
         $desc.prev().removeClass('wishlist_wish_field_label-hidden');
       }
+      
+      if(!item.secret) {
+			  wish.addClass('wishlist_wish-presentee');
+      }
     }
   }
 
