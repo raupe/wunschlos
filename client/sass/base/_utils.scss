@@ -17,3 +17,10 @@
 
   float: right;
 }
+
+/**
+ *  Prevent initial transitions.
+ */
+.preload * {
+  transition: none !important;
+}

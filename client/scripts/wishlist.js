@@ -7,6 +7,8 @@
 
 (function(){
 
+  $('#design').removeClass('preload');
+
   // ------------------------------------------------- //
 
   // helper
@@ -19,9 +21,9 @@
       $buttons = $wrap.find('.js-share-button');
 
   // config
-  var template_URL = 'partial/template.html',
-	  template_query = 'partial/template_query.html',
-      template_STR = '';
+  var template_URL   = 'partial/template.html',
+      template_query = 'partial/template_query.html',
+      template_STR   = '';
 
   var wishlist = {},
       wishlistId = 0,
@@ -29,6 +31,12 @@
       creationMode = true;
 
   var activeDesign = 0;
+
+
+  var CURRENCIES    = [ '\\$', '€', '£', 'Dollar', 'dollar', 'Euro', 'euro' ],
+
+      PATTERN_PRICE = new RegExp('^(\\d*\\.?\\d+).*?(' + CURRENCIES.join('|') + ')');
+
 
   // ------------------------------------------------- //
 
@@ -70,7 +78,16 @@
       less($wish);
       return;
     }
-
+	
+    if ( trg.attr('class').indexOf('comments') > -1 ) {
+      $wish = $(trg).closest('.wishlist_wish');
+      var titleId = $wish.find('[name="item"]').attr('id'),
+                itemIndex = titleId.substring(titleId.lastIndexOf('-')+1);
+		// calling comment.js		
+		comment.initCommentLightbox(itemIndex, wishlist);
+		return;
+    }
+	
     if ( trg.attr('class').indexOf('edit_button-delete') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
       var titleId = $wish.find('[name="item"]').attr('id'),
@@ -93,7 +110,6 @@
       hideButtons($wish.find('.js-edit-buttons').get(1));
       setWishStyle_Editable($wish);
 
-	  //showShare($wish,wishlist);
 	  // create space for buttons
 	  $wish.css( "margin-bottom", "5rem" );
 
@@ -137,6 +153,7 @@
 	  // if snow design is active, its backgroundimage needs to be positioned
 	  if(activeDesign === 2) positionBackgroundImage();
     }
+	
   });
 
   $selectionWrap.on('click', function( e ){
@@ -192,6 +209,7 @@
       $('.edit_position .edit_button').removeAttr('disabled').removeClass('invisible');
       createWish();
     }
+
   });
 
 
@@ -329,13 +347,17 @@
     $(".wishlist_wish").each(function() {
       var $wish = $(this);
       if(! $wish.is(':last-child') ) {
-        var item = {};
+
+        var item = {},
+            price = $wish.find('[name="price"]').val().match(PATTERN_PRICE);
+
         item.title = $wish.find('[name="item"]').val();
         item.description = $wish.find('[name="details"]').val();
+        item.value  = price[1];
+        item.unit   = price[2] || '€';
         item.amount = $wish.find('[name="price"]').val();
-        item.unit = '€';
-        item.link = $wish.find('[name="link"]').val();
-        item.idea = myName;
+        item.link   = $wish.find('[name="link"]').val();
+        item.idea   = myName;
         item.secret = secret;
 
         items.push(item);
@@ -447,6 +469,7 @@
 		
 	  }else{
 		$(el).parent().addClass('wishlist_wish_field-visible');
+		if(!$(el).hasClass("wishlist_wish_field_sum")) $(el).removeAttr('disabled');
 	  }
   }
 
@@ -486,7 +509,7 @@
 
       var inputs = wish.find('.js-input');
       for ( var i = 1, l = inputs.length; i < l; i++ ) {
-        setTimeout( showFields, i * 500, inputs.get(i) );
+        setTimeout( showFields, i * 400, inputs.get(i) );
       }
 
       var buttons = wish.find('.js-edit-buttons');
@@ -505,7 +528,7 @@
 
       var inputs = wish.find('.js-input');
       for ( var i = 1, l = inputs.length; i < l; i++ ) {
-        setTimeout( hideFields, (l-i-1) * 500, inputs.get(i) );
+        setTimeout( hideFields, (l-i-1) * 100, inputs.get(i) );
       }
 
       var buttons = wish.find('.js-edit-buttons');
@@ -596,7 +619,7 @@
       var buttons = wish.find('.js-edit-buttons');
       hideButtons(buttons.get(0));
     }
-	wish.find('.donate_button').attr('disabled', false);
+	//wish.find('.donate_button').attr('disabled', false);
 
     return wish;
   }

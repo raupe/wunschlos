@@ -90,6 +90,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 /**
+ *  Prevent initial transitions.
+ */
+.preload * {
+  transition: none !important;
+}
+
+/**
  *  Base - Layout
  *  =============
  *
