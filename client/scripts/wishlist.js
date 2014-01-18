@@ -39,7 +39,7 @@
 
   var CURRENCIES    = [ '\\$', '€', '£', 'Dollar', 'dollar', 'Euro', 'euro' ],
 
-      PATTERN_PRICE = new RegExp('^(\\d*\\.?\\d+)\\s*(' + CURRENCIES.join('|') + ')?');
+      PATTERN_PRICE = new RegExp('^(\\d*\[\.,]?\\d+)\\s*(' + CURRENCIES.join('|') + ')?');
 
 
   // ------------------------------------------------- //
@@ -113,10 +113,6 @@
       $wish = $(trg).closest('.wishlist_wish');
       hideButtons($wish.find('.js-edit-buttons').get(1));
       setWishStyle_Editable($wish);
-
-    // create space for buttons
-    $wish.css( "margin-bottom", "5rem" );
-
       return;
     }
 
@@ -139,13 +135,11 @@
     if ( trg.attr('class').indexOf('edit_button-cancel') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
       cancelEdit($wish);
-    $wish.css( "margin-bottom", "2rem" );
     }
 
     if ( trg.attr('class').indexOf('edit_button-save') > -1 ) {
       $wish = $(trg).closest('.wishlist_wish');
       saveWish($wish);
-    $wish.css( "margin-bottom", "2rem" );
     }
 
     if ( trg.attr('class').indexOf('js-new-button') > -1 ) {
@@ -371,8 +365,8 @@
 
         item.title = $wish.find('[name="item"]').val();
         item.description = $wish.find('[name="details"]').val();
-        item.amount  = price[1];
-        item.unit   = price[2] || '';
+        item.amount  = price? price[1] || 1 : 1;
+        item.unit   = price? price[2] || '' : '';
         item.link   = $wish.find('[name="link"]').val();
         item.idea   = myName;
         item.secret = secret;
@@ -394,15 +388,14 @@
         item = wishlist.items[i],
         price = $wish.find('[name="price"]').val().match(PATTERN_PRICE);
 
-    console.log('price', price);
-    console.log('pattern', PATTERN_PRICE);
-
     item.title = $wish.find('[name="item"]').val();
     item.description = $wish.find('[name="details"]').val();
-    item.amount  = price[1];
-    item.unit   = price[2] || '';
+    item.amount  = price? price[1] || 1 : 1;
+    item.unit   = price? price[2] || '' : '';
     item.link = $wish.find('[name="link"]').val();
     item.secret = !wishlist.vip;
+
+    $wish.find('[name="price"]').val(item.amount + ' ' + item.unit);
 
     CONNECTION.editWish(wishlistId, item);
   }
@@ -435,7 +428,7 @@
     item.comments = [];
     wishlist.items[wishCount - 1] = item;
 
-    setWishStyle_Editable($wish, true);
+    setWishStyle_Editable($wish);
   }
 
   function switchToReceiveMode(vipId, publicId) {
@@ -648,15 +641,19 @@
 
     wish.find('.edit_button-save').addClass('invisible');
     wish.find('.edit_button-cancel').addClass('invisible');
+
+    wish.css( "margin-bottom", "2rem" );
   }
 
-  function setWishStyle_Editable(wish, creation) {
+  function setWishStyle_Editable(wish) {
     wish.find('.js-input').attr('disabled', false);
-  wish.find('.wishlist_wish_field_sum').attr('disabled', true);
-    //if ( creation ) return; // prevent showing on new creation
+    wish.find('.wishlist_wish_field_sum').attr('disabled', true);
 
     wish.find('.edit_button-save').removeClass('invisible');
     wish.find('.edit_button-cancel').removeClass('invisible');
+
+    // create space for buttons
+    wish.css( "margin-bottom", "5rem" );
   }
 
 
