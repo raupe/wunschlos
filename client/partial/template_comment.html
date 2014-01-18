@@ -1,41 +1,41 @@
 
 <li class="comment_entry" id="comment_entry-{{num}}">
-	<fieldset class="commentlist_comment_set">	
-		<ul class="commentlist_form">
-			<li class="clearfix">
-				<label for="comment_by-{{num}}" class="commentlist_comment_field_label-hidden js-label" >Name</label>
-				<input type="text" name="comment_by" placeholder="Add your name" tabindex="{{tab}}"
-				  autocomplete="off" disabled class="commentlist_comment_field_input js-input" id="comment_by-{{num}}"/>
-			</li>
-		   <li class="clearfix">
-			  <label for="comment-{{num}}" class="commentlist_comment_field_label-hidden js-label">Comment</label>		  
-			  <textarea type="text" name="comment" placeholder="Add a comment" tabindex="{{tab+1}}"
-			  autocomplete="off" disabled class="commentlist_comment_field_input textarea_comment js-input" id="comment-{{num}}"></textarea>
-			</li>
-			<li id="comment_date-{{num}}">
-				
-			</li>
-		</ul>
-	</fieldset>
+  <fieldset class="commentlist_comment_set">
+    <ul class="commentlist_form">
+      <li class="clearfix">
+        <label for="comment_by-{{num}}" class="commentlist_comment_field_label-hidden js-label" >Name</label>
+        <input type="text" name="comment_by" placeholder="Add your name" tabindex="{{tab}}"
+          autocomplete="off" disabled class="commentlist_comment_field_input js-input" id="comment_by-{{num}}"/>
+      </li>
+       <li class="clearfix">
+        <label for="comment-{{num}}" class="commentlist_comment_field_label-hidden js-label">Comment</label>
+        <textarea type="text" name="comment" placeholder="Add a comment" tabindex="{{tab+1}}"
+        autocomplete="off" disabled class="commentlist_comment_field_input textarea_comment js-input" id="comment-{{num}}"></textarea>
+      </li>
+      <li id="comment_date-{{num}}">
 
-	<section class="commentlist_edit js-edit">
-		<div class="lightbox_edit_content">
+      </li>
+    </ul>
+  </fieldset>
 
-			</button>
-			<button class="lightbox_edit_button edit_button-edit" >         
-			  <div class="edit_button_icon lightbox_edit_button_icon_edit"></div>
-			   <div class="edit_button_text">edit</div>
-			</button>
+  <section class="commentlist_edit js-edit">
+    <div class="lightbox_edit_content">
 
-			<button disabled class="lightbox_edit_button comment-edit edit_button-delete invisible" >
-			  <div class="edit_button_icon lightbox_edit_button_icon_delete"></div>
-			  <div class="edit_button_text">delete</div>
-			</button>
+      </button>
+      <button class="lightbox_edit_button comment-edit edit_button-edit" >
+        <div class="edit_button_icon lightbox_edit_button_icon_edit"></div>
+         <div class="edit_button_text">edit</div>
+      </button>
 
-		</div>			
-		<div class="edit_confirm">
-			<button disabled class="lightbox_edit_button-save comment-edit invisible">Save Comment</button>
-			<button disabled class="lightbox_edit_button-cancel comment-edit invisible">Cancel</button>
-		</div>
-	</section>
+      <button disabled class="lightbox_edit_button comment-delete edit_button-delete invisible" >
+        <div class="edit_button_icon lightbox_edit_button_icon_delete"></div>
+        <div class="edit_button_text">delete</div>
+      </button>
+
+    </div>
+    <div class="edit_confirm">
+      <button disabled class="lightbox_edit_button-save comment-save invisible">Save Comment</button>
+      <button disabled class="lightbox_edit_button-cancel comment-cancel invisible">Cancel</button>
+    </div>
+  </section>
 </li>

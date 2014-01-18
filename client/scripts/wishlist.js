@@ -86,10 +86,10 @@
     if ( trg.attr('class').indexOf('comments') > -1 ) {
       $wish = $(trg).closest('.wishlist_wish');
       var titleId = $wish.find('[name="item"]').attr('id'),
-                itemIndex = titleId.substring(titleId.lastIndexOf('-')+1);
-    // calling comment.js
-    comment.initCommentLightbox(itemIndex, wishlist);
-    return;
+          i = titleId.substring(titleId.lastIndexOf('-')+1);
+      // calling comment.js
+      comment.initCommentLightbox(wishlist.items[i], wishlistId);
+      return;
     }
 
     if ( trg.attr('class').indexOf('edit_button-delete') > -1) {
@@ -303,8 +303,6 @@
 
     for(var i=0; i<wishlist.items.length; i++) {
       var wish = createWish(),
-          inputs = wish.find('.js-input'),
-          buttons = wish.find('.js-edit-buttons'),
           item = wishlist.items[i];
 
       if(item.title) {
@@ -334,8 +332,8 @@
         $desc.prev().removeClass('wishlist_wish_field_label-hidden');
       }
 
-      var $comments = $("comments-" + i);
-      $comments.val("comments(" + item.comments.length + ")");
+      var $comments = $("#comments-" + i);
+      $comments.text("comments(" + item.comments.length + ")");
 
       if(!item.secret) {
         wish.addClass('wishlist_wish-presentee');
@@ -475,15 +473,17 @@
     }
   }
 
-  function showFields ( el ) {
+  function showFields ( el , enable) {
     $(el).addClass('wishlist_wish_field-visible');
-    if(creationMode)
+    if(enable)
       $(el).find('.js-input').removeAttr('disabled');
+    $(el).find('.js-button').removeAttr('disabled');
   }
 
   function hideFields ( el ) {
     $(el).removeClass('wishlist_wish_field-visible');
     $(el).find('.js-input').attr('disabled', '');
+    $(el).find('.js-button').attr('disabled', '');
   }
 
   function showButtons ( el ) {
@@ -516,15 +516,16 @@
       wish.addClass('wishlist_wish-editable');
 
       var fields = wish.find('.js-field'),
+          editable = !fields.first().find('.js-input').first().attr('disabled'),
           length = creationMode ? 4 : 6;
           interval = wishTransitionDuration / (length - 1);
       for ( var i = 1, l = length; i < l; i++ ) {
-        setTimeout( showFields, i * interval, fields.get(i) );
+        setTimeout( showFields, i * interval, fields.get(i), editable);
       }
 
       var buttons = wish.find('.js-edit-buttons');
       hideButtons(buttons.get(0));
-      var dontShowEdit = creationMode || !fields.first().find('.js-input').first().attr('disabled');
+      var dontShowEdit = creationMode || editable;
       for ( i = dontShowEdit? 2 : 1, l = 4; i < l; i++ ) {
         setTimeout( showButtons, (i-1) * 1000, buttons.get(i) );
       }
@@ -631,7 +632,6 @@
       var buttons = wish.find('.js-edit-buttons');
       hideButtons(buttons.get(0));
     }
-  //wish.find('.donate_button').attr('disabled', false);
 
     return wish;
   }
