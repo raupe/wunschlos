@@ -539,6 +539,7 @@ button.selection_form_submit:active {
 }
 
 .comments{
+	color: inherit;
 	padding:0;
 	background: rgba(0,0,0,0);
 	text-decoration: underline;
