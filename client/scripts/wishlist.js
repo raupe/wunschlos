@@ -11,6 +11,10 @@
 
   // ------------------------------------------------- //
 
+  // values from css file
+  var wishTransitionDuration = 2000,
+      fieldTransitionDuration = 1000;
+
   // helper
   var transitionEnd       = getTransitionEnd(),
       supportPlaceholder  = checkPlaceholderSupport();
@@ -35,7 +39,7 @@
 
   var CURRENCIES    = [ '\\$', '€', '£', 'Dollar', 'dollar', 'Euro', 'euro' ],
 
-      PATTERN_PRICE = new RegExp('^(\\d*\\.?\\d+).*?(' + CURRENCIES.join('|') + ')');
+      PATTERN_PRICE = new RegExp('^(\\d*\\.?\\d+)\\s*(' + CURRENCIES.join('|') + ')?');
 
 
   // ------------------------------------------------- //
@@ -78,16 +82,16 @@
       less($wish);
       return;
     }
-	
+
     if ( trg.attr('class').indexOf('comments') > -1 ) {
       $wish = $(trg).closest('.wishlist_wish');
       var titleId = $wish.find('[name="item"]').attr('id'),
                 itemIndex = titleId.substring(titleId.lastIndexOf('-')+1);
-		// calling comment.js		
-		comment.initCommentLightbox(itemIndex, wishlist);
-		return;
+    // calling comment.js
+    comment.initCommentLightbox(itemIndex, wishlist);
+    return;
     }
-	
+
     if ( trg.attr('class').indexOf('edit_button-delete') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
       var titleId = $wish.find('[name="item"]').attr('id'),
@@ -110,8 +114,8 @@
       hideButtons($wish.find('.js-edit-buttons').get(1));
       setWishStyle_Editable($wish);
 
-	  // create space for buttons
-	  $wish.css( "margin-bottom", "5rem" );
+    // create space for buttons
+    $wish.css( "margin-bottom", "5rem" );
 
       return;
     }
@@ -135,25 +139,25 @@
     if ( trg.attr('class').indexOf('edit_button-cancel') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
       cancelEdit($wish);
-	  $wish.css( "margin-bottom", "2rem" );
+    $wish.css( "margin-bottom", "2rem" );
     }
 
     if ( trg.attr('class').indexOf('edit_button-save') > -1 ) {
       $wish = $(trg).closest('.wishlist_wish');
       saveWish($wish);
-	  $wish.css( "margin-bottom", "2rem" );
+    $wish.css( "margin-bottom", "2rem" );
     }
 
     if ( trg.attr('class').indexOf('js-new-button') > -1 ) {
       addNewWish();
-	  
-	  // create space for buttons
-	  $("#wishes li:last-child").css( "margin-bottom", "5rem" );
-	  
-	  // if snow design is active, its backgroundimage needs to be positioned
-	  if(activeDesign === 2) positionBackgroundImage();
+
+    // create space for buttons
+    $("#wishes li:last-child").css( "margin-bottom", "5rem" );
+
+    // if snow design is active, its backgroundimage needs to be positioned
+    if(activeDesign === 2) positionBackgroundImage();
     }
-	
+
   });
 
   $selectionWrap.on('click', function( e ){
@@ -174,7 +178,7 @@
     }
 
   });
-  
+
   $('#wishlist-role').on('change', function(e) {
     var isChecked = $(this).prop('checked');
     if(isChecked)
@@ -264,7 +268,7 @@
 
 
 
-	getTemplate( template_URL, setup );
+  getTemplate( template_URL, setup );
 
 
   // Check for creation mode
@@ -281,9 +285,9 @@
       var $newButton = $wrap.find('.js-new-button');
       $newButton.removeAttr('disabled');
       $newButton.removeClass('invisible');
-	  
+
     } else {
-      creationMode = true;	  
+      creationMode = true;
       $( "#wishes" ).sortable({ items : "> li:not(:last-child)" });
       createWish();
     }
@@ -291,7 +295,7 @@
 
   function loadWishlist(param) {
     wishlist = param;
-	
+
     $('.content_description').first().text(wishlist.title);
     switchDesign(wishlist.design);
 
@@ -309,7 +313,7 @@
 
       if(item.amount) {
         var $amount = $("#price-" + i);
-        $amount.val(item.amount);
+        $amount.val(item.amount + ' ' + item.unit);
         $amount.prev().removeClass('wishlist_wish_field_label-hidden');
       }
 
@@ -324,9 +328,9 @@
         $desc.val(item.description);
         $desc.prev().removeClass('wishlist_wish_field_label-hidden');
       }
-      
+
       if(!item.secret) {
-			  wish.addClass('wishlist_wish-presentee');
+        wish.addClass('wishlist_wish-presentee');
       }
     }
   }
@@ -353,9 +357,8 @@
 
         item.title = $wish.find('[name="item"]').val();
         item.description = $wish.find('[name="details"]').val();
-        item.value  = price[1];
-        item.unit   = price[2] || '€';
-        item.amount = $wish.find('[name="price"]').val();
+        item.amount  = price[1];
+        item.unit   = price[2] || '';
         item.link   = $wish.find('[name="link"]').val();
         item.idea   = myName;
         item.secret = secret;
@@ -374,12 +377,16 @@
 
     var titleId = $wish.find('[name="item"]').attr('id'),
         i = titleId.substring(titleId.lastIndexOf('-')+1),
-        item = wishlist.items[i];
+        item = wishlist.items[i],
+        price = $wish.find('[name="price"]').val().match(PATTERN_PRICE);
+
+    console.log('price', price);
+    console.log('pattern', PATTERN_PRICE);
 
     item.title = $wish.find('[name="item"]').val();
     item.description = $wish.find('[name="details"]').val();
-    item.amount = $wish.find('[name="price"]').val();
-    item.unit = '€';
+    item.amount  = price[1];
+    item.unit   = price[2] || '';
     item.link = $wish.find('[name="link"]').val();
     item.secret = !wishlist.vip;
 
@@ -397,7 +404,7 @@
     if(item._id) {
       $wish.find('[name="item"]').val(item.title);
       $wish.find('[name="details"]').val(item.description);
-      $wish.find('[name="price"]').val(item.amount);
+      $wish.find('[name="price"]').val(item.amount + ' ' + item.unit);
       $wish.find('[name="link"]').val(item.link);
     } else {
       $wish.remove();
@@ -433,7 +440,7 @@
     wishCount = 0;
     creationMode = false;
     CONNECTION.requestWishlist(wishlistId, loadWishlist);
-      
+
     // disable sortable:
     $buttons.attr('disabled', '');
     $buttons.addClass('invisible');
@@ -449,7 +456,7 @@
     $newButton.removeAttr('disabled');
     $newButton.removeClass('invisible');
   }
-  
+
   function showLinks(vipLink, publicLink, isPresentee) {
     // TODO: Show lightbox
     if(isPresentee) {
@@ -462,20 +469,14 @@
   }
 
   function showFields ( el ) {
-    
-    if(creationMode){
-		if(!$(el).hasClass("options")) $(el).parent().addClass('wishlist_wish_field-visible');
-		$(el).removeAttr('disabled');
-		
-	  }else{
-		$(el).parent().addClass('wishlist_wish_field-visible');
-		if(!$(el).hasClass("wishlist_wish_field_sum")) $(el).removeAttr('disabled');
-	  }
+    $(el).addClass('wishlist_wish_field-visible');
+    if(creationMode)
+      $(el).find('.js-input').removeAttr('disabled');
   }
 
   function hideFields ( el ) {
-    $(el).parent().removeClass('wishlist_wish_field-visible');
-    $(el).attr('disabled', '');
+    $(el).removeClass('wishlist_wish_field-visible');
+    $(el).find('.js-input').attr('disabled', '');
   }
 
   function showButtons ( el ) {
@@ -487,34 +488,36 @@
   }
 
   function hideWish( wish ) {
-	  	if(creationMode){
-			wish.removeClass('wishlist_wish-open');
-		}else{
-			wish.removeClass('wishlist_wish-open_donate');
-		}
+    if(creationMode){
+      wish.removeClass('wishlist_wish-open');
+    }else{
+      wish.removeClass('wishlist_wish-open_donate');
+    }
   }
 
   function more(wish) {
     if ( (!wish.hasClass('wishlist_wish-open')) || (!wish.hasClass('wishlist_wish-open_donate'))  ) {
 
       // enable fields, disabled by default
-      
-	  	if(creationMode){
-			wish.addClass('wishlist_wish-open');
-		}else{
-			wish.addClass('wishlist_wish-open_donate');
-		}
+
+      if(creationMode){
+        wish.addClass('wishlist_wish-open');
+      }else{
+        wish.addClass('wishlist_wish-open_donate');
+      }
 
       wish.addClass('wishlist_wish-editable');
 
-      var inputs = wish.find('.js-input');
-      for ( var i = 1, l = inputs.length; i < l; i++ ) {
-        setTimeout( showFields, i * 400, inputs.get(i) );
+      var fields = wish.find('.js-field'),
+          length = creationMode ? 4 : 6;
+          interval = wishTransitionDuration / (length - 1);
+      for ( var i = 1, l = length; i < l; i++ ) {
+        setTimeout( showFields, i * interval, fields.get(i) );
       }
 
       var buttons = wish.find('.js-edit-buttons');
       hideButtons(buttons.get(0));
-      var dontShowEdit = creationMode || !inputs.first().attr('disabled');
+      var dontShowEdit = creationMode || !fields.first().find('.js-input').first().attr('disabled');
       for ( i = dontShowEdit? 2 : 1, l = 4; i < l; i++ ) {
         setTimeout( showButtons, (i-1) * 1000, buttons.get(i) );
       }
@@ -524,11 +527,13 @@
 
   function less(wish) {
     if ( (wish.hasClass('wishlist_wish-open')) || (wish.hasClass('wishlist_wish-open_donate')) ) {
-      setTimeout( hideWish, 500, wish );
+      setTimeout( hideWish, fieldTransitionDuration, wish);
 
-      var inputs = wish.find('.js-input');
-      for ( var i = 1, l = inputs.length; i < l; i++ ) {
-        setTimeout( hideFields, (l-i-1) * 100, inputs.get(i) );
+      var fields = wish.find('.js-field'),
+          length = creationMode ? 4 : 6,
+          interval = wishTransitionDuration / (length - 1);
+      for ( var i = 1, l = length; i < l; i++ ) {
+        setTimeout( hideFields, (l-i-1) * interval, fields.get(i) );
       }
 
       var buttons = wish.find('.js-edit-buttons');
@@ -619,7 +624,7 @@
       var buttons = wish.find('.js-edit-buttons');
       hideButtons(buttons.get(0));
     }
-	//wish.find('.donate_button').attr('disabled', false);
+  //wish.find('.donate_button').attr('disabled', false);
 
     return wish;
   }
@@ -633,7 +638,7 @@
 
   function setWishStyle_Editable(wish, creation) {
     wish.find('.js-input').attr('disabled', false);
-	wish.find('.wishlist_wish_field_sum').attr('disabled', true);
+  wish.find('.wishlist_wish_field_sum').attr('disabled', true);
     //if ( creation ) return; // prevent showing on new creation
 
     wish.find('.edit_button-save').removeClass('invisible');
