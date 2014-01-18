@@ -10,8 +10,9 @@
  var comment = (function(){
 
 var itemIndex = 0,
-    wishlist = {}
-	var $comments_lightbox = $('#comments_lightbox');
+    wishlist = {},
+	heightExtra = 130,
+	$comments_lightbox = $('#comments_lightbox');
 
   // ------------------------------------------------- //
 
@@ -90,7 +91,7 @@ function loadCommentEntries(){
 			if( comments[i].comment ){
 				var $comment = $("#comment-" + i);
 				$comment.val(comments[i].comment);
-				$comment.parents('.comment_entry').height($comment.height() + 100 );
+				$comment.parents('.comment_entry').height($comment.height() + heightExtra );
 			}
 			
 			IdIndex--;
