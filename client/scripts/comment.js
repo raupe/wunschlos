@@ -16,7 +16,8 @@ var heightExtra = 130,
 
 var wishlistId = 0,
     item = {},
-    template_STR;
+    template_comment_STR = "",
+    template_commentList_STR = "";
 
 $comments_lightbox = $('#comments_lightbox');
 
@@ -55,8 +56,16 @@ $comments_lightbox.on('click', function( e ){
       return;
     }
 
-    if ( trg.attr('class').indexOf('comment-delete') < -1) {
+    if ( trg.attr('class').indexOf('comment-delete') > -1) {
       $comment = $(trg).closest('.comment_entry');
+      var commentId = $comment.attr('id'),
+          i = commentId.substring(commentId.lastIndexOf('-')+1);
+
+      $comment.remove();
+
+      commentId = item.comments[i]._id;
+      delete item.comments[i];
+      CONNECTION.deleteComment(wishlistId, item._id, commentId);
 
       return;
     }
@@ -76,7 +85,14 @@ var initCommentLightbox = function(itemCurrent, wishlistIdCurrent){
   item = itemCurrent;
   wishlistId = wishlistIdCurrent;
 
-  loadCommentForm();
+  $('#comments_lightbox').empty();
+  if(template_commentList_STR)
+    loadCommentForm();
+  else
+    getTemplate("partial/template_commentlist.html", function(e) {
+      template_commentList_STR = e;
+      loadCommentForm();
+    });
 
   $('#comments_lightbox').fadeIn(200);
   $('#comments_lightbox').height($('body').height());
@@ -84,58 +100,53 @@ var initCommentLightbox = function(itemCurrent, wishlistIdCurrent){
 }
 
 function loadCommentForm(){
+  var commentForm = parseTemplate(template_commentList_STR, {title: item.title});
 
-  $('#comments_lightbox').empty();
+  $('#comments_lightbox').append(commentForm);
+  $("body").animate({scrollTop:0}, '500');
 
-  getTemplate("partial/template_commentlist.html", function(e) {
-
-    var commentForm = parseTemplate(e, {title: item.title});
-
-    $('#comments_lightbox').append(commentForm);
-    $("body").animate({scrollTop:0}, '500');
-    loadCommentEntries();
-  });
+  if(template_comment_STR)
+    setTimeout(loadCommentEntries, 0); // without timeout the comment height isn't stated correctly
+  else
+    getTemplate("partial/template_comment.html", function(e) {
+      template_comment_STR = e;
+      loadCommentEntries();
+    });
 }
 
 function loadCommentEntries(){
 
-  getTemplate("partial/template_comment.html", function(e) {
+  var comments = item.comments,
+      commentsLength = comments.length;
 
-//    var comments = new Array({name: "Berta", comment: "Essen und Trinken"},{name: "Anton", comment: "hallo hallo"}),
-    var comments = item.comments,
-        commentsLength = comments.length;
-    template_STR = e;
+  for (i = 0; i < commentsLength; i++) {
+    createComment(comments[i]);
+  }
 
-    for (i = 0; i < commentsLength; i++) {
-      createComment(comments[i]);
+  /*
+  for (i = commentsLength-1; i >= 0; i--) {
+
+    commentEntry = parseTemplate(commentHTML, { num: i, tab: tabOffset + (commentsLength - i - 1) * tabsPerComment });
+    $('#comments').append(commentEntry);
+
+    if( comments[i].name ){
+      var $name = $("#comment_by-" + i);
+      $name.val(comments[i].name);
     }
 
-    /*
-    for (i = commentsLength-1; i >= 0; i--) {
-
-      commentEntry = parseTemplate(commentHTML, { num: i, tab: tabOffset + (commentsLength - i - 1) * tabsPerComment });
-      $('#comments').append(commentEntry);
-
-      if( comments[i].name ){
-        var $name = $("#comment_by-" + i);
-        $name.val(comments[i].name);
-      }
-
-      if( comments[i].comment ){
-        var $comment = $("#comment-" + i);
-        $comment.val(comments[i].comment);
-        $comment.parents('.comment_entry').height($comment.height() + heightExtra );
-      }
-
+    if( comments[i].comment ){
+      var $comment = $("#comment-" + i);
+      $comment.val(comments[i].comment);
+      $comment.parents('.comment_entry').height($comment.height() + heightExtra );
     }
+
+  }
     */
-  });
 }
 
 function createComment(comment) {
   //TODO: change tab index
-  var commentEntry = parseTemplate(template_STR, { num: i, tab: i * tabsPerComment });
-//  $('#comments').append(commentEntry);
+  var commentEntry = parseTemplate(template_comment_STR, { num: i, tab: i * tabsPerComment });
   $('.comment_entry:eq(0)').after(commentEntry);
 
   if( comment.name ){
@@ -176,17 +187,22 @@ function saveComment($comment) {
 }
 
 function cancelEdit($comment) {
-  setCommentStyle_Fixed($comment);
-  var commentID = $comment.attr("id"),
-      i = commentID.substring(commentID.lastIndexOf('-')+1),
-      comment = item.comments[i];
+  if($comment.attr("id")) { // existing comment
+    setCommentStyle_Fixed($comment);
+    var commentID = $comment.attr("id"),
+        i = commentID.substring(commentID.lastIndexOf('-')+1),
+        comment = item.comments[i];
 
-  if(comment._id) {
-    $comment.find('[name="comment_by"]').val(comment.name);
-    $comment.find('[name="comment"]').val(comment.comment);
-  } else {
-    $comment.remove();
-    delete item.comments[i];
+    if(comment._id) {
+      $comment.find('[name="comment_by"]').val(comment.name);
+      $comment.find('[name="comment"]').val(comment.comment);
+    } else {
+      $comment.remove();
+      delete item.comments[i];
+    }
+  } else  { // new comment
+      $comment.find('[name="comment_by"]').val('');
+      $comment.find('[name="comment"]').val('');
   }
 }
 

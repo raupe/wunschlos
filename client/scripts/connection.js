@@ -83,6 +83,21 @@ var CONNECTION = new function() {
       }
     },
 
+    deleteComment : function(wishlistId, itemId, commentId) {
+      var request = $.ajax({
+        url: url + "wishlist/" + wishlistId + "/" + itemId + "/comment/"+ commentId,
+        type: "delete"
+      });
+
+      request.done(function (msg) {
+        console.log(msg);
+      });
+
+      request.fail(function (jqXHR, textStatus) {
+        console.log("failed: " + textStatus);
+      });
+    },
+
     editComment : function(wishlistId, itemId, comment) {
       var clone = $.extend(true, {}, comment);
       if(comment._id) {
