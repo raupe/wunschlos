@@ -293,6 +293,14 @@
     }
   }
 
+  function getCollectedSum(item) {
+    var sum = 0;
+    for(var i=0; i<item.shares.length; i++) {
+      sum += item.shares[i].amount;
+    }
+    return sum;
+  }
+
   function loadWishlist(param) {
     wishlist = param;
 
@@ -315,6 +323,9 @@
         var $amount = $("#price-" + i);
         $amount.val(item.amount + ' ' + item.unit);
         $amount.prev().removeClass('wishlist_wish_field_label-hidden');
+
+        var $sum = $("#sum-" + i);
+        $sum.val(item.amount - getCollectedSum(item));
       }
 
       if(item.link) {
@@ -328,6 +339,9 @@
         $desc.val(item.description);
         $desc.prev().removeClass('wishlist_wish_field_label-hidden');
       }
+
+      var $comments = $("comments-" + i);
+      $comments.val("comments(" + item.comments.length + ")");
 
       if(!item.secret) {
         wish.addClass('wishlist_wish-presentee');
