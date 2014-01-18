@@ -159,6 +159,11 @@ function createComment(comment) {
     $comment.val(comment.comment);
     $comment.parents('.comment_entry').height($comment.height() + heightExtra );
   }
+
+  if( comment.date ) {
+    var $date = $("#comment_date-" + i);
+    $date.text(comment.date);
+  }
 }
 
 function saveComment($comment) {
@@ -178,6 +183,7 @@ function saveComment($comment) {
 
     comment.name = $comment.find('[name="comment_by"]').val();
     comment.comment = $comment.find('[name="comment"]').val();
+    comment.date = "just now";
 
     createComment(comment);
   }
