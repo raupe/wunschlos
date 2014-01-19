@@ -131,6 +131,56 @@ var CONNECTION = new function() {
         });
 
       }
+    },
+
+    deleteDonation : function(wishlistId, itemId, donationId) {
+      var request = $.ajax({
+        url: url + "wishlist/" + wishlistId + "/" + itemId + "/share/"+ commentId,
+        type: "delete"
+      });
+
+      request.done(function (msg) {
+        console.log(msg);
+      });
+
+      request.fail(function (jqXHR, textStatus) {
+        console.log("failed: " + textStatus);
+      });
+    },
+
+    editDonation : function(wishlistId, itemId, donation) {
+      var clone = $.extend(true, {}, donation);
+      if(donation._id) {
+        // don't send the whole item:
+        delete clone._id;
+
+        var request = $.ajax({
+          url: url + "wishlist/" + wishlistId + "/" + itemId + "/share/"+ donation._id,
+          type: "put",
+          data: clone
+        });
+        request.done(function (msg) {
+          console.log(msg);
+        });
+        request.fail(function (jqXHR, textStatus) {
+          console.log("failed: " + textStatus);
+        });
+
+      } else {
+        delete clone._id;
+        var request = $.ajax({
+          url: url + "wishlist/" + wishlistId + "/" + itemId + "/share",
+          type: "post",
+          data: clone
+        });
+        request.done(function (msg) {
+          donation._id = msg;
+        });
+        request.fail(function (jqXHR, textStatus) {
+          console.log("failed: " + textStatus);
+        });
+
+      }
     }
 
   }

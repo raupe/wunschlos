@@ -301,9 +301,18 @@
     $('.content_description').first().text(wishlist.title);
     switchDesign(wishlist.design);
 
+    var indexLastVip = -1;
+
     for(var i=0; i<wishlist.items.length; i++) {
-      var wish = createWish(),
+      var wish,
           item = wishlist.items[i];
+
+      if(item.secret) {
+        wish = createWish();
+      } else {
+        indexLastVip++;
+        wish = createWish(indexLastVip);
+      }
 
       if(item.title) {
         var $title = $("#item-" + i);
@@ -601,7 +610,7 @@
 
   var FIELDS = 4;
 
-  function createWish(){
+  function createWish(position = -1){
 
     var num  = wishCount++,
 
@@ -618,7 +627,10 @@
     //
     // increase container before inserting a new wish: $wishes
 
-    $wishes.append( wish );
+    if(position == -1 || position >= $wishes.children().length)
+      $wishes.append( wish );
+    else
+      $($wishes.children()[position]).before(wish);
 
     var first = wish.find('.js-field').first();
 
