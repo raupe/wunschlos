@@ -1,12 +1,23 @@
 <?xml version="1.0"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xsi:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.wunsch-los.com"
+  xmlns="http://www.wunsch-los.com"
+  elementFormDefault="qualified" >
 
-<xs:element name="urlset">
-  <xs:complexType>
-    
-    <!-- -->
-    
-  </xs:complexType>
-</xs:element>
+<xsi:element name="urlset">
+  <xsi:complexType>
+    <xsi:sequence>
+      <xsi:element name="url" maxOccurs="unbounded">
+        <xsi:complexType>
+          <xsi:sequence>
+            <xsi:element name="title" type="xsi:string"/>
+            <xsi:element name="location" type="xsi:string"/>
+            <xsi:element name="date" type="xsi:string"/>
+          </xsi:sequence>
+        </xsi:complexType>
+      </xsi:element>
+    </xsi:sequence>
+  </xsi:complexType>
+</xsi:element>
   
-</xs:schema>
+</xsi:schema>
