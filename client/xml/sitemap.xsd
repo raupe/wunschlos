@@ -1,7 +1,5 @@
 <?xml version="1.0"?>
 <xsi:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema"
-  targetNamespace="http://www.wunsch-los.com"
-  xmlns="http://www.wunsch-los.com"
   elementFormDefault="qualified" >
 
 <xsi:element name="urlset">
