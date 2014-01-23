@@ -88,7 +88,7 @@
       var titleId = $wish.find('[name="item"]').attr('id'),
           i = titleId.substring(titleId.lastIndexOf('-')+1);
       // calling comment.js
-      comment.initCommentLightbox(wishlist.items[i], wishlistId);
+      comment.initCommentLightbox(wishlist.items[i], wishlistId, updateComments);
       return;
     }
 
@@ -290,7 +290,8 @@
   function getCollectedSum(item) {
     var sum = 0;
     for(var i=0; i<item.shares.length; i++) {
-      sum += item.shares[i].amount;
+      if(item.shares[i])
+        sum += item.shares[i].amount;
     }
     return sum;
   }
@@ -558,6 +559,28 @@
         setTimeout( hideButtons, (l-i-1) * 1000, buttons.get(i) );
       }
       setTimeout( showButtons, 2000, buttons.get(0) );
+    }
+  }
+
+  function updateComments() {
+    for(var i=0; i<wishlist.items.length; i++) {
+      var item = wishlist.items[i];
+      if(item) {
+        var count = 0;
+        for(var j=0; j<item.comments.length; j++) //don't count deleted items;
+          if(item.comments[j])
+            count++;
+
+        $("#comments-" + i).text("comments(" + count + ")");
+      }
+    }
+  }
+
+  function updateDonation() {
+    for(var i=0; i<wishlist.items.length; i++) {
+      var item = wishlist.items[i];
+      if(item)
+        $("#sum-" + i).val(item.amount - getCollectedSum(item));
     }
   }
 

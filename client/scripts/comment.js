@@ -16,6 +16,7 @@ var heightExtra = 130,
 
 var wishlistId = 0,
     item = {},
+    updateWishlist,
     template_comment_STR = "",
     template_commentList_STR = "";
 
@@ -66,6 +67,7 @@ $comments_lightbox.on('click', function( e ){
       commentId = item.comments[i]._id;
       delete item.comments[i];
       CONNECTION.deleteComment(wishlistId, item._id, commentId);
+      updateWishlist();
 
       return;
     }
@@ -80,10 +82,11 @@ $comments_lightbox.on('click', function( e ){
 
 
 // if comments-button is hit
-var initCommentLightbox = function(itemCurrent, wishlistIdCurrent){
+var initCommentLightbox = function(itemCurrent, wishlistIdCurrent, updateCallback){
 
   item = itemCurrent;
   wishlistId = wishlistIdCurrent;
+  updateWishlist = updateCallback;
 
   $('#comments_lightbox').empty();
   if(template_commentList_STR)
@@ -120,7 +123,8 @@ function loadCommentEntries(){
       commentsLength = comments.length;
 
   for (i = 0; i < commentsLength; i++) {
-    createComment(comments[i]);
+    if(comments[i])
+      createComment(comments[i]);
   }
 
   /*
@@ -185,7 +189,11 @@ function saveComment($comment) {
     comment.comment = $comment.find('[name="comment"]').val();
     comment.date = "just now";
 
+    $comment.find('[name="comment_by"]').val('');
+    $comment.find('[name="comment"]').val('');
+
     createComment(comment);
+    updateWishlist();
   }
 
 
@@ -199,13 +207,9 @@ function cancelEdit($comment) {
         i = commentID.substring(commentID.lastIndexOf('-')+1),
         comment = item.comments[i];
 
-    if(comment._id) {
-      $comment.find('[name="comment_by"]').val(comment.name);
-      $comment.find('[name="comment"]').val(comment.comment);
-    } else {
-      $comment.remove();
-      delete item.comments[i];
-    }
+    $comment.find('[name="comment_by"]').val(comment.name);
+    $comment.find('[name="comment"]').val(comment.comment);
+
   } else  { // new comment
       $comment.find('[name="comment_by"]').val('');
       $comment.find('[name="comment"]').val('');
