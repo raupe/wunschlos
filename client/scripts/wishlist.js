@@ -88,7 +88,7 @@
       var titleId = $wish.find('[name="item"]').attr('id'),
           i = titleId.substring(titleId.lastIndexOf('-')+1);
       // calling comment.js
-      comment.initCommentLightbox(wishlist.items[i], wishlistId, updateComments);
+      comment.initCommentLightbox(wishlist.items[i], wishlistId, wishlist.vip, updateComments);
       return;
     }
 

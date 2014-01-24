@@ -16,6 +16,7 @@ var heightExtra = 130,
 
 var wishlistId = 0,
     item = {},
+    vip,
     updateWishlist,
     template_comment_STR = "",
     template_commentList_STR = "";
@@ -82,11 +83,12 @@ $comments_lightbox.on('click', function( e ){
 
 
 // if comments-button is hit
-var initCommentLightbox = function(itemCurrent, wishlistIdCurrent, updateCallback){
+var initCommentLightbox = function(itemCurrent, wishlistIdCurrent, vipList, updateCallback){
 
   item = itemCurrent;
   wishlistId = wishlistIdCurrent;
   updateWishlist = updateCallback;
+  vip = vipList;
 
   $('#comments_lightbox').empty();
   if(template_commentList_STR)
@@ -187,6 +189,7 @@ function saveComment($comment) {
 
     comment.name = $comment.find('[name="comment_by"]').val();
     comment.comment = $comment.find('[name="comment"]').val();
+    comment.secret = !vip;
     comment.date = "just now";
 
     $comment.find('[name="comment_by"]').val('');
