@@ -108,15 +108,15 @@
 
       return;
     }
-	
+
     if ( trg.attr('class').indexOf('donate_button') > -1 ) {
       $wish = $(trg).closest('.wishlist_wish');
       var titleId = $wish.find('[name="item"]').attr('id'),
           i = titleId.substring(titleId.lastIndexOf('-')+1);
       // calling donate.js
-		donate.initDonateLightbox(wishlist.items[i], wishlistId, updateDonation);
+    donate.initDonateLightbox(wishlist.items[i], wishlistId, updateDonation);
       return;
-    } 
+    }
 
     if ( trg.attr('class').indexOf('edit_button-edit') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
@@ -382,7 +382,10 @@
 
         item.title = $wish.find('[name="item"]').val();
         item.description = $wish.find('[name="details"]').val();
-        item.amount  = price? price[1] || 1 : 1;
+        item.amount  = (price? price[1] || 1 : 1).replace(',', '.');
+        if(item.amount.indexOf(',') > -1)
+
+
         item.unit   = price? price[2] || '' : '';
         item.link   = $wish.find('[name="link"]').val();
         item.idea   = myName;
@@ -407,7 +410,7 @@
 
     item.title = $wish.find('[name="item"]').val();
     item.description = $wish.find('[name="details"]').val();
-    item.amount  = price? price[1] || 1 : 1;
+    item.amount  = (price? price[1] || 1 : 1).replace(',', '.');
     item.unit   = price? price[2] || '' : '';
     item.link = $wish.find('[name="link"]').val();
     item.secret = !wishlist.vip;
