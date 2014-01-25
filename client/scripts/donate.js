@@ -1,161 +1,256 @@
-// ?52adc3a008a1809c0e000013
+/**
+ *  donate
+ *  ========
+ *
+ *  donate functionality is performed in a lightbox
+ */
 
-var TEMPLATECACHE = {};
+var donate = (function(){
 
-function createSingleShare(name, amount, unit) {
-	var shareString = 
-		'<li class="clearfix">'
-+			'<div class="left">'
-+				'<label>Name</label>'
-+				'<input class="name_input" type="text" name="name" value="' + name + '" disabled>'
-+			'</div>'
-			
-+			'<span class="left">:</span>'
-			
-+			'<div class="left">'
-+				'<label>Donation</label>'
-+				'<input class="donation_input" type="text" name="donation" value="' + amount + ' ' + unit + '" disabled>'
-+			'</div>'
-			
-+			'<button class="left edit_button">edit</button>'
-+		'</li>';
-	return shareString;
+// const
+var heightExtra = 130,
+    tabOffset = 3,
+    tabsPerComment = 2;
+
+var wishlistId = 0,
+    item = {},
+    updateWishlist,
+    template_comment_STR = "",
+    template_commentList_STR = "";
+
+$comments_lightbox = $('#comments_lightbox');
+
+  // ------------------------------------------------- //
+
+
+$comments_lightbox.on('click', function( e ){
+
+    if ((e.target.id === "comments_lightbox") || ( e.target.id === "close_img_icon") ) {
+      $('#comments_lightbox').fadeOut(300);
+      $('body').off("click.comments_lightbox_wrap");
+    }
+
+    var trg = $(e.target).closest('button');
+    if(!trg || !trg.attr('class'))
+      return;
+
+    if ( trg.attr('class').indexOf('donate-save') > -1) {
+      $donate = $(trg).closest('.donate_entry');
+      saveDonation($donate);
+
+      return;
+    }
+
+    if ( trg.attr('class').indexOf('donate-edit') > -1) {
+      $donate = $(trg).closest('.donate_entry');
+      setCommentStyle_Editable($donate);
+
+      return;
+    }
+
+    if ( trg.attr('class').indexOf('donate-cancel') > -1) {
+      $donate = $(trg).closest('.donate_entry');
+      cancelEdit($donate);
+
+      return;
+    }
+
+    if ( trg.attr('class').indexOf('donate-delete') > -1) {
+      $donate = $(trg).closest('.donate_entry');
+      var donateId = $donate.attr('id'),
+          i = donateId.substring(donateId.lastIndexOf('-')+1);
+
+      $donate.remove();
+
+      donateId = item.shares[i]._id;
+
+      delete item.shares[i];
+      CONNECTION.deleteDonation(wishlistId, item._id, donateId);
+	  calculateBar();
+      updateWishlist();
+
+      return;
+    }
+
+    if ( trg.attr('class').indexOf('') < -1) {
+
+      return;
+    }
+
+
+});
+
+
+// if shares-button is hit
+var initDonateLightbox = function(itemCurrent, wishlistIdCurrent, updateCallback){
+
+  item = itemCurrent;
+  wishlistId = wishlistIdCurrent;
+  updateWishlist = updateCallback;
+
+  $('#comments_lightbox').empty();
+  if(template_commentList_STR)
+    loadDonateForm();
+  else
+    getTemplate("partial/template_donatelist.html", function(e) {
+      template_commentList_STR = e;
+      loadDonateForm();
+    });
+
+  $('#comments_lightbox').fadeIn(200);
+  $('#comments_lightbox').height($('body').height());
+
 }
 
-function createEditButtons() {
-	var htmlString = 
-	'<div class="edit_buttons">'
-+		'<button>cancel</button>'
-+		'<button>save changes</button>'
-+	'</div>';
-	return htmlString;
+function loadDonateForm(){
+  var donateForm = parseTemplate(template_commentList_STR, {title: item.title});
+
+  $('#comments_lightbox').append(donateForm);
+  $("body").animate({scrollTop:0}, '500');
+
+  if(template_comment_STR)
+    setTimeout(loadDonateEntries, 0); // without timeout the donate height isn't stated correctly
+  else
+    getTemplate("partial/template_donate.html", function(e) {
+      template_comment_STR = e;
+      loadDonateEntries();
+    });
 }
 
-function createShareTemplates() {
-	var shares = wishlist.items[itemIndex].shares,
-		currentShare,
-		currentAmount,
-		i;
+function loadDonateEntries(){
+
+
 	
-	for (i = 0; i < shares.length; i++) {
-		currentShare = shares[shareIndex];
-		currentAmount += currentShare.amount;
-		shareTemplates += createSingleShare(currentShare.name, currentAmount, item.unit);
-	}
+  var shares = item.shares,
+      donateLength = shares.length;
+
+  for (i = 0; i < donateLength; i++) {
+    if(shares[i])
+      createDonation(shares[i]);
+  }
+  
+  calculateBar();
+  /*
+  for (i = donateLength-1; i >= 0; i--) {
+
+    donateEntry = parseTemplate(commentHTML, { num: i, tab: tabOffset + (donateLength - i - 1) * tabsPerComment });
+    $('#shares').append(donateEntry);
+
+    if( shares[i].name ){
+      var $name = $("#donation_by-" + i);
+      $name.val(shares[i].name);
+    }
+
+    if( shares[i].donate ){
+      var $donate = $("#donate-" + i);
+      $donate.val(shares[i].donate);
+      $donate.parents('.donate_entry').height($donate.height() + heightExtra );
+    }
+
+  }
+    */
 }
 
-function createShareLightbox( donateTemplate, itemIndex ) {
+  function calculateBar() {
+    var sum = 0;
+	var openSum = parseInt( item.amount );
 	
-	var parsedTemplate,	template,
-		item = wishlist.items[itemIndex],
-		shares = item.shares,
-		i, currentAmount = 0, currentShare,
-		donationPercentage,
-		shareTemplatesString = "",
-		shareTemplates,
-		ul, donateButton;
+    for(var i=0; i<item.shares.length; i++) {
+      if(item.shares[i])
+        sum += parseInt( item.shares[i].amount );
+    }
+     
+	 var barwidthPercentage = sum/openSum;
+	 var barWidth = barwidthPercentage * $("#bar_wrap_width").width();
+	 
+	 $("#price_donate").val(openSum);
+	 $("#current_donation").text(sum);
+	 if(barWidth > 0) $("#inner_bar_width").animate({width:barWidth}, 1000);
 	
-	
-	for (i = 0; i < shares.length; i++) {
-		currentShare = shares[i];
-		currentAmount += currentShare.amount;
-		shareTemplatesString += createSingleShare(currentShare.name, currentShare.amount, item.unit);
-	}
-	
-	donationPercentage = ~~((currentAmount / item.amount) * 100);
-	
-	parsedTemplate = parseTemplate(donateTemplate, {title: item.title, price: item.amount + " " + item.unit, currentAmount: currentAmount + " " + item.unit});
-	template = $(parsedTemplate);
-	
-	donateButton = template.find("#donateButton");
-	
-	donateButton.on("click", function() {
-		var share = {};
-		share.name = template.find("input[name=name]")[0].value,
-		share.amount = template.find("input[name=donation]")[0].value;
-		share.vip = !vip;
-		
-		var request = $.ajax({
-			url: url + "wishlist/" + wishlistId + "/" + item._id + "/share",
-			type: "post",
-			data: share
-		});
-		request.done(function (msg) {
-			share._id = msg;
-		});
-		request.fail(function (jqXHR, textStatus) {
-			console.log("failed: " + textStatus);
-		});
-	});
-	
-	ul = template.find("ul");
-	
-	shareTemplates = $(shareTemplatesString);	
-	$(ul).append(shareTemplates);
-	
-	// Handle interaction with available shares
-	for (i = 0; i < shareTemplates.length; i++) {
-		$(shareTemplates[i]).children('button').on("click.edit", function(e) {
-			var button = e.target,
-				liIndex = $(button.parentNode).index(),
-				editButtons = createEditButtons();
-			
-			button.classList.remove("edit_button");
-			button.classList.add("delete_button");
-			
-			button.innerHTML = "delete";
-			button.parentNode.classList.add("edit");
-			
-			$(button.parentNode).find("input").removeAttr("disabled");
-			$(editButtons).insertAfter(button.parentNode); // TODO handle edit buttons
-			
-			$(this).off("click.edit");
-			$(this).on("click.delete", function() {
-				var shareToDelete = shares[liIndex];
-				var request = $.ajax({
-					url: url + "wishlist/" + wishlistId + "/" + item._id + "/share/" + shareToDelete._id,
-					type: "delete"
-				});
-				request.done(function (msg) {
-					console.log("deleted");
-					$(button.parentNode).remove();
-					// TODO remove edit buttons, update greenbar and amount
-				});
-				request.fail(function (jqXHR, textStatus) {
-					console.log("failed: " + textStatus);
-				});
-			});
-		});
-	}
-	
-	$('#donate_wrapper').replaceWith(template);
-	$('#donate_wrapper').fadeIn(800);
-	
-	$('#donate_innerbar').css("width", donationPercentage+"%");
+  }
+
+function createDonation(donate) {
+  //TODO: change tab index
+  var donateEntry = parseTemplate(template_comment_STR, { num: i, tab: i * tabsPerComment });
+  $('.donate_entry:eq(0)').after(donateEntry);
+
+  if( donate.name ){
+    var $name = $("#donation_by-" + i);
+    $name.val(donate.name);
+  }
+
+  if( donate.amount ){
+    var $donate = $("#donation-" + i);
+    $donate.val(donate.amount);
+  }
+
 }
 
-// triggered in view.js line 76 from julias code
-function showShare(e) {
-	
-	var butId = e.target.id,
-		i = butId.substring(butId.lastIndexOf('-')+1);
-	
-	if (!TEMPLATECACHE['donate']) {
-		
-		getTemplate("partial/template_donate.html", function(e) {
-			TEMPLATECACHE['donate'] = e;
-			createShareLightbox(TEMPLATECACHE['donate'], i);
-		})
-	} else {
-		createShareLightbox(TEMPLATECACHE['donate'], i);
-	}
-	
-	$('#donate_bg').fadeIn(300);
-	$('body').on("click.donatebg", function(e) {
-		if (e.target.id === "donate_bg") {
-			$('#donate_bg').fadeOut(300);
-			$('#donate_wrapper').fadeOut(300);
-			$('body').off("click.donatebg");
-		}
-	});
+function saveDonation($donate) {
+
+  var donate;
+  if($donate.attr("id")) { // existing donate
+    setCommentStyle_Fixed($donate);
+    var donateId = $donate.attr("id") || "-" + item.shares.length-1,
+        i = donateId.substring(donateId.lastIndexOf('-')+1);
+    donate = item.shares[i];
+
+    donate.name = $donate.find('[name="donation_by"]').val();
+    donate.amount = $donate.find('[name="donation"]').val();
+
+  } else { // new donate
+    donate = {}
+    item.shares.push(donate);
+    donate.name = $donate.find('[name="donation_by"]').val();
+    donate.amount = $donate.find('[name="donation"]').val();
+
+    $donate.find('[name="donation_by"]').val('');
+    $donate.find('[name="donation"]').val('');
+
+    createDonation(donate);
+    updateWishlist();
+  }
+
+  calculateBar();
+  CONNECTION.editDonation(wishlistId, item._id, donate);
 }
+
+function cancelEdit($donate) {
+  if($donate.attr("id")) { // existing donate
+    setCommentStyle_Fixed($donate);
+    var donateId = $donate.attr("id"),
+        i = donateId.substring(donateId.lastIndexOf('-')+1),
+        donate = item.shares[i];
+
+    $donate.find('[name="donation_by"]').val(donate.name);
+    $donate.find('[name="donation"]').val(donate.donate);
+
+  } else  { // new donate
+      $donate.find('[name="donation_by"]').val('');
+      $donate.find('[name="donation"]').val('');
+  }
+}
+
+function setCommentStyle_Fixed($donate) {
+  $donate.find('.js-input').attr('disabled', true);
+
+  $donate.find('.donate-edit').removeAttr('disabled').removeClass('invisible');
+  $donate.find('.donate-delete').addClass('invisible').attr('disabled');
+  $donate.find('.donate-save').addClass('invisible').attr('disabled');
+  $donate.find('.donate-cancel').addClass('invisible').attr('disabled');
+}
+
+function setCommentStyle_Editable($donate) {
+  $donate.find('.js-input').removeAttr('disabled');
+
+  $donate.find('.donate-edit').addClass('invisible').attr('disabled');
+  $donate.find('.donate-delete').removeAttr('disabled').removeClass('invisible');
+  $donate.find('.donate-save').removeAttr('disabled').removeClass('invisible');
+  $donate.find('.donate-cancel').removeAttr('disabled').removeClass('invisible');
+}
+
+return{
+  initDonateLightbox: initDonateLightbox
+}
+
+})();

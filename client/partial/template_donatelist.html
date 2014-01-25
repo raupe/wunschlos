@@ -1,0 +1,48 @@
+<header>
+  <h1 class="lightbox_title">{{title}}</h1>
+  <img class="close_img" id="close_img_icon" src="assets/icons/close.png" width="30" height="30" alt="close lightbox"/>
+</header>
+<ul class="donation_wrap clearfix" id="comments">
+  <li class="donate_entry">
+    <fieldset class="commentlist_comment_set">
+      <ul class="commentlist_form">
+		<li class="clearfix">
+			<label for="price_donate" class="donatelist_donate_field_label js-label" >Price</label>
+			  <input type="text" name="price" placeholder="0" 
+				autocomplete="off" disabled class="donatelist_donate_field_input sum js-input" id="price_donate"/>
+			</div>
+		</li>
+		<li class="donation_bar clearfix">
+			<div class="left">				
+					<label for="bar_donate" class="donatelist_donate_field_label js-label" >Already donated</label>
+					<div class="bar_wrap" id="bar_wrap_width" >
+						<div class="inner_bar" id="inner_bar_width" ></div>
+					</div>	
+			</div>		
+			<div class="left">
+				<div class="donate_text_label" id="current_donation" >0</div>
+			</div>
+		</li>
+        <li class="clearfix">
+			<div class="left">
+			  <label for="donation_by" class="donatelist_donate_field_label js-label" >Name</label>
+			  <input type="text" name="donation_by" placeholder="Add your name" tabindex="1"
+				autocomplete="off" class="donatelist_donate_field_input js-input" id="donation_by"/>
+			</div>
+			<div class="donate_text_label">:</div>
+			<div class="left">
+			  <label for="donation" class="donatelist_donate_field_label js-label" >Donation</label>
+			  <input type="number" name="donation" placeholder="Add a sum" tabindex="2"
+				autocomplete="off" class="donatelist_donate_field_input sum js-input" id="donation"/>
+			</div>
+		</li>
+      </ul>
+    </fieldset>
+    <section class="commentlist_edit js-edit">
+      <div class="edit_confirm">
+        <button class="lightbox_edit_button-save donate-save">Donate</button>
+        <button class="lightbox_edit_button-cancel donate_button-cancel donate-cancel">Cancel</button>
+      </div>
+    </section>
+  </li>
+</ul>

@@ -1,33 +1,38 @@
-<section class="donate_wrapper" id="donate_wrapper">
-	<header>
-		<label>{{title}}</label>
-	</header>
-	<div class="status">
-		<label>Price</label>
-		<input class="price_input" type="text" value="{{price}}" disabled>
-		
-		<label>Already Donated</label>
-		<div class="clearfix">
-			<div class="outerbar"><div class="innerbar" id="donate_innerbar"></div></div>
-			<label class="currentAmount">{{currentAmount}}</label>
+<li class="donate_entry" id="donate_entry-{{num}}">
+  <fieldset class="commentlist_comment_set">
+    <div class="commentlist_form clearfix">
+		<div class="left">
+		  <label for="donation_by-{{num}}" class="donatelist_donate_field_label js-label" >Name</label>
+		  <input type="text" name="donation_by" placeholder="Add your name" tabindex="{{tab}}"
+			autocomplete="off" disabled class="donatelist_donate_field_input js-input" id="donation_by-{{num}}"/>
 		</div>
-		
-		<div class="clearfix">
-			<div class="left">
-				<label>Name</label>
-				<input class="name_input" type="text" name="name" placeholder="Add your name">
-			</div>
-			<span class="left">:</span>
-			<div class="left">
-				<label>Donation</label>
-				<input class="donation_input" type="text" name="donation" placeholder="Add a sum">
-			</div>
+		<div class="donate_text_label">:</div>
+		<div class="left">
+		  <label for="donation-{{num}}" class="donatelist_donate_field_label js-label" >Donation</label>
+		  <input type="number" name="donation" placeholder="Add a sum" tabindex="{{tab+1}}"
+			autocomplete="off" disabled class="donatelist_donate_field_input sum js-input" id="donation-{{num}}"/>
 		</div>
-		
-		<button id="cancelButton">cancel</button>
-		<button id="donateButton">donate</button>
-	</div>
-	<ul>
-		
-	</ul>
-</section>
+    </div>
+  </fieldset>
+
+  <section class="commentlist_edit js-edit">
+    <div>
+
+      </button>
+      <button class="lightbox_edit_button donate-edit edit_button-edit" >
+        <div class="edit_button_icon lightbox_edit_button_icon_edit"></div>
+         <div class="edit_button_text">edit</div>
+      </button>
+
+      <button disabled class="lightbox_edit_button donate-delete edit_button-delete invisible" >
+        <div class="edit_button_icon lightbox_edit_button_icon_delete"></div>
+        <div class="edit_button_text">delete</div>
+      </button>
+
+    </div>
+    <div class="edit_confirm">
+      <button disabled class="lightbox_edit_button-save donate-save invisible">Save</button>
+      <button disabled class="lightbox_edit_button-cancel donate_entry-cancel donate-cancel invisible">Cancel</button>
+    </div>
+  </section>
+</li>

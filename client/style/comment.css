@@ -1,9 +1,23 @@
 /**
- *  comments
- *  ======
+ *  Lightbox
+ *  ========
  *
  *
  */
+
+ /* Helpers */
+.left {
+  float: left;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
 
 .comments_lightbox_wrap{
 	width: 100%;
@@ -27,6 +41,16 @@
 	padding: 1rem;
 	border-radius: 3px;
 	background: white;	
+	position: relative;
+}
+
+.close_img{
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	right: 1rem;
+	top: 1rem;
+	cursor: pointer;
 }
  
 .lightbox_title{
@@ -34,7 +58,7 @@
 	font-size: 1.6rem;
 }
  
-.comments_wrap{
+.comments_wrap, .donation_wrap{
 	padding: 0;
 	width: 31rem;
 	margin-right: auto;
@@ -42,18 +66,30 @@
 	
 }
  
-.comments_wrap li{
+.comments_wrap li, .donation_wrap li{
 	list-style-type: none;
 	position: relative;
 }
 
-.comment_entry{
+.comment_entry, .donate_entry{
 	width: 31rem;
 	height: 20rem;
 	padding: 1rem;
 	border-radius: 3px;
 	background: white;
 	margin-bottom: 4rem;	
+}
+
+.donation_wrap .donate_entry{
+	height: 7rem;
+}
+
+.donation_wrap >  li:first-child{
+	height: 23rem;
+}
+
+.donate_entry .lightbox_edit_button{
+	margin-top: 0;
 }
 
 .commentlist_comment_set{
@@ -101,6 +137,37 @@
 	background-color: #f3f3f3;
 }
 
+.donatelist_donate_field_label {
+	display: block;
+	padding-left: 0.5rem;
+	font-size: 1rem;
+	font-weight: 500;
+	color: #8d8c8c;
+}
+
+.donatelist_donate_field_label-hidden {
+	display: none;	
+	opacity: 0;
+}
+
+.donatelist_donate_field_input {
+	display: inline-block;
+	width: 14rem;
+	height: 2.5rem;
+	margin-bottom: 1.2rem;
+	margin-top: 0.4rem;
+	padding-left: 0.5rem;
+    font-size: 1.5rem;
+	border: 0;
+	border-bottom: 0.2rem solid #909090;
+	color: #606060;
+	background-color: #f3f3f3;
+}
+
+.sum{
+	width: 7.5rem;
+}
+
 .field-disabled {
 	background-color: white;
 }
@@ -133,7 +200,6 @@
 
 .commentlist_edit {
   width: 4rem;
-  height: 10rem;
   float: right;
 }
 
@@ -198,6 +264,14 @@
 	font-size: 0.8rem;
 }
 
+.donate_button-cancel{
+	left: 6rem;
+}
+
+.donate_entry-cancel{
+	left: 4.9rem;
+}
+
 .lightbox_edit_button-save {
 	position: absolute;
 	bottom: -2.5rem;
@@ -211,4 +285,36 @@
   filter: none;
   outline: 0;
   background-color: white;
+}
+
+.donate_text_label {
+	float: left;
+	color: #606060;
+	margin-top: 1.8rem;
+	padding: 0 0.5rem;
+	font-size: 1.4rem;
+}
+
+.donation_bar .donate_text_label{
+	margin-top: 2.5rem;
+}
+
+.donation_bar{
+	margin-bottom: 2rem;
+	margin-top: 1.2rem;
+}
+
+.bar_wrap{
+	width: 20rem;
+	height: 3.2rem;
+	background-color: #f3f3f3;
+	margin-top: 0.4rem;
+	overflow: hidden;
+	position: relative;
+}
+
+.inner_bar{
+	width: 0.2rem;
+	height: 3.2rem;
+	background-color: rgb(94, 190, 73);
 }

@@ -135,7 +135,7 @@ var CONNECTION = new function() {
 
     deleteDonation : function(wishlistId, itemId, donationId) {
       var request = $.ajax({
-        url: url + "wishlist/" + wishlistId + "/" + itemId + "/share/"+ commentId,
+        url: url + "wishlist/" + wishlistId + "/" + itemId + "/share/"+ donationId,
         type: "delete"
       });
 

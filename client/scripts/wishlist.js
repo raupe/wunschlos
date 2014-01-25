@@ -108,6 +108,15 @@
 
       return;
     }
+	
+    if ( trg.attr('class').indexOf('donate_button') > -1 ) {
+      $wish = $(trg).closest('.wishlist_wish');
+      var titleId = $wish.find('[name="item"]').attr('id'),
+          i = titleId.substring(titleId.lastIndexOf('-')+1);
+      // calling donate.js
+		donate.initDonateLightbox(wishlist.items[i], wishlistId, updateDonation);
+      return;
+    } 
 
     if ( trg.attr('class').indexOf('edit_button-edit') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
@@ -291,7 +300,7 @@
     var sum = 0;
     for(var i=0; i<item.shares.length; i++) {
       if(item.shares[i])
-        sum += item.shares[i].amount;
+        sum += parseInt( item.shares[i].amount );
     }
     return sum;
   }
