@@ -126,7 +126,7 @@ function loadCommentEntries(){
 
   for (i = 0; i < commentsLength; i++) {
     if(comments[i])
-      createComment(comments[i]);
+      createComment(comments[i], i);
   }
 
   /*
@@ -150,7 +150,7 @@ function loadCommentEntries(){
     */
 }
 
-function createComment(comment) {
+function createComment(comment, i) {
   //TODO: change tab index
   var commentEntry = parseTemplate(template_comment_STR, { num: i, tab: i * tabsPerComment });
   $('.comment_entry:eq(0)').after(commentEntry);
@@ -195,7 +195,7 @@ function saveComment($comment) {
     $comment.find('[name="comment_by"]').val('');
     $comment.find('[name="comment"]').val('');
 
-    createComment(comment);
+    createComment(comment, item.comments.length-1);
     updateWishlist();
   }
 
