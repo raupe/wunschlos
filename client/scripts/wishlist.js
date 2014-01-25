@@ -633,7 +633,9 @@
 
   var FIELDS = 4;
 
-  function createWish(position = -1){
+  function createWish(position){
+
+    position = position || -1;
 
     var num  = wishCount++,
 
