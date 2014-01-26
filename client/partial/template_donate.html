@@ -4,13 +4,14 @@
 		<div class="left">
 		  <label for="donation_by-{{num}}" class="donatelist_donate_field_label js-label" >Name</label>
 		  <input type="text" name="donation_by" placeholder="Add your name" tabindex="{{tab}}"
-			autocomplete="off" disabled class="donatelist_donate_field_input js-input" id="donation_by-{{num}}"/>
+			autocomplete="off" disabled class="donatelist_donate_field_input js-input" id="donation_by-{{num}}"  />
 		</div>
 		<div class="donate_text_label">:</div>
 		<div class="left">
 		  <label for="donation-{{num}}" class="donatelist_donate_field_label js-label" >Donation</label>
-		  <input type="number" name="donation" placeholder="Add a sum" tabindex="{{tab+1}}"
+		  <input type="number" name="donation" placeholder="sum" tabindex="{{tab+1}}"
 			autocomplete="off" disabled class="donatelist_donate_field_input sum js-input" id="donation-{{num}}"/>
+			{{unit}}
 		</div>
     </div>
   </fieldset>

@@ -103,7 +103,7 @@ var initDonateLightbox = function(itemCurrent, wishlistIdCurrent, updateCallback
 }
 
 function loadDonateForm(){
-  var donateForm = parseTemplate(template_commentList_STR, {title: item.title});
+  var donateForm = parseTemplate(template_commentList_STR, {title: item.title , unit: item.unit});
 
   $('#comments_lightbox').append(donateForm);
   $("body").animate({scrollTop:0}, '500');
@@ -124,9 +124,9 @@ function loadDonateEntries(){
   var shares = item.shares,
       donateLength = shares.length;
 
-  for (i = 0; i < donateLength; i++) {
+  for (var i = 0; i < donateLength; i++) {
     if(shares[i])
-      createDonation(shares[i]);
+      createDonation(shares[i], i);
   }
   
   calculateBar();
@@ -161,17 +161,17 @@ function loadDonateEntries(){
     }
      
 	 var barwidthPercentage = sum/openSum;
-	 var barWidth = barwidthPercentage * $("#bar_wrap_width").width();
 	 
-	 $("#price_donate").val(openSum);
-	 $("#current_donation").text(sum);
+	 var barWidth = barwidthPercentage * $("#bar_wrap_width").width();
+	 $("#price_donate").val(openSum+ " "+item.unit);
+	 $("#current_donation").text(sum + " "+item.unit);
 	 if(barWidth > 0) $("#inner_bar_width").animate({width:barWidth}, 1000);
 	
   }
 
-function createDonation(donate) {
+function createDonation(donate, i) {
   //TODO: change tab index
-  var donateEntry = parseTemplate(template_comment_STR, { num: i, tab: i * tabsPerComment });
+  var donateEntry = parseTemplate(template_comment_STR, { num: i, tab: i * tabsPerComment, unit: item.unit });
   $('.donate_entry:eq(0)').after(donateEntry);
 
   if( donate.name ){
@@ -189,6 +189,13 @@ function createDonation(donate) {
 function saveDonation($donate) {
 
   var donate;
+  
+   if ($donate.find('[name="donation"]').val() === "" || $donate.find('[name="donation"]').val() <= 0) 
+  {
+	$donate.find('[name="donation"]').val("").attr("placeholder","number");
+    return false;
+  }
+  
   if($donate.attr("id")) { // existing donate
     setCommentStyle_Fixed($donate);
     var donateId = $donate.attr("id") || "-" + item.shares.length-1,

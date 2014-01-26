@@ -302,6 +302,7 @@
       if(item.shares[i])
         sum += parseInt( item.shares[i].amount );
     }
+
     return sum;
   }
 
@@ -336,7 +337,8 @@
         $amount.prev().removeClass('wishlist_wish_field_label-hidden');
 
         var $sum = $("#sum-" + i);
-        $sum.val(item.amount - getCollectedSum(item));
+
+        if(item.amount != 1) $sum.val(item.amount - getCollectedSum(item) + " "+item.unit);
       }
 
       if(item.link) {
@@ -413,7 +415,7 @@
     item.secret = !wishlist.vip;
 
     $wish.find('[name="price"]').val(item.amount + ' ' + item.unit);
-    $("#sum-" + i).val(item.amount - getCollectedSum(item));
+    if(item.amount != 1) $("#sum-" + i).val(item.amount - getCollectedSum(item)+ " "+item.unit);
 
     CONNECTION.editWish(wishlistId, item);
   }
@@ -590,7 +592,7 @@
     for(var i=0; i<wishlist.items.length; i++) {
       var item = wishlist.items[i];
       if(item)
-        $("#sum-" + i).val(item.amount - getCollectedSum(item));
+        if(item.amount != 1) $("#sum-" + i).val(item.amount - getCollectedSum(item)+ " "+item.unit);
     }
   }
 
