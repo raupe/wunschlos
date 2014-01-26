@@ -382,10 +382,7 @@
 
         item.title = $wish.find('[name="item"]').val();
         item.description = $wish.find('[name="details"]').val();
-        item.amount  = (price? price[1] || 1 : 1).replace(',', '.');
-        if(item.amount.indexOf(',') > -1)
-
-
+        item.amount  = (price? price[1] || '1' : '1').replace(',', '.');
         item.unit   = price? price[2] || '' : '';
         item.link   = $wish.find('[name="link"]').val();
         item.idea   = myName;
@@ -410,12 +407,13 @@
 
     item.title = $wish.find('[name="item"]').val();
     item.description = $wish.find('[name="details"]').val();
-    item.amount  = (price? price[1] || 1 : 1).replace(',', '.');
+    item.amount  = (price? price[1] || '1' : '1').replace(',', '.');
     item.unit   = price? price[2] || '' : '';
     item.link = $wish.find('[name="link"]').val();
     item.secret = !wishlist.vip;
 
     $wish.find('[name="price"]').val(item.amount + ' ' + item.unit);
+    $("#sum-" + i).val(item.amount - getCollectedSum(item));
 
     CONNECTION.editWish(wishlistId, item);
   }
