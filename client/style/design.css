@@ -501,7 +501,7 @@ button.selection_form_submit:active {
   background-color: #f2dcae;
 }
 
-.wishlist_wish-presentee:before {
+.wishlist_wish-presentee::after {
 	content: "VIP";
 	padding: 0.27rem;
 	color: #F1DFB8;
