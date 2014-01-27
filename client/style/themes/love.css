@@ -72,7 +72,8 @@ body{
 	color: #7f375b;
 }
 
-.wishlist_wish-presentee:before {
+.wishlist_wish-presentee::after {
+
 	color: #E7E4DD;
 	background-color: #A64F7A;
 }
@@ -85,6 +86,14 @@ body{
 .donate_button {
 	background: #7f375b;
 	color: #E7E4DD;
+}
+
+.donate_button:active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  outline: 0;
+  background-color: #9A235E;
 }
 
 .edit_position {

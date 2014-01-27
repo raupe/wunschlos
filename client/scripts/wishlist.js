@@ -181,6 +181,11 @@
     }
 
   });
+ 
+	$('#about_link').click(function(){
+      
+	  $( "#about_text" ).fadeToggle();
+    });
 
   $('#wishlist-role').on('change', function(e) {
     var isChecked = $(this).prop('checked');
