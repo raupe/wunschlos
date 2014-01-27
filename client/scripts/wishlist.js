@@ -314,7 +314,7 @@
   function loadWishlist(param) {
     wishlist = param;
 
-    $('.content_description').first().text(wishlist.title);
+    $('.content_description').first().text(wishlist.title).css('font-size','2rem');
     switchDesign(wishlist.design);
 
     var indexLastVip = -1;
