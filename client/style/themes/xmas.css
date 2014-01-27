@@ -40,3 +40,26 @@ body{
 .footer_text p,h3,a{
 	color: #818CB1;
 }
+
+.footer_text > button {
+	color: #818CB1;
+  text-transform: uppercase;
+   background-color: rgb(199, 218, 254);
+   opacity: 0.4;
+}
+
+.footer_text > button:active {
+  -ms-filter: none;
+  filter: none;
+  background-color: rgb(199, 218, 254);
+  opacity: 1;
+  outline: 0;
+}
+
+.footer_text > button:focus {
+  -ms-filter: none;
+  filter: none;
+  background-color: rgb(199, 218, 254);
+  opacity: 0.6;
+  outline: 0;
+}
