@@ -74,6 +74,7 @@
     if ( trg.attr('class').indexOf('edit_button-more') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
       more($wish);
+	
       return;
     }
 
@@ -221,6 +222,8 @@
       $('.edit_position .edit_button').removeAttr('disabled').removeClass('invisible');
       createWish();
     }
+	
+	if(activeDesign === 2) positionBackgroundImage();
 
   });
 
@@ -365,6 +368,7 @@
         wish.addClass('wishlist_wish-presentee');
       }
     }
+	if(activeDesign === 2) positionBackgroundImage();
   }
 
   function sendWishlist() {
@@ -515,6 +519,7 @@
 
   function showButtons ( el ) {
     $(el).removeAttr('disabled').removeClass('invisible');
+
   }
 
   function hideButtons ( el ) {
@@ -550,6 +555,19 @@
         setTimeout( showFields, i * interval, fields.get(i), editable);
       }
 
+		if(activeDesign === 2) {
+			var startTime = new Date().getTime();
+			var interval = setInterval(function(){
+				if(new Date().getTime() - startTime > wishTransitionDuration){
+					clearInterval(interval);
+					return;
+				}
+				positionBackgroundImage();
+				
+			}, 50);
+		}
+	  	  
+	  
       var buttons = wish.find('.js-edit-buttons');
       hideButtons(buttons.get(0));
       var dontShowEdit = creationMode || editable;
@@ -570,7 +588,7 @@
       for ( var i = 1, l = length; i < l; i++ ) {
         setTimeout( hideFields, (l-i-1) * interval, fields.get(i) );
       }
-
+	  
       var buttons = wish.find('.js-edit-buttons');
       for ( i = 1, l = 4; i < l; i++ ) {
         setTimeout( hideButtons, (l-i-1) * 1000, buttons.get(i) );
