@@ -345,8 +345,10 @@
         $amount.prev().removeClass('wishlist_wish_field_label-hidden');
 
         var $sum = $("#sum-" + i);
-
-        if(item.amount != 1) $sum.val(item.amount - getCollectedSum(item) + " "+item.unit);
+		
+        var difference = item.amount - getCollectedSum(item);
+        if(item.amount != 1) $("#sum-" + i).val(difference+ " "+item.unit);
+		if(difference < 0) $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
       }
 
       if(item.link) {
@@ -615,7 +617,10 @@
     for(var i=0; i<wishlist.items.length; i++) {
       var item = wishlist.items[i];
       if(item)
-        if(item.amount != 1) $("#sum-" + i).val(item.amount - getCollectedSum(item)+ " "+item.unit);
+		var difference = item.amount - getCollectedSum(item);
+        if(item.amount != 1) $("#sum-" + i).val(difference+ " "+item.unit);
+		if(difference < 0) $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
+		
     }
   }
 

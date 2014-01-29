@@ -324,3 +324,12 @@ border: 1px solid #ff0000;
 	height: 3.2rem;
 	background-color: rgb(94, 190, 73);
 }
+
+.inner_bar > h3{
+	font-size: 1.4rem;
+	padding: 1rem;
+	margin:0;
+	font-weight: normal;
+	color: white;
+	display: none;
+}

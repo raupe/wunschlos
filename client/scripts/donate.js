@@ -130,25 +130,6 @@ function loadDonateEntries(){
   }
   
   calculateBar();
-  /*
-  for (i = donateLength-1; i >= 0; i--) {
-
-    donateEntry = parseTemplate(commentHTML, { num: i, tab: tabOffset + (donateLength - i - 1) * tabsPerComment });
-    $('#shares').append(donateEntry);
-
-    if( shares[i].name ){
-      var $name = $("#donation_by-" + i);
-      $name.val(shares[i].name);
-    }
-
-    if( shares[i].donate ){
-      var $donate = $("#donate-" + i);
-      $donate.val(shares[i].donate);
-      $donate.parents('.donate_entry').height($donate.height() + heightExtra );
-    }
-
-  }
-    */
 }
 
   function calculateBar() {
@@ -161,16 +142,24 @@ function loadDonateEntries(){
     }
      
 	 var barwidthPercentage = sum/openSum;
+	 var wrapWidth = $("#bar_wrap_width").width();
 	 
-	 var barWidth = barwidthPercentage * $("#bar_wrap_width").width();
+	 var barWidth = barwidthPercentage * wrapWidth;
 	 $("#price_donate").val(openSum+ " "+item.unit);
 	 $("#current_donation").text(sum + " "+item.unit);
-	 if(barWidth > 0) $("#inner_bar_width").animate({width:barWidth}, 1000);
+	 if(barWidth > 0) $("#inner_bar_width").animate({width:barWidth}, 1000, function(){
+		 if(barWidth >= wrapWidth){
+			$("#status_donation").text("100% funded").fadeIn(500);
+		}else{
+			$("#status_donation").text("100% funded").fadeOut(300);
+		}
+	 });
+	
 	
   }
 
 function createDonation(donate, i) {
-  //TODO: change tab index
+
   var donateEntry = parseTemplate(template_comment_STR, { num: i, tab: i * tabsPerComment, unit: item.unit });
   $('.donate_entry:eq(0)').after(donateEntry);
 
@@ -213,8 +202,8 @@ function saveDonation($donate) {
 
     $donate.find('[name="donation_by"]').val('');
     $donate.find('[name="donation"]').val('');
-
-    createDonation(donate);
+	
+    createDonation(donate, item.comments.length-1);
     updateWishlist();
   }
 
