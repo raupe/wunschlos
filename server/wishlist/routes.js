@@ -116,7 +116,7 @@ exports.getWishlist = function (dbModel) {
 								
 								if (currentComment.secret) {
 									
-									currentItem.comments.splice(shareIndex, 1);
+									currentItem.comments.splice(commentIndex, 1);
 								}
 							}
 						}
@@ -210,6 +210,9 @@ exports.updateItem = function (dbModel) {
 					currentItem = result.items[i];
 					if (currentItem._id.toString() === itemId) {
 						
+						if(public && !currentItem.secret)
+							continue;
+						
 						itemFound = true;
 						
 						if (req.body.title) currentItem.title = req.body.title;
@@ -256,9 +259,12 @@ exports.deleteItem = function (dbModel) {
 					currentItem = result.items[i];
 					if (currentItem._id.toString() === itemId) {
 						
+						if(public && !currentItem.secret)
+							continue;
+						
 						result.items.splice(i, 1);
 						result.save();
-                        res.send("deleted");
+						res.send("deleted");
 					}
 				}
 			} else {
@@ -349,6 +355,10 @@ exports.updateShare = function (dbModel) {
 							currentShare = currentItem.shares[i2];
 							
 							if (currentShare._id.toString() === shareId) {
+								
+								if (public && !currentShare.secret)
+									continue;
+									
 								shareFound = true;
 								
 								if (req.body.name) currentShare.name = req.body.name;
@@ -408,9 +418,12 @@ exports.deleteShare = function (dbModel) {
 							
 							if (currentShare._id.toString() === shareId) {
 								
+								if (public && !currentShare.secret)
+									continue;
+								
 								currentItem.shares.splice(i2, 1);
 								result.save();
-                                res.send("deleted");
+								res.send("deleted");
 							}
 						}
 					}
@@ -504,6 +517,10 @@ exports.updateComment = function (dbModel) {
 							currentComment = currentItem.comments[i2];
 							
 							if (currentComment._id.toString() === commentId) {
+								
+								if (public && !currentComment.secret)
+									continue;
+								
 								commentFound = true;
 								
 								if (req.body.name) currentComment.name = req.body.name;
@@ -563,9 +580,12 @@ exports.deleteComment = function (dbModel) {
 							
 							if (currentComment._id.toString() === commentId) {
 								
+								if (public && !currentComment.secret)
+									continue;
+								
 								currentItem.comments.splice(i2, 1);
 								result.save();
-                                res.send("deleted");
+								res.send("deleted");
 							}
 						}
 					}
