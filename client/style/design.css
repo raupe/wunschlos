@@ -708,8 +708,30 @@ button.selection_form_submit:active {
   font-family: 'Colaborate', sans-serif;
 }
 
-.footer_text > h3 {
+.footer_text > button {
   text-transform: uppercase;
+   background-color: white;
+   opacity: 0.4;
+}
+
+.footer_text > button:active {
+  -ms-filter: none;
+  filter: none;
+  background-color: white;
+  opacity: 1;
+  outline: 0;
+}
+
+.footer_text > button:focus {
+  -ms-filter: none;
+  filter: none;
+  background-color: white;
+  opacity: 0.6;
+  outline: 0;
+}
+
+.about{
+	display: none;
 }
 
 /**

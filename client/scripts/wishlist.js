@@ -74,6 +74,7 @@
     if ( trg.attr('class').indexOf('edit_button-more') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
       more($wish);
+	
       return;
     }
 
@@ -181,6 +182,11 @@
     }
 
   });
+ 
+	$('#about_link').click(function(){
+      
+	  $( "#about_text" ).fadeToggle();
+    });
 
   $('#wishlist-role').on('change', function(e) {
     var isChecked = $(this).prop('checked');
@@ -216,6 +222,8 @@
       $('.edit_position .edit_button').removeAttr('disabled').removeClass('invisible');
       createWish();
     }
+	
+	if(activeDesign === 2) positionBackgroundImage();
 
   });
 
@@ -302,13 +310,14 @@
       if(item.shares[i])
         sum += parseInt( item.shares[i].amount );
     }
+
     return sum;
   }
 
   function loadWishlist(param) {
     wishlist = param;
 
-    $('.content_description').first().text(wishlist.title);
+    $('.content_description').first().text(wishlist.title).css('font-size','2rem');
     switchDesign(wishlist.design);
 
     var indexLastVip = -1;
@@ -336,7 +345,10 @@
         $amount.prev().removeClass('wishlist_wish_field_label-hidden');
 
         var $sum = $("#sum-" + i);
-        $sum.val(item.amount - getCollectedSum(item));
+		
+        var difference = item.amount - getCollectedSum(item);
+        if(item.amount != 1) $("#sum-" + i).val(difference+ " "+item.unit);
+		if(difference < 0) $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
       }
 
       if(item.link) {
@@ -358,6 +370,7 @@
         wish.addClass('wishlist_wish-presentee');
       }
     }
+	if(activeDesign === 2) positionBackgroundImage();
   }
 
   function sendWishlist() {
@@ -413,7 +426,7 @@
     item.secret = !wishlist.vip;
 
     $wish.find('[name="price"]').val(item.amount + ' ' + item.unit);
-    $("#sum-" + i).val(item.amount - getCollectedSum(item));
+    if(item.amount != 1) $("#sum-" + i).val(item.amount - getCollectedSum(item)+ " "+item.unit);
 
     CONNECTION.editWish(wishlistId, item);
   }
@@ -508,6 +521,7 @@
 
   function showButtons ( el ) {
     $(el).removeAttr('disabled').removeClass('invisible');
+
   }
 
   function hideButtons ( el ) {
@@ -543,6 +557,19 @@
         setTimeout( showFields, i * interval, fields.get(i), editable);
       }
 
+		if(activeDesign === 2) {
+			var startTime = new Date().getTime();
+			var interval = setInterval(function(){
+				if(new Date().getTime() - startTime > wishTransitionDuration){
+					clearInterval(interval);
+					return;
+				}
+				positionBackgroundImage();
+				
+			}, 50);
+		}
+	  	  
+	  
       var buttons = wish.find('.js-edit-buttons');
       hideButtons(buttons.get(0));
       var dontShowEdit = creationMode || editable;
@@ -563,7 +590,7 @@
       for ( var i = 1, l = length; i < l; i++ ) {
         setTimeout( hideFields, (l-i-1) * interval, fields.get(i) );
       }
-
+	  
       var buttons = wish.find('.js-edit-buttons');
       for ( i = 1, l = 4; i < l; i++ ) {
         setTimeout( hideButtons, (l-i-1) * 1000, buttons.get(i) );
@@ -590,7 +617,10 @@
     for(var i=0; i<wishlist.items.length; i++) {
       var item = wishlist.items[i];
       if(item)
-        $("#sum-" + i).val(item.amount - getCollectedSum(item));
+		var difference = item.amount - getCollectedSum(item);
+        if(item.amount != 1) $("#sum-" + i).val(difference+ " "+item.unit);
+		if(difference < 0) $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
+		
     }
   }
 
