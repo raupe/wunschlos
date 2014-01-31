@@ -175,7 +175,6 @@ exports.createItem = function (dbModel) {
 					if (err) {
 						console.log(err);
 					} else {
-						console.log("saved");
 						var idOfLast = result.items[result.items.length - 1]._id;
 						res.send(idOfLast);
 					}
@@ -211,8 +210,8 @@ exports.updateItem = function (dbModel) {
 					if (currentItem._id.toString() === itemId) {
 						
 						itemFound = true;
-						
 						if (req.body.title) currentItem.title = req.body.title;
+						if (req.body.description) currentItem.description = req.body.description;
 						if (req.body.amount) currentItem.amount = req.body.amount;
 						if (req.body.unit) currentItem.unit = req.body.unit;
 						if (req.body.link) currentItem.link = req.body.link;
@@ -224,9 +223,10 @@ exports.updateItem = function (dbModel) {
 							res.send("ok");
 						});
 					}
-					
-					if (!itemFound) res.send("error");
-					
+				}
+				
+				if (!itemFound) {
+					res.send("error");
 				}
 			} else {
 				res.send("error");
