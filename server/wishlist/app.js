@@ -1,4 +1,4 @@
-var online = false;
+var online = true;
 
 // Load database credentials
 var credentials = require('./credentials');
