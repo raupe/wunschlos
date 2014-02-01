@@ -74,7 +74,7 @@
     if ( trg.attr('class').indexOf('edit_button-more') > -1) {
       $wish = $(trg).closest('.wishlist_wish');
       more($wish);
-	
+
       return;
     }
 
@@ -182,10 +182,10 @@
     }
 
   });
- 
-	$('#about_link').click(function(){
-      
-	  $( "#about_text" ).fadeToggle();
+
+  $('#about_link').click(function(){
+
+    $( "#about_text" ).fadeToggle();
     });
 
   $('#wishlist-role').on('change', function(e) {
@@ -222,8 +222,8 @@
       $('.edit_position .edit_button').removeAttr('disabled').removeClass('invisible');
       createWish();
     }
-	
-	if(activeDesign === 2) positionBackgroundImage();
+
+  if(activeDesign === 2) positionBackgroundImage();
 
   });
 
@@ -345,10 +345,10 @@
         $amount.prev().removeClass('wishlist_wish_field_label-hidden');
 
         var $sum = $("#sum-" + i);
-		
+
         var difference = item.amount - getCollectedSum(item);
         if(item.amount != 1) $("#sum-" + i).val(difference+ " "+item.unit);
-		if(difference < 0) $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
+    if(difference < 0) $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
       }
 
       if(item.link) {
@@ -370,7 +370,7 @@
         wish.addClass('wishlist_wish-presentee');
       }
     }
-	if(activeDesign === 2) positionBackgroundImage();
+  if(activeDesign === 2) positionBackgroundImage();
   }
 
   function sendWishlist() {
@@ -539,6 +539,9 @@
   function more(wish) {
     if ( (!wish.hasClass('wishlist_wish-open')) || (!wish.hasClass('wishlist_wish-open_donate'))  ) {
 
+      var titleId = wish.find('[name="item"]').attr('id'),
+          index = titleId.substring(titleId.lastIndexOf('-')+1);
+
       // enable fields, disabled by default
 
       if(creationMode){
@@ -557,23 +560,32 @@
         setTimeout( showFields, i * interval, fields.get(i), editable);
       }
 
-		if(activeDesign === 2) {
-			var startTime = new Date().getTime();
-			var interval = setInterval(function(){
-				if(new Date().getTime() - startTime > wishTransitionDuration){
-					clearInterval(interval);
-					return;
-				}
-				positionBackgroundImage();
-				
-			}, 50);
-		}
-	  	  
-	  
-      var buttons = wish.find('.js-edit-buttons');
+      if(activeDesign === 2) {
+        var startTime = new Date().getTime();
+        var interval = setInterval(function(){
+          if(new Date().getTime() - startTime > wishTransitionDuration){
+            clearInterval(interval);
+            return;
+          }
+          positionBackgroundImage();
+
+        }, 50);
+      }
+
+
+      var buttons = wish.find('.js-edit-buttons'),
+          iStart;
+
+      if(creationMode || editable)
+        iStart = 2;
+      else if(!wishlist.items[index].secret && !wishlist.vip)
+        iStart = 3;
+      else
+        iStart = 1;
+
       hideButtons(buttons.get(0));
       var dontShowEdit = creationMode || editable;
-      for ( i = dontShowEdit? 2 : 1, l = 4; i < l; i++ ) {
+      for ( i = iStart, l = 4; i < l; i++ ) {
         setTimeout( showButtons, (i-1) * 1000, buttons.get(i) );
       }
 
@@ -590,7 +602,7 @@
       for ( var i = 1, l = length; i < l; i++ ) {
         setTimeout( hideFields, (l-i-1) * interval, fields.get(i) );
       }
-	  
+
       var buttons = wish.find('.js-edit-buttons');
       for ( i = 1, l = 4; i < l; i++ ) {
         setTimeout( hideButtons, (l-i-1) * 1000, buttons.get(i) );
@@ -617,10 +629,10 @@
     for(var i=0; i<wishlist.items.length; i++) {
       var item = wishlist.items[i];
       if(item)
-		var difference = item.amount - getCollectedSum(item);
+    var difference = item.amount - getCollectedSum(item);
         if(item.amount != 1) $("#sum-" + i).val(difference+ " "+item.unit);
-		if(difference < 0) $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
-		
+    if(difference < 0) $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
+
     }
   }
 
