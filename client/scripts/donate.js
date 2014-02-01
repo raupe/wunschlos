@@ -10,20 +10,20 @@ var donate = (function(){
 // const
 var heightExtra = 130,
     tabOffset = 3,
-    tabsPerComment = 2;
+    tabsPerShare = 2;
 
 var wishlistId = 0,
     item = {},
     updateWishlist,
-    template_comment_STR = "",
-    template_commentList_STR = "";
+    template_share_STR = "",
+    template_shareList_STR = "";
 
-$comments_lightbox = $('#comments_lightbox');
+$shares_lightbox = $('#comments_lightbox');
 
   // ------------------------------------------------- //
 
 
-$comments_lightbox.on('click', function( e ){
+$shares_lightbox.on('click', function( e ){
 
     if ((e.target.id === "comments_lightbox") || ( e.target.id === "close_img_icon") ) {
       $('#comments_lightbox').fadeOut(300);
@@ -43,7 +43,7 @@ $comments_lightbox.on('click', function( e ){
 
     if ( trg.attr('class').indexOf('donate-edit') > -1) {
       $donate = $(trg).closest('.donate_entry');
-      setCommentStyle_Editable($donate);
+      setShareStyle_Editable($donate);
 
       return;
     }
@@ -66,7 +66,7 @@ $comments_lightbox.on('click', function( e ){
 
       delete item.shares[i];
       CONNECTION.deleteDonation(wishlistId, item._id, donateId);
-	  calculateBar();
+    calculateBar();
       updateWishlist();
 
       return;
@@ -89,11 +89,11 @@ var initDonateLightbox = function(itemCurrent, wishlistIdCurrent, updateCallback
   updateWishlist = updateCallback;
 
   $('#comments_lightbox').empty();
-  if(template_commentList_STR)
+  if(template_shareList_STR)
     loadDonateForm();
   else
     getTemplate("partial/template_donatelist.html", function(e) {
-      template_commentList_STR = e;
+      template_shareList_STR = e;
       loadDonateForm();
     });
 
@@ -103,16 +103,16 @@ var initDonateLightbox = function(itemCurrent, wishlistIdCurrent, updateCallback
 }
 
 function loadDonateForm(){
-  var donateForm = parseTemplate(template_commentList_STR, {title: item.title , unit: item.unit});
+  var donateForm = parseTemplate(template_shareList_STR, {title: item.title , unit: item.unit});
 
   $('#comments_lightbox').append(donateForm);
   $("body").animate({scrollTop:0}, '500');
 
-  if(template_comment_STR)
+  if(template_share_STR)
     setTimeout(loadDonateEntries, 0); // without timeout the donate height isn't stated correctly
   else
     getTemplate("partial/template_donate.html", function(e) {
-      template_comment_STR = e;
+      template_share_STR = e;
       loadDonateEntries();
     });
 }
@@ -120,7 +120,7 @@ function loadDonateForm(){
 function loadDonateEntries(){
 
 
-	
+
   var shares = item.shares,
       donateLength = shares.length;
 
@@ -128,39 +128,39 @@ function loadDonateEntries(){
     if(shares[i])
       createDonation(shares[i], i);
   }
-  
+
   calculateBar();
 }
 
   function calculateBar() {
     var sum = 0;
-	var openSum = parseInt( item.amount );
-	
+  var openSum = parseInt( item.amount );
+
     for(var i=0; i<item.shares.length; i++) {
       if(item.shares[i])
         sum += parseInt( item.shares[i].amount );
     }
-     
-	 var barwidthPercentage = sum/openSum;
-	 var wrapWidth = $("#bar_wrap_width").width();
-	 
-	 var barWidth = barwidthPercentage * wrapWidth;
-	 $("#price_donate").val(openSum+ " "+item.unit);
-	 $("#current_donation").text(sum + " "+item.unit);
-	 if(barWidth > 0) $("#inner_bar_width").animate({width:barWidth}, 1000, function(){
-		 if(barWidth >= wrapWidth){
-			$("#status_donation").text("100% funded").fadeIn(500);
-		}else{
-			$("#status_donation").text("100% funded").fadeOut(300);
-		}
-	 });
-	
-	
+
+   var barwidthPercentage = sum/openSum;
+   var wrapWidth = $("#bar_wrap_width").width();
+
+   var barWidth = barwidthPercentage * wrapWidth;
+   $("#price_donate").val(openSum+ " "+item.unit);
+   $("#current_donation").text(sum + " "+item.unit);
+   if(barWidth > 0) $("#inner_bar_width").animate({width:barWidth}, 1000, function(){
+     if(barWidth >= wrapWidth){
+      $("#status_donation").text("100% funded").fadeIn(500);
+    }else{
+      $("#status_donation").text("100% funded").fadeOut(300);
+    }
+   });
+
+
   }
 
 function createDonation(donate, i) {
 
-  var donateEntry = parseTemplate(template_comment_STR, { num: i, tab: i * tabsPerComment, unit: item.unit });
+  var donateEntry = parseTemplate(template_share_STR, { num: i, tab: i * tabsPerShare, unit: item.unit });
   $('.donate_entry:eq(0)').after(donateEntry);
 
   if( donate.name ){
@@ -178,15 +178,15 @@ function createDonation(donate, i) {
 function saveDonation($donate) {
 
   var donate;
-  
-   if ($donate.find('[name="donation"]').val() === "" || $donate.find('[name="donation"]').val() <= 0) 
+
+   if ($donate.find('[name="donation"]').val() === "" || $donate.find('[name="donation"]').val() <= 0)
   {
-	$donate.find('[name="donation"]').val("").attr("placeholder","number");
+  $donate.find('[name="donation"]').val("").attr("placeholder","number");
     return false;
   }
-  
+
   if($donate.attr("id")) { // existing donate
-    setCommentStyle_Fixed($donate);
+    setShareStyle_Fixed($donate);
     var donateId = $donate.attr("id") || "-" + item.shares.length-1,
         i = donateId.substring(donateId.lastIndexOf('-')+1);
     donate = item.shares[i];
@@ -202,18 +202,18 @@ function saveDonation($donate) {
 
     $donate.find('[name="donation_by"]').val('');
     $donate.find('[name="donation"]').val('');
-	
-    createDonation(donate, item.comments.length-1);
-    updateWishlist();
+
+    createDonation(donate, item.shares.length-1);
   }
 
+  updateWishlist();
   calculateBar();
   CONNECTION.editDonation(wishlistId, item._id, donate);
 }
 
 function cancelEdit($donate) {
   if($donate.attr("id")) { // existing donate
-    setCommentStyle_Fixed($donate);
+    setShareStyle_Fixed($donate);
     var donateId = $donate.attr("id"),
         i = donateId.substring(donateId.lastIndexOf('-')+1),
         donate = item.shares[i];
@@ -227,7 +227,7 @@ function cancelEdit($donate) {
   }
 }
 
-function setCommentStyle_Fixed($donate) {
+function setShareStyle_Fixed($donate) {
   $donate.find('.js-input').attr('disabled', true);
 
   $donate.find('.donate-edit').removeAttr('disabled').removeClass('invisible');
@@ -236,7 +236,7 @@ function setCommentStyle_Fixed($donate) {
   $donate.find('.donate-cancel').addClass('invisible').attr('disabled');
 }
 
-function setCommentStyle_Editable($donate) {
+function setShareStyle_Editable($donate) {
   $donate.find('.js-input').removeAttr('disabled');
 
   $donate.find('.donate-edit').addClass('invisible').attr('disabled');

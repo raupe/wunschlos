@@ -196,10 +196,9 @@ function saveComment($comment) {
     $comment.find('[name="comment"]').val('');
 
     createComment(comment, item.comments.length-1);
-    updateWishlist();
   }
 
-
+  updateWishlist();
   CONNECTION.editComment(wishlistId, item._id, comment);
 }
 
