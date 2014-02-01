@@ -115,7 +115,7 @@
       var titleId = $wish.find('[name="item"]').attr('id'),
           i = titleId.substring(titleId.lastIndexOf('-')+1);
       // calling donate.js
-      donate.initDonateLightbox(wishlist.items[i], wishlistId, wishlist.vip, updateDonation);
+      donate.initDonateLightbox(wishlist.items[i], wishlistId, wishlist.vip, updateDonations);
       return;
     }
 
@@ -346,9 +346,7 @@
 
         var $sum = $("#sum-" + i);
 
-        var difference = item.amount - getCollectedSum(item);
-        if(item.amount != 1) $("#sum-" + i).val(difference+ " "+item.unit);
-    if(difference < 0) $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
+        updateDonation(i);
       }
 
       if(item.link) {
@@ -426,7 +424,7 @@
     item.secret = !wishlist.vip;
 
     $wish.find('[name="price"]').val(item.amount + ' ' + item.unit);
-    if(item.amount != 1) $("#sum-" + i).val(item.amount - getCollectedSum(item)+ " "+item.unit);
+    updateDonation(i);
 
     CONNECTION.editWish(wishlistId, item);
   }
@@ -625,17 +623,20 @@
     }
   }
 
-  function updateDonation() {
-    for(var i=0; i<wishlist.items.length; i++) {
-      var item = wishlist.items[i];
-      if(item) {
-        var difference = item.amount - getCollectedSum(item);
+  function updateDonation(i) {
+    var item = wishlist.items[i];
+    if(item) {
+      var difference = item.amount - getCollectedSum(item);
 //        if(item.amount != 1)
-          $("#sum-" + i).val(difference+ " "+item.unit);
-        if(difference < 0)
-          $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
-      }
+        $("#sum-" + i).val(difference+ " "+item.unit);
+      if(difference < 0)
+        $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
     }
+  }
+
+  function updateDonations() {
+    for(var i=0; i<wishlist.items.length; i++)
+      updateDonation(i);
   }
 
   function switchDesign(design) {
