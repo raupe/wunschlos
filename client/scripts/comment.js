@@ -167,8 +167,16 @@ function createComment(comment, i) {
   }
 
   if( comment.date ) {
-    var $date = $("#comment_date-" + i);
-    $date.text(comment.date);
+    var $date = $("#comment_date-" + i),
+        date = new Date(comment.date),
+        now = new Date();
+
+    if(isNaN(date.getTime()))
+      $date.text(comment.date);
+    else if(now.toDateString() === date.toDateString())
+      $date.text(date.toLocaleTimeString());
+    else
+      $date.text(date.toLocaleDateString());
   }
 
   if( !vip && !comment.secret ) {
