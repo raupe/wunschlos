@@ -29,7 +29,7 @@ Request zum Server: Wishlist als JSON siehe folgende Struktur
 			idea: String,
 			position: number,
 			secret: boolean,
-			share: [
+			shares: [
 				{
 					name: String,
 					amount: number,
@@ -82,7 +82,8 @@ Request zum Server: GET request zur richtigen Route
 				{
 					_id: String,
 					name: String,
-					comment: String
+					comment: String,
+                    date: number
     			}
 			]
   		}
@@ -220,7 +221,7 @@ Implementiert: Ja
 Route: /wishlist/wishlistId/itemId/comment
 HTTP Verb: POST
 
-Beschreibung: Hinzufügen eines Kommentars
+Beschreibung: Hinzufügen eines Kommentars, das Datum wird dabei auf dem Server angelegt.
 
 Rückgabe vom Server: id des shares als String
 Request zum Server: Kommentar als JSON siehe folgende Struktur
