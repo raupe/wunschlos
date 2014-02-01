@@ -455,13 +455,18 @@ exports.createComment = function (dbModel) {
 			if (!err && result !== null) {
 				
 				var currentItem,
-					i;
+					i,
+                    comment;
 				
 				for (i = 0; i < result.items.length; i++) {
 					
 					currentItem = result.items[i];
 					if (currentItem._id.toString() === itemId) {
-						result.items[i].comments.push(req.body);
+                        comment = req.body;
+                        comment.date = new Date().getTime();
+                      
+						result.items[i].comments.push(comment);
+                      
 						result.save(function(err, result){
 							if (err) {
 								console.log(err);

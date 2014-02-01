@@ -23,7 +23,8 @@ exports.wishlist = {
 				{
 					name: String,
 					comment: String,
-					secret: Boolean
+					secret: Boolean,
+                    date: Number
     			}
 			]
   		}
