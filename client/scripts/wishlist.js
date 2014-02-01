@@ -317,6 +317,9 @@
   function loadWishlist(param) {
     wishlist = param;
 
+    document.title = ":: Wunschlos :: " + wishlist.title.toUpperCase()
+      + " :: " + (wishlist.vip ? "VIP Ansicht" : "Public Ansicht");
+
     $('.content_description').first().text(wishlist.title).css('font-size','2rem');
     switchDesign(wishlist.design);
 
@@ -368,7 +371,7 @@
         wish.addClass('wishlist_wish-presentee');
       }
     }
-  if(activeDesign === 2) positionBackgroundImage();
+    if(activeDesign === 2) positionBackgroundImage();
   }
 
   function sendWishlist() {
