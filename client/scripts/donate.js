@@ -14,6 +14,7 @@ var heightExtra = 130,
 
 var wishlistId = 0,
     item = {},
+    vip,
     updateWishlist,
     template_share_STR = "",
     template_shareList_STR = "";
@@ -61,13 +62,12 @@ $shares_lightbox.on('click', function( e ){
           i = donateId.substring(donateId.lastIndexOf('-')+1);
 
       $donate.remove();
-
       donateId = item.shares[i]._id;
-
       delete item.shares[i];
-      CONNECTION.deleteDonation(wishlistId, item._id, donateId);
-    calculateBar();
+
+      calculateBar();
       updateWishlist();
+      CONNECTION.deleteDonation(wishlistId, item._id, donateId);
 
       return;
     }
@@ -82,11 +82,12 @@ $shares_lightbox.on('click', function( e ){
 
 
 // if shares-button is hit
-var initDonateLightbox = function(itemCurrent, wishlistIdCurrent, updateCallback){
+var initDonateLightbox = function(itemCurrent, wishlistIdCurrent, vipList, updateCallback){
 
   item = itemCurrent;
   wishlistId = wishlistIdCurrent;
   updateWishlist = updateCallback;
+  vip = vipList;
 
   $('#comments_lightbox').empty();
   if(template_shareList_STR)
@@ -133,27 +134,27 @@ function loadDonateEntries(){
 }
 
   function calculateBar() {
-    var sum = 0;
-  var openSum = parseInt( item.amount );
+    var sum = 0,
+        openSum = parseInt( item.amount );
 
     for(var i=0; i<item.shares.length; i++) {
       if(item.shares[i])
         sum += parseInt( item.shares[i].amount );
     }
 
-   var barwidthPercentage = sum/openSum;
-   var wrapWidth = $("#bar_wrap_width").width();
+    var barwidthPercentage = sum/openSum;
+    var wrapWidth = $("#bar_wrap_width").width();
 
-   var barWidth = barwidthPercentage * wrapWidth;
-   $("#price_donate").val(openSum+ " "+item.unit);
-   $("#current_donation").text(sum + " "+item.unit);
-   if(barWidth > 0) $("#inner_bar_width").animate({width:barWidth}, 1000, function(){
-     if(barWidth >= wrapWidth){
-      $("#status_donation").text("100% funded").fadeIn(500);
-    }else{
-      $("#status_donation").text("100% funded").fadeOut(300);
-    }
-   });
+    var barWidth = barwidthPercentage * wrapWidth;
+    $("#price_donate").val(openSum+ " "+item.unit);
+    $("#current_donation").text(sum + " "+item.unit);
+    $("#inner_bar_width").animate({width:barWidth}, 1000, function(){
+      if(barWidth >= wrapWidth){
+        $("#status_donation").text("100% funded").fadeIn(500);
+      }else{
+        $("#status_donation").text("100% funded").fadeOut(300);
+      }
+    });
 
 
   }
@@ -199,6 +200,7 @@ function saveDonation($donate) {
     item.shares.push(donate);
     donate.name = $donate.find('[name="donation_by"]').val();
     donate.amount = $donate.find('[name="donation"]').val();
+    donate.secret = !vip;
 
     $donate.find('[name="donation_by"]').val('');
     $donate.find('[name="donation"]').val('');

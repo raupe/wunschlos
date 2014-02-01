@@ -115,7 +115,7 @@
       var titleId = $wish.find('[name="item"]').attr('id'),
           i = titleId.substring(titleId.lastIndexOf('-')+1);
       // calling donate.js
-    donate.initDonateLightbox(wishlist.items[i], wishlistId, updateDonation);
+      donate.initDonateLightbox(wishlist.items[i], wishlistId, wishlist.vip, updateDonation);
       return;
     }
 
