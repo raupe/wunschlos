@@ -170,6 +170,11 @@ function createComment(comment, i) {
     var $date = $("#comment_date-" + i);
     $date.text(comment.date);
   }
+
+  if( !vip && !comment.secret ) {
+    var $edit = $("#comment_edit-" + i);
+    $edit.attr('disabled', '').addClass('invisible');
+  }
 }
 
 function saveComment($comment) {

@@ -174,6 +174,10 @@ function createDonation(donate, i) {
     $donate.val(donate.amount);
   }
 
+  if( !vip && !donate.secret ) {
+    var $edit = $("#donate_edit-" + i);
+    $edit.attr('disabled', '').addClass('invisible');
+  }
 }
 
 function saveDonation($donate) {

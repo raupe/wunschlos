@@ -628,11 +628,13 @@
   function updateDonation() {
     for(var i=0; i<wishlist.items.length; i++) {
       var item = wishlist.items[i];
-      if(item)
-    var difference = item.amount - getCollectedSum(item);
-        if(item.amount != 1) $("#sum-" + i).val(difference+ " "+item.unit);
-    if(difference < 0) $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
-
+      if(item) {
+        var difference = item.amount - getCollectedSum(item);
+//        if(item.amount != 1)
+          $("#sum-" + i).val(difference+ " "+item.unit);
+        if(difference < 0)
+          $("#sum-" + i).val("+ "+(-1)*difference+ " "+item.unit);
+      }
     }
   }
 
@@ -687,7 +689,7 @@
 
   function createWish(position){
 
-    position = position || -1;
+    position = position === undefined? -1 : position;
 
     var num  = wishCount++,
 
