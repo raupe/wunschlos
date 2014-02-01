@@ -1,9 +1,9 @@
 var url = "http://localhost:3000/wishlist";
 //var url = "http://place2co.de/nodejs/wishlist/wishlist"
 
-var publicId = "";
-var id = "";
-var itemId = "";
+var publicId = "63fdec:69:cd68c52e111123q";
+var id = "52ecdb9589bc57b41d000012";
+var itemId = "52ecdbd289bc57b41d000017";
 var shareId = "";
 var commentId = "";
 
@@ -72,7 +72,7 @@ var button2 = document.createElement("button");
 button2.innerHTML = "GET /wishlist/" + "publicId";
 button2.addEventListener("click", function(){
 	var request = $.ajax({
-		url: url + "/" + id,
+		url: url + "/" + publicId,
 		type: "get"
 	});
 	request.done(function (msg) {
