@@ -184,16 +184,21 @@
   });
 
   $('#about_link').click(function(){
-
     $( "#about_text" ).fadeToggle();
-    });
+  });
+
 
   $('#wishlist-role').on('change', function(e) {
     var isChecked = $(this).prop('checked');
-    if(isChecked)
-      $('#wishlist-presentee').attr('disabled', '');
-    else
-      $('#wishlist-presentee').removeAttr('disabled');
+
+    if ( isChecked ) {
+      $('#wishlist-presentee').attr('disabled', '');//.fadeOut();
+      $('#wishlist-presentee').parent().css('visibility', 'hidden');
+    } else {
+      $('#wishlist-presentee').removeAttr('disabled');//.fadeIn();
+      $('#wishlist-presentee').parent().css('visibility', 'visible');
+    }
+
   });
 
   window.onpopstate = function(event) {
@@ -464,15 +469,17 @@
   }
 
   function switchToReceiveMode(vipId, publicId) {
-    console.log('vip:' + vipId);
-    console.log('public:' + publicId);
-    var isPresentee = $('#wishlist-role:checked').val();
+    // console.log('vip:' + vipId);
+    // console.log('public:' + publicId);
+    var isPresentee = $('#wishlist-role:checked').val(),
         id = isPresentee ? vipId : publicId,
-        vipLink = window.location + '?' + vipId;
+        vipLink = window.location + '?' + vipId,
         publicLink = window.location + '?' + publicId;
+
     history.replaceState({creationMode:true}, '', window.location);
     history.pushState({creationMode:false}, '', window.location + '?' + id);
     wishlistId = id;
+
     showLinks(vipLink, publicLink, isPresentee);
 
     $wishes.empty();
@@ -497,15 +504,18 @@
   }
 
   function showLinks(vipLink, publicLink, isPresentee) {
-    // TODO: Show lightbox
-    if(isPresentee) {
-      alert("Send this link to your friends: " + publicLink + "\n"
-        + "You should only visit this link: " + vipLink);
-    } else {
-      alert("Send this link to your friends: " + publicLink + "\n"
-        + "Send this link to the presentee: " + vipLink);
-    }
+
+    $('#link_private').attr('href', vipLink).text(vipLink);
+    $('#link_public').attr( 'href', publicLink).text(publicLink);
+    $('#link_private_description').text( isPresentee ? 'you' : 'the presentee' );
+    $('#link_lightbox').fadeIn(400);
   }
+
+  $('#link_lightbox').on('click', function ( e ) {
+    if ( e.target.id !== 'link_lightbox' ) return;
+    $('#link_lightbox').fadeOut(300);
+  });
+
 
   function showFields ( el , enable) {
     $(el).addClass('wishlist_wish_field-visible');

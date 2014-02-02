@@ -216,7 +216,7 @@ button.selection_form_submit:active {
  *
  *
  */
- 
+
 
 .wishlist_content {
   width: 100%;
@@ -818,4 +818,75 @@ button:focus {
 
 .next-button {
   background-color: #f00;
+}
+
+input[type="checkbox"] {
+
+  width:  1rem;
+  height: 1rem;
+}
+
+
+/**
+ *  Links
+ *  =====
+ *
+ */
+
+.link_lightbox {
+  position: fixed;
+  top:    0;
+  left:   0;
+  right:  0;
+  bottom: 0;
+  background: rgba(12, 36, 60, 0.8);
+  z-index: 999;
+
+  display: none;
+  cursor: pointer;
+}
+
+
+.link_wrapper {
+
+  width: 55%;
+  height: 40%;
+
+  background: #f3f3f3;
+  color: #414141;
+  font-size: 1.6rem;
+  padding: 0.2rem 0 0.6rem .4rem;
+  border-bottom: 0.2rem #909090 solid;
+
+  margin: 0 auto;
+  margin-top: 5%;
+}
+
+.center {
+  text-align: center;
+  font-size: 0;
+}
+
+.center::before {
+  content: '';
+  display: inline-block;
+
+  height: 100%;
+  vertical-align: middle;
+}
+
+.center > div {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1rem;
+}
+
+
+.link_line {
+  font-size: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.link_text {
+  color: #414141;
 }
