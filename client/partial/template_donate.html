@@ -1,16 +1,17 @@
 <li class="donate_entry" id="donate_entry-{{num}}">
+
   <fieldset class="commentlist_comment_set">
     <div class="commentlist_form clearfix">
     <div class="left">
-      <label for="donation_by-{{num}}" class="donatelist_donate_field_label js-label" >Name</label>
+      <label for="donation_by-{{num}}" class="donatelist_donate_field_label js-label">Name</label>
       <input type="text" name="donation_by" placeholder="Add your name" tabindex="{{tab}}"
-      autocomplete="off" disabled class="donatelist_donate_field_input js-input" id="donation_by-{{num}}"  />
+      autocomplete="off" disabled="true" class="donatelist_donate_field_input js-input" id="donation_by-{{num}}"  />
     </div>
     <div class="donate_text_label">:</div>
     <div class="left">
-      <label for="donation-{{num}}" class="donatelist_donate_field_label js-label" >Donation</label>
+      <label for="donation-{{num}}" class="donatelist_donate_field_label js-label">Donation</label>
       <input type="number" name="donation" placeholder="sum" tabindex="{{tab+1}}"
-      autocomplete="off" disabled class="donatelist_donate_field_input sum js-input" id="donation-{{num}}"/>
+      autocomplete="off" disabled="true" class="donatelist_donate_field_input sum js-input" id="donation-{{num}}"/>
       {{unit}}
     </div>
     </div>
@@ -19,21 +20,21 @@
   <section class="commentlist_edit js-edit">
     <div>
 
-      </button>
       <button class="lightbox_edit_button donate-edit edit_button-edit"  id="donate_edit-{{num}}">
         <div class="edit_button_icon lightbox_edit_button_icon_edit"></div>
-         <div class="edit_button_text">edit</div>
+        <div class="edit_button_text">edit</div>
       </button>
 
-      <button disabled class="lightbox_edit_button donate-delete edit_button-delete invisible" >
+      <button disabled="true" class="lightbox_edit_button donate-delete edit_button-delete invisible" >
         <div class="edit_button_icon lightbox_edit_button_icon_delete"></div>
         <div class="edit_button_text">delete</div>
       </button>
 
     </div>
     <div class="edit_confirm">
-      <button disabled class="lightbox_edit_button-save donate-save invisible">Save</button>
-      <button disabled class="lightbox_edit_button-cancel donate_entry-cancel donate-cancel invisible">Cancel</button>
+      <button disabled="true" class="lightbox_edit_button-save donate-save invisible">Save</button>
+      <button disabled="true" class="lightbox_edit_button-cancel donate_entry-cancel donate-cancel invisible">Cancel</button>
     </div>
   </section>
+
 </li>

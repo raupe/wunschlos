@@ -1,104 +1,107 @@
 <li class="wishlist_wish">
 
-  <!-- <div class="wishlist_wish_edit_confirm"> -->
+  <fieldset class="wishlist_wish_set">
 
-    <fieldset class="wishlist_wish_set">
+    <ul class="wishlist_wish_fields">
 
-      <ul class="wishlist_wish_fields">
+      <li class="wishlist_wish_field js-field">
 
-        <li class="wishlist_wish_field js-field">
+        <label for="item-{{num}}" class="wishlist_wish_field_label js-label">Wish</label>
+        <input type="text" name="item" placeholder="Name of your Wish" tabindex="{{tab}}"
+        autocomplete="off" disabled="true" class="wishlist_wish_field_input js-input" id="item-{{num}}" />
 
-          <label for="item-{{num}}" class="wishlist_wish_field_label js-label">Wish</label>
-          <input type="text" name="item" placeholder="Name of your Wish" tabindex="{{tab}}"
-          autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="item-{{num}}"/>
+      </li>
 
-        </li>
+      <li class="wishlist_wish_field js-field">
 
-        <li class="wishlist_wish_field js-field">
+        <label for="details-{{num}}" class="wishlist_wish_field_label js-label">Details</label>
+        <input type="text" name="details" placeholder="Add more Information" tabindex="{{tab+1}}"
+        autocomplete="off" disabled="true" class="wishlist_wish_field_input js-input" id="details-{{num}}" />
 
-          <label for="details-{{num}}" class="wishlist_wish_field_label js-label">Details</label>
-          <input type="text" name="details" placeholder="Add more Information" tabindex="{{tab+1}}"
-          autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="details-{{num}}"/>
+      </li>
 
-        </li>
+      <li class="wishlist_wish_field js-field">
 
-        <li class="wishlist_wish_field js-field">
+        <label for="price-{{num}}" class="wishlist_wish_field_label js-label">Price</label>
+        <input type="text" name="price" min="0" step="1" placeholder="Tell the Price" tabindex="{{tab+2}}"
+        autocomplete="off" disabled="true" class="wishlist_wish_field_input js-input" id="price-{{num}}" />
 
-          <label for="price-{{num}}" class="wishlist_wish_field_label js-label">Price</label>
-          <input type="text" name="price" min="0" step="1" placeholder="Tell the Price" tabindex="{{tab+2}}"
-          autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="price-{{num}}"/>
+      </li>
 
-        </li>
+      <li class="wishlist_wish_field js-field">
 
-        <li class="wishlist_wish_field js-field">
+        <label for="link-{{num}}" class="wishlist_wish_field_label js-label">Link</label>
+        <input type="text" name="link" placeholder="Add a Link" tabindex="{{tab+3}}"
+        autocomplete="off" disabled="true" class="wishlist_wish_field_input js-input" id="link-{{num}}" />
 
-          <label for="link-{{num}}" class="wishlist_wish_field_label js-label">Link</label>
-          <input type="text" name="link" placeholder="Add a Link" tabindex="{{tab+3}}"
-          autocomplete="off" disabled class="wishlist_wish_field_input js-input" id="link-{{num}}"/>
+      </li>
 
-        </li>
-        <li class="wishlist_wish_field js-field">
+      <li class="wishlist_wish_field js-field">
 
-          <label for="sum-{{num}}" disabled class="sum_label options">Open Sum:</label>
-          <input type="text" name="sum" placeholder="0" tabindex="{{tab+4}}"
-          autocomplete="off" disabled class="wishlist_wish_field_sum options" id="sum-{{num}}"/>
-          <button disabled class="donate_button js-button options" tabindex="{{tab+5}}" id="donate-{{num}}" >DONATE</button>
-        </li>
-        <li class="wishlist_wish_field js-field">
-
-          <button disabled class="js-button comments options" tabindex="{{tab+6}}" id="comments-{{num}}" >comments(0)</button>
-
-        </li>
-      </ul>
-
-    </fieldset>
-
-    <section class="wishlist_wish_edit js-edit">
-
-      <div class="edit_content">
-
-        <button class="edit_button edit_button-more js-edit-buttons">
-          <div class="edit_button_text">more</div>
-          <div class="edit_button_icon edit_button_icon_more"></div>
+        <label for="sum-{{num}}" disabled="true" class="sum_label options">Open Sum:</label>
+        <input type="text" name="sum" placeholder="0" tabindex="{{tab+4}}"
+        autocomplete="off" disabled="true" class="wishlist_wish_field_sum options" id="sum-{{num}}"/>
+        <button disabled="true" class="donate_button js-button options" tabindex="{{tab+5}}" id="donate-{{num}}">
+          DONATE
         </button>
-        <button class="edit_button edit_button-edit js-edit-buttons invisible" disabled>
-          <div class="edit_button_icon edit_button_icon_edit"></div>
-       <div class="edit_button_text">edit</div>
+      </li>
+
+      <li class="wishlist_wish_field js-field">
+
+        <button disabled="true" class="js-button comments options" tabindex="{{tab+6}}" id="comments-{{num}}">
+          comments(0)
         </button>
 
-        <button class="edit_button edit_button-delete js-edit-buttons invisible" disabled>
-          <div class="edit_button_icon edit_button_icon_delete"></div>
-          <div class="edit_button_text">delete</div>
-        </button>
+      </li>
 
-        <button class="edit_button edit_button-less js-edit-buttons invisible" disabled>
-          <div class="edit_button_text">less</div>
-          <div class="edit_button_icon edit_button_icon_less"></div>
-        </button>
+    </ul>
 
-      </div>
+  </fieldset>
 
+  <section class="wishlist_wish_edit js-edit">
 
-      <div class="edit_position">
+    <div class="edit_content">
 
-        <button class="edit_button edit_button-move-up js-edit-buttons invisible">
-          <div class="edit_button_icon edit_button_icon_move_up"></div>
-        </button>
+      <button class="edit_button edit_button-more js-edit-buttons">
+        <div class="edit_button_text">more</div>
+        <div class="edit_button_icon edit_button_icon_more"></div>
+      </button>
+      <button class="edit_button edit_button-edit js-edit-buttons invisible" disabled="true">
+        <div class="edit_button_icon edit_button_icon_edit"></div>
+     <div class="edit_button_text">edit</div>
+      </button>
 
-        <button class="edit_button edit_button-move-down js-edit-buttons invisible">
-          <div class="edit_button_icon edit_button_icon_move_down"></div>
-        </button>
+      <button class="edit_button edit_button-delete js-edit-buttons invisible" disabled="true">
+        <div class="edit_button_icon edit_button_icon_delete"></div>
+        <div class="edit_button_text">delete</div>
+      </button>
 
-      </div>
+      <button class="edit_button edit_button-less js-edit-buttons invisible" disabled="true">
+        <div class="edit_button_text">less</div>
+        <div class="edit_button_icon edit_button_icon_less"></div>
+      </button>
 
-    </section>
-
-
-    <div class="edit_confirm">
-      <button class="edit_button-save invisible">Save Changes</button>
-      <button class="edit_button-cancel invisible">Cancel</button>
     </div>
 
-  <!-- </div>  -->
+
+    <div class="edit_position">
+
+      <button class="edit_button edit_button-move-up js-edit-buttons invisible">
+        <div class="edit_button_icon edit_button_icon_move_up"></div>
+      </button>
+
+      <button class="edit_button edit_button-move-down js-edit-buttons invisible">
+        <div class="edit_button_icon edit_button_icon_move_down"></div>
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <div class="edit_confirm">
+    <button class="edit_button-save invisible">Save Changes</button>
+    <button class="edit_button-cancel invisible">Cancel</button>
+  </div>
 
 </li>
