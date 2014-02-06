@@ -48,7 +48,10 @@
   var $selection        = $('#selection'),
       $selectionWrap    = $('#selectionWrap'),
       $selectionContent = $('.js-selection-content');
-showSelection()
+
+
+
+
   $wrap.on('click', function( e ){
 
     var trg = $(e.target).closest('button');
@@ -188,7 +191,7 @@ showSelection()
 
   // confirm email
   $('#emailButton').click(function(){
-    console.log('[TODO EMAIL]', $('#email').value() );
+    console.log('[TODO EMAIL]', $('#email').val() );
   });
 
 
@@ -490,8 +493,6 @@ showSelection()
     history.pushState({creationMode:false}, '', window.location + '?' + id);
     wishlistId = id;
 
-
-
     $wishes.empty();
     wishCount = 0;
     creationMode = false;
@@ -506,8 +507,7 @@ showSelection()
 
     showLinks(vipLink, publicLink, isPresentee);
 
-   $('#prelinks').addClass('invisible');
-   $('#postlinks').removeClass('invisible');
+
 
     var $newButton = $wrap.find('.js-new-button');
     $newButton.removeAttr('disabled');
@@ -515,6 +515,9 @@ showSelection()
   }
 
   function showLinks(vipLink, publicLink, isPresentee) {
+
+   $('#prelinks').addClass('invisible');
+   $('#postlinks').removeClass('invisible');
 
     $('#link_private').attr('href', vipLink).text(vipLink);
     $('#link_public').attr( 'href', publicLink).text(publicLink);
