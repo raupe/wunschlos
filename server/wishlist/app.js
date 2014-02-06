@@ -1,5 +1,8 @@
 var online = true;
 
+// To send email
+var mail = require("nodemailer").mail;
+
 // Load database credentials
 var credentials = require('./credentials');
 
@@ -66,6 +69,16 @@ app.get('/hi', function (req, res) {
 	res.send("get successfully");
 });
 
+app.post('/wishlist/mail', function(req, res) {
+  
+  mail({
+    from: "noreply@wunsch-los.com", // sender address
+    to: req.body.email, // list of receivers
+    subject: "Your Links from Wunsch-los.com", // Subject line
+    text: "Link for presentee: " + req.body.vipLink + "\nLink for presenters: " + req.body.publicLink // plaintext body
+  });
+}).bind(this);
+
 // Routes
 // Creating, Getting and Updating wishlist
 app.post('/wishlist', routes.createWishlist(Wishlist));
@@ -86,4 +99,5 @@ app.delete('/wishlist/:wishlistId/:itemId/share/:shareId', routes.deleteShare(Wi
 app.post('/wishlist/:wishlistId/:itemId/comment', routes.createComment(Wishlist));
 app.put('/wishlist/:wishlistId/:itemId/comment/:commentId', routes.updateComment(Wishlist));
 app.delete('/wishlist/:wishlistId/:itemId/comment/:commentId', routes.deleteComment(Wishlist));
+
 

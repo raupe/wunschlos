@@ -1,10 +1,10 @@
-var url = "http://localhost:3000/wishlist";
-//var url = "http://place2co.de/nodejs/wishlist/wishlist"
+//var url = "http://localhost:3000/wishlist";
+var url = "http://place2co.de/nodejs/wishlist/wishlist"
 
-var publicId = "63fdec:69:cd68c52e111123q";
-var id = "52ecdb9589bc57b41d000012";
-var itemId = "52ecdbd289bc57b41d000017";
-var shareId = "";
+var publicId = "63fdf9e:1b5d79c78111112eq";
+var id = "52ece8d90a4c68b67000001d";
+var itemId = "52ece8ee0a4c68b670000020";
+var shareId = "52ece9180a4c68b670000021";
 var commentId = "";
 
 //var foo = document.createElement("button");
@@ -13,7 +13,23 @@ var commentId = "";
 //	
 //});
 //document.body.appendChild(foo);
+console.log(url + "/mail");
+var request = $.ajax({
+    url: url + "/mail",
+    type: "post",
+    data: {
+      email: "d.ngoviet@gmail.com",
+      publicLink: "public id",
+      vipLink: "private id"
+    }
+});
+request.done(function (msg) {
+    console.log(msg);
+});
 
+request.fail(function (jqXHR, textStatus) {
+    console.log("failed: " + textStatus);
+});
 
 // Wunschliste erstellen
 // ========================================================================================
@@ -221,7 +237,7 @@ button8.addEventListener("click", function(){
 		type: "put",
 		data: {
 			name: "John DOE CHANGED",
-			amount: 400,
+			amount: 14,
 			secret: false
 		}
 	});
