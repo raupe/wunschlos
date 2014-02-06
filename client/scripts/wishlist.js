@@ -46,28 +46,16 @@
 
 
   var $selection        = $('#selection'),
-      $selectionWrap    = $selection.children().first(),
-      $selectionContent = $selectionWrap.children().first().children();
-
+      $selectionWrap    = $('#selectionWrap'),
+      $selectionContent = $('.js-selection-content');
+showSelection()
   $wrap.on('click', function( e ){
 
     var trg = $(e.target).closest('button');
     if(!trg || !trg.attr('class'))
       return;
 
-    if ( trg.attr('class').indexOf('js-share-button') > -1 ) {
-
-      if($selection.attr('class').indexOf('selection_wrap-show') == -1)
-        $('html, body').animate({scrollTop: 0}, 1000);
-
-      $selection.toggleClass('selection_wrap-show');
-
-      $selectionWrap.toggleClass('selection_overlay-show');
-
-      $selectionContent.toggleClass('selection_content-show ');
-
-      return;
-    }
+    if ( trg.attr('class').indexOf('js-share-button') > -1 ) return showSelection();
 
     var $wish;
 
@@ -164,6 +152,20 @@
 
   });
 
+
+  function showSelection(){
+
+    if($selection.attr('class').indexOf('selection_wrap-show') == -1) {
+      $('html, body').animate({scrollTop: 0}, 1000);
+    }
+
+    $selection.toggleClass('selection_wrap-show');
+    $selectionWrap.toggleClass('selection_overlay-show');
+    $selectionContent.toggleClass('selection_content-show');
+  }
+
+
+
   $selectionWrap.on('click', function( e ){
 
     var trg = $(e.target).closest('button');
@@ -182,6 +184,14 @@
     }
 
   });
+
+
+  // confirm email
+  $('#emailButton').click(function(){
+    console.log('[TODO EMAIL]', $('#email').value() );
+  });
+
+
 
   $('#about_link').click(function(){
     $( "#about_text" ).fadeToggle();
@@ -480,7 +490,7 @@
     history.pushState({creationMode:false}, '', window.location + '?' + id);
     wishlistId = id;
 
-    showLinks(vipLink, publicLink, isPresentee);
+
 
     $wishes.empty();
     wishCount = 0;
@@ -493,10 +503,11 @@
     $('#wishes').sortable('disable');
     $('#wishes').removeClass('ui-sortable');
     $('#wishes').removeClass('ui-sortable-disabled');
-    // remove wihlist options:
-    $selection.removeClass('selection_wrap-show');
-    $selectionWrap.removeClass('selection_overlay-show');
-    $selectionContent.removeClass('selection_content-show ');
+
+    showLinks(vipLink, publicLink, isPresentee);
+
+   $('#prelinks').addClass('invisible');
+   $('#postlinks').removeClass('invisible');
 
     var $newButton = $wrap.find('.js-new-button');
     $newButton.removeAttr('disabled');

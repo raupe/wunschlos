@@ -34,81 +34,115 @@
 
 		<section class="selection_wrap" id="selection">
 
-			<div class="selection_overlay">
+ 			<!-- $selectionWrap  -->
+			<div class="selection_overlay" id="selectionWrap">
 
 				<div class="selection_overlay_center">
 
 
-					<div class="selection_gallery">
 
-						<ul class="gallery_entries">
+					<div class="pre_links" id="prelinks">
 
-							<li class="gallery_entry">
-							  <button class="gallery_button">
-									<img src="assets/img/standard_design.jpg" class="gallery_entry_image_active" alt="Default Design" />
-									<span class="gallery_entry_title">Standard</span>
-								</button>
-							</li>
+						<!-- $selectionContent  -->
+						<div class="selection_gallery js-selection-content">
 
-							<li class="gallery_entry">
-							  <button class="gallery_button">
-									<img src="assets/img/butterfly_design.jpg" alt="Butterfly Design" />
-									<span class="gallery_entry_title">Butterfly</span>
-								</button>
-							</li>
+							<ul class="gallery_entries">
 
-							<li class="gallery_entry">
-							  <button class="gallery_button">
-									<img src="assets/img/snow_design.jpg" alt="Christmas Design" />
-									<span class="gallery_entry_title">Christmas</span>
-								</button>
-							</li>
+								<li class="gallery_entry">
+								  <button class="gallery_button">
+										<img src="assets/img/standard_design.jpg" class="gallery_entry_image_active" alt="Default Design" />
+										<span class="gallery_entry_title">Standard</span>
+									</button>
+								</li>
 
-							<li class="gallery_entry">
-							  <button class="gallery_button">
-									<img src="assets/img/wedding_design.jpg" alt="Wedding Design" />
-									<span class="gallery_entry_title">Wedding</span>
-								</button>
-							</li>
+								<li class="gallery_entry">
+								  <button class="gallery_button">
+										<img src="assets/img/butterfly_design.jpg" alt="Butterfly Design" />
+										<span class="gallery_entry_title">Butterfly</span>
+									</button>
+								</li>
 
-						</ul>
+								<li class="gallery_entry">
+								  <button class="gallery_button">
+										<img src="assets/img/snow_design.jpg" alt="Christmas Design" />
+										<span class="gallery_entry_title">Christmas</span>
+									</button>
+								</li>
+
+								<li class="gallery_entry">
+								  <button class="gallery_button">
+										<img src="assets/img/wedding_design.jpg" alt="Wedding Design" />
+										<span class="gallery_entry_title">Wedding</span>
+									</button>
+								</li>
+
+							</ul>
+						</div>
+
+						<!-- $selectionContent  -->
+						<div class="selection_form js-selection-content">
+
+							<fieldset class="selection_form_set">
+
+								<ul class="selection_form_fields">
+
+									<li class="selection_form_field">
+										<label for="wishlist-title">Title</label>
+										<input type="text" name="title" placeholder="Add a Title for the Wishlist" id="wishlist-title" />
+									</li>
+
+									<li class="selection_form_field">
+										<label for="wishlist-title">Created By</label>
+										<input type="text" name="title" placeholder="Add your name" id="wishlist-by" />
+									</li>
+
+									<li class="selection_form_field">
+										<label for="wishlist-role">I am the presentee</label>
+										<input type="checkbox" name="role" id="wishlist-role" />
+									</li>
+
+									<li class="selection_form_field">
+										<label for="wishlist-presentee">Presents for</label>
+										<input type="text" name="audience" placeholder="Add name of the presentee" id="wishlist-presentee" />
+									</li>
+
+									<li class="selection_form_field">
+										<button class="selection_form_submit">SHARE WISHLIST</button>
+									</li>
+
+								</ul>
+
+							</fieldset>
+
+						</div>
 
 					</div>
 
 
-					<div class="selection_form">
+					<div class="post_links center invisible" id="postlinks">
 
-						<fieldset class="selection_form_set">
+						<div class="link_focus">
 
-							<ul class="selection_form_fields">
+							<h2 class="link_text">Links</h2>
 
-								<li class="selection_form_field">
-									<label for="wishlist-title">Title</label>
-									<input type="text" name="title" placeholder="Add a Title for the Wishlist" id="wishlist-title" />
-								</li>
+							<div class="link_line">
+								Private (just for <span id="link_private_description"></span>):
+								<span class="link_text" id="link_private"></span>
+							</div>
 
-								<li class="selection_form_field">
-									<label for="wishlist-title">Created By</label>
-									<input type="text" name="title" placeholder="Add your name" id="wishlist-by" />
-								</li>
+							<div class="link_line">
+								Public (share with your friends):
+								<span class="link_text" id="link_public"></span>
+							</div>
 
-								<li class="selection_form_field">
-									<label for="wishlist-role">I am the presentee</label>
-									<input type="checkbox" name="role" id="wishlist-role" />
-								</li>
+							<div class="link_line link_email">
+								E-Mail (optional):
+								<input type="text" placeholder="YourName@email.com" class="input_email" id="email"/>
+								<button id="emailButton">Bestätigen</button>
+							</div>
 
-								<li class="selection_form_field">
-									<label for="wishlist-presentee">Presents for</label>
-									<input type="text" name="audience" placeholder="Add name of the presentee" id="wishlist-presentee" />
-								</li>
 
-								<li class="selection_form_field">
-									<button class="selection_form_submit">SHARE WISHLIST</button>
-								</li>
-
-							</ul>
-
-						</fieldset>
+						</div>
 
 					</div>
 
@@ -177,23 +211,6 @@
 
 	</footer>
 
-
-	<!-- Links -->
-	<div class="link_lightbox" id="link_lightbox">
-		<section class="link_wrapper center">
-			<div class="link_focus">
-				<h2 class="link_text">Links</h2>
-				<div class="link_line">
-					Private (just for <span id="link_private_description"></span>):
-					<a class="link_text" id="link_private"></a>
-				</div>
-				<div class="link_line">
-					Public (share with your friends):
-					<a class="link_text" id="link_public"></a>
-				</div>
-			</div>
-		</section>
-	</div>
 
 	<!-- Donatestuff -->
 	<div id="donate_wrapper"></div>

@@ -99,7 +99,7 @@ var initCommentLightbox = function(itemCurrent, wishlistIdCurrent, vipList, upda
       loadCommentForm();
     });
 
-  $('#comments_lightbox').fadeIn(200);
+  $('#comments_lightbox').fadeIn(400);
   $('#comments_lightbox').height($('body').height());
 
 }
