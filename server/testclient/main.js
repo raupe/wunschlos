@@ -13,23 +13,24 @@ var commentId = "";
 //	
 //});
 //document.body.appendChild(foo);
-console.log(url + "/mail");
-var request = $.ajax({
-    url: url + "/mail",
-    type: "post",
-    data: {
-      email: "d.ngoviet@gmail.com",
-      publicLink: "public id",
-      vipLink: "private id"
-    }
-});
-request.done(function (msg) {
-    console.log(msg);
-});
 
-request.fail(function (jqXHR, textStatus) {
-    console.log("failed: " + textStatus);
-});
+// Test latest email post request function
+//var request = $.ajax({
+//    url: url + "/mail",
+//    type: "post",
+//    data: {
+//      email: "d.ngoviet@gmail.com",
+//      publicLink: "public id",
+//      vipLink: "private id"
+//    }
+//});
+//request.done(function (msg) {
+//    console.log(msg);
+//});
+//
+//request.fail(function (jqXHR, textStatus) {
+//    console.log("failed: " + textStatus);
+//});
 
 // Wunschliste erstellen
 // ========================================================================================
