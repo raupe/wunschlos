@@ -211,12 +211,15 @@ button.selection_form_submit:active {
   background-color: #f0f8ff;
 }
 
+
 /**
  *  Design - Wishlist
  *  =================
  *
  *
  */
+
+
 .wishlist_content {
   width: 100%;
   height: 100%;
@@ -401,9 +404,9 @@ button.selection_form_submit:active {
 }
 
 .wishlist_wish-open_donate {
-  height: 29rem;
+  /** 4 * 6 + 1.5 + 2 **/
+  height: 30rem;
 }
-
 
 .wishlist_wish_set {
   width: 70%;
@@ -482,6 +485,68 @@ button.selection_form_submit:active {
 
 .wishlist_wish_field_input:disabled {
   background-color: inherit;
+}
+
+.sum_label{
+  font-weight: 500;
+}
+.wishlist_wish_field_sum {
+  display: inline-block;
+  width: 35%;
+  height: 2.5rem;
+  text-align: center;
+  margin-top: 1.4rem;
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  border: 0;
+  color: #a47241;
+  background-color: #f2dcae;
+}
+
+.wishlist_wish-presentee::after {
+  content: "VIP";
+  padding: 0.27rem;
+  color: #F1DFB8;
+  width: 1.7rem;
+  height: 1.4rem;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: #CA935C;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  left: 31.4rem;
+  z-index: 99;
+  top: 3.5rem;
+  font-size: 0.9rem;
+}
+
+.donate_button{
+  width: 7.2rem;
+  height: 2.6rem;
+  font-size: 1.1rem;
+  background: #a47241;
+  color: #f2dcae;
+  margin-left: 1.2rem;
+  margin-top: -0.2rem;
+}
+
+.donate_button:active {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  outline: 0;
+  background-color: #CA833C;
+}
+
+.comments{
+  color: inherit;
+  padding:0;
+  background: rgba(0,0,0,0);
+  text-decoration: underline;
+  font-size: 1.1rem;
+  cursor: pointer;
 }
 
 /**
@@ -607,17 +672,18 @@ button.selection_form_submit:active {
  */
 .edit_button-cancel {
   position: absolute;
-  bottom: -2.3rem;
-  right: 5rem;
+  bottom: -2.5rem;
+  left: 9rem;
   font-size: 0.8rem;
 }
 
 .edit_button-save {
   position: absolute;
-  bottom: -2.3rem;
-  right: 11rem;
+  bottom: -2.5rem;
+  left: 0;
   font-size: 0.8rem;
 }
+
 
 /**
  *  Design - Footer
@@ -631,7 +697,7 @@ button.selection_form_submit:active {
   min-height: 20rem;
   padding-top: 2em;
   position: absolute;
-  background: #3d4f5b;
+  background: #2D415F;
 }
 
 .footer_text {
@@ -646,8 +712,30 @@ button.selection_form_submit:active {
   font-family: 'Colaborate', sans-serif;
 }
 
-.footer_text > h3 {
+.footer_text > button {
   text-transform: uppercase;
+   background-color: white;
+   opacity: 0.4;
+}
+
+.footer_text > button:active {
+  -ms-filter: none;
+  filter: none;
+  background-color: white;
+  opacity: 1;
+  outline: 0;
+}
+
+.footer_text > button:focus {
+  -ms-filter: none;
+  filter: none;
+  background-color: white;
+  opacity: 0.6;
+  outline: 0;
+}
+
+.about{
+  display: none;
 }
 
 /**
@@ -736,8 +824,21 @@ button:focus {
   background-color: #f00;
 }
 
-.pre_links, .post_links {
+input[type="checkbox"] {
 
+  width:  1rem;
+  height: 1rem;
+}
+
+
+/**
+ *  Links
+ *  =====
+ *
+ */
+
+
+.pre_links, .post_links {
   height: 100%;
 }
 
