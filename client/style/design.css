@@ -400,6 +400,11 @@ button.selection_form_submit:active {
   height: 22rem;
 }
 
+.wishlist_wish-open_donate {
+  height: 29rem;
+}
+
+
 .wishlist_wish_set {
   width: 70%;
   height: 100%;
