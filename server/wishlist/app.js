@@ -77,6 +77,9 @@ app.post('/wishlist/mail', function(req, res) {
     subject: "Your Links from Wunsch-los.com", // Subject line
     text: "Link for presentee: " + req.body.vipLink + "\nLink for presenters: " + req.body.publicLink // plaintext body
   });
+	
+  res.send("mail sent");
+  
 }).bind(this);
 
 // Routes
