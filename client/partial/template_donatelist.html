@@ -30,13 +30,13 @@
         <li class="clearfix">
           <div class="left">
             <label for="donation_by" class="donatelist_donate_field_label js-label">Name</label>
-            <input type="text" name="donation_by" placeholder="Add your name" tabindex="1"
+            <input type="text" name="donation_by" placeholder="Add your name" tabindex="101"
             autocomplete="off" class="donatelist_donate_field_input js-input" id="donation_by" autofocus/>
           </div>
           <div class="donate_text_label">:</div>
           <div class="left">
             <label for="donation" class="donatelist_donate_field_label js-label" >Donation</label>
-            <input type="number" name="donation" placeholder="Sum" tabindex="2"
+            <input type="number" name="donation" placeholder="Sum" tabindex="102"
             autocomplete="off" class="donatelist_donate_field_input sum js-input" id="donation" pattern="[0-9]*" />
             {{unit}}
           </div>
@@ -46,8 +46,8 @@
     </fieldset>
     <section class="commentlist_edit js-edit">
       <div class="edit_confirm">
-        <button class="lightbox_edit_button-save donate-save">Donate</button>
-        <button class="lightbox_edit_button-cancel donate_button-cancel donate-cancel">Clear</button>
+        <button class="lightbox_edit_button-save donate-save" tabindex="103">Donate</button>
+        <button class="lightbox_edit_button-cancel donate_button-cancel donate-cancel" tabindex="104">Clear</button>
       </div>
     </section>
   </li>

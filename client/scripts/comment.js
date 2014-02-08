@@ -11,8 +11,8 @@ var comment = (function(){
 
 // const
 var heightExtra = 130,
-    tabOffset = 3,
-    tabsPerComment = 2;
+    tabOffset = 205,
+    tabsPerComment = 5;
 
 var wishlistId = 0,
     item = {},
@@ -152,7 +152,7 @@ function loadCommentEntries(){
 
 function createComment(comment, i) {
   //TODO: change tab index
-  var commentEntry = parseTemplate(template_comment_STR, { num: i, tab: i * tabsPerComment });
+  var commentEntry = parseTemplate(template_comment_STR, { num: i, tab: tabOffset i * tabsPerComment });
   $('.comment_entry:eq(0)').after(commentEntry);
 
   if( comment.name ){

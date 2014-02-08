@@ -9,8 +9,8 @@ var donate = (function(){
 
 // const
 var heightExtra = 130,
-    tabOffset = 3,
-    tabsPerShare = 2;
+    tabOffset = 105,
+    tabsPerShare = 5;
 
 var wishlistId = 0,
     item = {},
@@ -161,7 +161,7 @@ function loadDonateEntries(){
 
 function createDonation(donate, i) {
 
-  var donateEntry = parseTemplate(template_share_STR, { num: i, tab: i * tabsPerShare, unit: item.unit });
+  var donateEntry = parseTemplate(template_share_STR, { num: i, tab: tabOffset + i * tabsPerShare, unit: item.unit });
   $('.donate_entry:eq(0)').after(donateEntry);
 
   if( donate.name ){

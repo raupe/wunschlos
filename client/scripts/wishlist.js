@@ -162,9 +162,9 @@
       $('html, body').animate({scrollTop: 0}, 1000);
     }
 
-    $selection.toggleClass('selection_wrap-show');
-    $selectionWrap.toggleClass('selection_overlay-show');
-    $selectionContent.toggleClass('selection_content-show');
+    $selection.addClass('selection_wrap-show');
+    $selectionWrap.addClass('selection_overlay-show');
+    $selectionContent.addClass('selection_content-show');
   }
 
 
