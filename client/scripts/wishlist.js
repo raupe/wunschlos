@@ -191,10 +191,15 @@
 
   // confirm email
   $('#emailButton').click(function(){
-    console.log('[TODO EMAIL]', $('#email').val() );
+    sendLinks();
   });
 
-
+  $('#email').keypress(function (e) {
+    if (e.which == 13) {
+      sendLinks();
+      return false;
+    }
+  });
 
   $('#about_link').click(function(){
     $( "#about_text" ).fadeToggle();
@@ -322,6 +327,22 @@
     }
   }
 
+  function sendLinks() {
+    var publicLink,
+        vipLink;
+
+    if(wishlist.vip) {
+      vipLink = window.location.origin + window.location.pathname + '?' + wishlistId;
+      publicLink = window.location.origin + window.location.pathname + '?' + localStorage[wishlistId];
+    } else {
+      vipLink = window.location.origin + window.location.pathname + '?' + localStorage[wishlistId];
+      publicLink = window.location.origin + window.location.pathname + '?' + wishlistId;
+    }
+
+    CONNECTION.sendLinks($('#email').val(), publicLink, vipLink);
+    $('#email').val('');
+  }
+
   function getCollectedSum(item) {
     var sum = 0;
     for(var i=0; i<item.shares.length; i++) {
@@ -389,7 +410,24 @@
         wish.addClass('wishlist_wish-presentee');
       }
     }
+
     if(activeDesign === 2) positionBackgroundImage();
+
+    if(localStorage[wishlistId]) {
+      var publicLink,
+          vipLink;
+
+      if(wishlist.vip) {
+        vipLink = window.location.origin + window.location.pathname + '?' + wishlistId;
+        publicLink = window.location.origin + window.location.pathname + '?' + localStorage[wishlistId];
+      } else {
+        vipLink = window.location.origin + window.location.pathname + '?' + localStorage[wishlistId];
+        publicLink = window.location.origin + window.location.pathname + '?' + wishlistId;
+      }
+
+      showSelection();
+      showLinks(vipLink, publicLink, wishlist.vip);
+    }
   }
 
   function sendWishlist() {
@@ -482,12 +520,13 @@
   }
 
   function switchToReceiveMode(vipId, publicId) {
-    // console.log('vip:' + vipId);
-    // console.log('public:' + publicId);
     var isPresentee = $('#wishlist-role:checked').val(),
         id = isPresentee ? vipId : publicId,
         vipLink = window.location + '?' + vipId,
         publicLink = window.location + '?' + publicId;
+
+    localStorage[vipId] = publicId;
+    localStorage[publicId] = vipId;
 
     history.replaceState({creationMode:true}, '', window.location);
     history.pushState({creationMode:false}, '', window.location + '?' + id);
@@ -507,8 +546,6 @@
 
     showLinks(vipLink, publicLink, isPresentee);
 
-
-
     var $newButton = $wrap.find('.js-new-button');
     $newButton.removeAttr('disabled');
     $newButton.removeClass('invisible');
@@ -516,8 +553,8 @@
 
   function showLinks(vipLink, publicLink, isPresentee) {
 
-   $('#prelinks').addClass('invisible');
-   $('#postlinks').removeClass('invisible');
+    $('#prelinks').addClass('invisible');
+    $('#postlinks').removeClass('invisible');
 
     $('#link_private').attr('href', vipLink).text(vipLink);
     $('#link_public').attr( 'href', publicLink).text(publicLink);

@@ -181,6 +181,24 @@ var CONNECTION = new function() {
         });
 
       }
+    },
+
+    sendLinks : function(address, vipLink, publicLink) {
+      var request = $.ajax({
+          url: url + "wishlist/mail",
+          type: "post",
+          data: {
+            email: address,
+            publicLink : publicLink,
+            vipLink : vipLink
+          }
+      });
+      request.done(function (msg) {
+        console.log(msg);
+      });
+      request.fail(function (jqXHR, textStatus) {
+        console.log("failed: " + textStatus);
+      });
     }
 
   }

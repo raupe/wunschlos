@@ -837,12 +837,6 @@ input[type="checkbox"] {
  *
  */
 
-
-.pre_links, .post_links {
-  height: 100%;
-}
-
-
 .center {
   text-align: center;
   font-size: 0;
@@ -862,6 +856,18 @@ input[type="checkbox"] {
   font-size: 1rem;
 }
 
+.pre_links, .post_links {
+  height: 100%;
+}
+
+.post_links {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  width: 46rem;
+}
+
 
 h2 .link_text {
   font-size: 2rem;
@@ -873,6 +879,7 @@ h2 .link_text {
 
 
 .link_line {
+  margin-top: 1rem;
   font-size: 1.5rem;
 }
 
