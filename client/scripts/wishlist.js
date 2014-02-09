@@ -339,7 +339,7 @@
       publicLink = window.location.origin + window.location.pathname + '?' + wishlistId;
     }
 
-    CONNECTION.sendLinks($('#email').val(), publicLink, vipLink);
+    CONNECTION.sendLinks($('#email').val(), vipLink, publicLink);
     $('#email').val('');
   }
 
