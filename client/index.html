@@ -2,222 +2,223 @@
 <html lang="en">
 <head>
 
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
-	<title>:: Wunschlos ::</title>
+  <title>:: Wunschlos ::</title>
 
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" type="text/css" href="vendor/normalize/normalize-2.1.3.css">
+  <link rel="stylesheet" type="text/css" href="vendor/normalize/normalize-2.1.3.css">
 
-	<link rel="stylesheet" type="text/css" href="style/base.css">
-	<link rel="stylesheet" type="text/css" href="style/design.css">
-	<link rel="stylesheet" type="text/css" href="style/media.css">
+  <link rel="stylesheet" type="text/css" href="style/base.css">
+  <link rel="stylesheet" type="text/css" href="style/design.css">
+  <link rel="stylesheet" type="text/css" href="style/media.css">
 
-	<!-- Donatestuff -->
-	<link rel="stylesheet" type="text/css" href="style/donate.css">
-	<link rel="stylesheet" type="text/css" href="style/comment.css">
+  <!-- Donatestuff -->
+  <link rel="stylesheet" type="text/css" href="style/donate.css">
+  <link rel="stylesheet" type="text/css" href="style/comment.css">
 
 </head>
 <body>
 
 
-	<header role="banner" class="header_bar">
-		<h1>wunschlos</h1>
-		<h2>create a wishlist</h2>
-	</header>
+  <header role="banner" class="header_bar">
+    <h1>wunschlos</h1>
+    <h2>create a wishlist</h2>
+  </header>
 
 
-	<main role="main" class="design_bg preload" id="design">
+  <main role="main" class="design_bg preload" id="design">
 
-		<section class="selection_wrap" id="selection">
+    <section class="selection_wrap" id="selection">
 
-			 <!-- $selectionWrap  -->
-			<div class="selection_overlay" id="selectionWrap">
+       <!-- $selectionWrap  -->
+      <div class="selection_overlay" id="selectionWrap">
 
-				<div class="selection_overlay_center">
-
-
-
-					<div class="pre_links" id="prelinks">
-
-						<!-- $selectionContent  -->
-						<div class="selection_gallery js-selection-content">
-
-							<ul class="gallery_entries">
-
-								<li class="gallery_entry">
-									<button class="gallery_button">
-										<img src="assets/img/standard_design.jpg" class="gallery_entry_image_active" alt="Default Design" />
-										<span class="gallery_entry_title">Standard</span>
-									</button>
-								</li>
-
-								<li class="gallery_entry">
-									<button class="gallery_button">
-										<img src="assets/img/butterfly_design.jpg" alt="Butterfly Design" />
-										<span class="gallery_entry_title">Butterfly</span>
-									</button>
-								</li>
-
-								<li class="gallery_entry">
-									<button class="gallery_button">
-										<img src="assets/img/snow_design.jpg" alt="Christmas Design" />
-										<span class="gallery_entry_title">Christmas</span>
-									</button>
-								</li>
-
-								<li class="gallery_entry">
-									<button class="gallery_button">
-										<img src="assets/img/wedding_design.jpg" alt="Wedding Design" />
-										<span class="gallery_entry_title">Wedding</span>
-									</button>
-								</li>
-
-							</ul>
-						</div>
-
-						<!-- $selectionContent  -->
-						<div class="selection_form js-selection-content">
-
-							<fieldset class="selection_form_set">
-
-								<ul class="selection_form_fields">
-
-									<li class="selection_form_field">
-										<label for="wishlist-title">Title</label>
-										<input type="text" name="title" placeholder="Add a Title for the Wishlist" id="wishlist-title" />
-									</li>
-
-									<li class="selection_form_field">
-										<label for="wishlist-title">Created By</label>
-										<input type="text" name="title" placeholder="Add your name" id="wishlist-by" />
-									</li>
-
-									<li class="selection_form_field">
-										<label for="wishlist-role">I am the presentee</label>
-										<input type="checkbox" name="role" id="wishlist-role" />
-									</li>
-
-									<li class="selection_form_field">
-										<label for="wishlist-presentee">Presents for</label>
-										<input type="text" name="audience" placeholder="Add name of the presentee" id="wishlist-presentee" />
-									</li>
-
-									<li class="selection_form_field">
-										<button class="selection_form_submit">SHARE WISHLIST</button>
-									</li>
-
-								</ul>
-
-							</fieldset>
-
-						</div>
-
-					</div>
-
-
-					<div class="post_links center invisible" id="postlinks">
-
-						<div class="link_focus">
-
-							<h2 class="link_text">Links</h2>
-
-							<div class="link_line">
-								This link is only for <span id="link_private_description"></span>:<br />
-								<span class="link_text" id="link_private"></span>
-							</div>
-
-							<div class="link_line">
-								Share this link with your friends:<br />
-								<span class="link_text" id="link_public"></span>
-							</div>
-
-							<div class="link_line link_email">
-								Send this via e-mail:<br />
-								<input type="text" placeholder="YourName@email.com" class="input_email" id="email"/>
-								<button id="emailButton">Send</button>
-							</div>
-
-
-						</div>
-
-					</div>
-
-
-				</div>
-
-			</div>
-
-		</section>
-
-
-		<section class="content_wrap">
-
-			<div class="wishlist_wrap" id="wrap">
-
-				<div class="wishlist_top"></div>
-
-				<div class="wishlist_middle">
-					<div class="wishlist_content">
-
-						<div class="wishlist_content_wishes_wrap">
-							<div class="content_description">Fill in your Wishes below:</div>
-							<button class="wishlist_share_button invisible js-share-button" disabled>Share Wishlist</button>
-						</div>
-
-						<ol class="wishlist_content_wishes" id="wishes"></ol>
-
-						<div class="wishlist_content_wishes_wrap wishlist_content_wishes_wrap_bottom">
-							<button class="wishlist_share_button invisible js-share-button" disabled>Share Wishlist</button>
-							<button class="wishlist_share_button invisible js-new-button" disabled>Add Wish</button>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="wishlist_bottom"></div>
-
-			</div>
-
-		</section>
-
-	</main>
+        <div class="selection_overlay_center">
 
 
 
-	<footer role="contentinfo" class="footer" id="footer_pos">
+          <div class="pre_links" id="prelinks">
 
-		<div class="footer_text">
-			<button id="about_link">ABOUT</button>
-			<div class="about" id="about_text">
-				<p>
-					<em>WUNSCHLOS</em> - the online wishlist
-				</p>
-				<p>
-					Create a wishlist, choose a wishlist design and share the wishlist as a link.
-				</p>
-				<p>
-					If you got ideas, found bugs or like to share your opinion -
-					please <a href="mailto:info@wunsch-los.com">contact us</a>.
-				</p>
-				<p class="right">
-					<a href="xml/sitemap.xml">SiteMap</a>
-				</p>
-			</div>
-		</div>
+            <!-- $selectionContent  -->
+            <div class="selection_gallery js-selection-content">
 
-	</footer>
+              <ul class="gallery_entries">
+
+                <li class="gallery_entry">
+                  <button class="gallery_button">
+                    <img src="assets/img/standard_design.jpg" class="gallery_entry_image_active" alt="Default Design" />
+                    <span class="gallery_entry_title">Standard</span>
+                  </button>
+                </li>
+
+                <li class="gallery_entry">
+                  <button class="gallery_button">
+                    <img src="assets/img/butterfly_design.jpg" alt="Butterfly Design" />
+                    <span class="gallery_entry_title">Butterfly</span>
+                  </button>
+                </li>
+
+                <li class="gallery_entry">
+                  <button class="gallery_button">
+                    <img src="assets/img/snow_design.jpg" alt="Christmas Design" />
+                    <span class="gallery_entry_title">Christmas</span>
+                  </button>
+                </li>
+
+                <li class="gallery_entry">
+                  <button class="gallery_button">
+                    <img src="assets/img/wedding_design.jpg" alt="Wedding Design" />
+                    <span class="gallery_entry_title">Wedding</span>
+                  </button>
+                </li>
+
+              </ul>
+            </div>
+
+            <!-- $selectionContent  -->
+            <div class="selection_form js-selection-content">
+
+              <fieldset class="selection_form_set">
+
+                <ul class="selection_form_fields">
+
+                  <li class="selection_form_field">
+                    <label for="wishlist-title">Title</label>
+                    <input type="text" name="title" placeholder="Add a Title for the Wishlist" id="wishlist-title" />
+                  </li>
+
+                  <li class="selection_form_field">
+                    <label for="wishlist-title">Created By</label>
+                    <input type="text" name="title" placeholder="Add your name" id="wishlist-by" />
+                  </li>
+
+                  <li class="selection_form_field">
+                    <label for="wishlist-role">I am the presentee</label>
+                    <input type="checkbox" name="role" id="wishlist-role" />
+                  </li>
+
+                  <li class="selection_form_field">
+                    <label for="wishlist-presentee">Presents for</label>
+                    <input type="text" name="audience" placeholder="Add name of the presentee" id="wishlist-presentee" />
+                  </li>
+
+                  <li class="selection_form_field">
+                    <button class="selection_form_submit">SHARE WISHLIST</button>
+                  </li>
+
+                </ul>
+
+              </fieldset>
+
+            </div>
+
+          </div>
 
 
-	<!-- Donatestuff -->
-	<div id="donate_wrapper"></div>
-	<div id="donate_bg" class="donate_bg"></div>
+          <div class="post_links center invisible" id="postlinks">
 
-	<!-- Comments -->
-	<section class="comments_lightbox_wrap" id="comments_lightbox"></section>
+            <div class="link_focus">
+
+              <h2 class="link_text">Links</h2>
+
+              <div class="link_line">
+                This link is only for <span id="link_private_description"></span>:<br />
+                <span class="link_text" id="link_private"></span>
+              </div>
+
+              <div class="link_line">
+                Share this link with your friends:<br />
+                <span class="link_text" id="link_public"></span>
+              </div>
+
+              <div class="link_line link_email">
+                Send this via e-mail:<br />
+                <input type="text" placeholder="YourName@email.com" class="input_email" id="email"/>
+                <button id="emailButton">Send</button><br />
+                <span id="link_email_description"></span>
+              </div>
+
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="content_wrap">
+
+      <div class="wishlist_wrap" id="wrap">
+
+        <div class="wishlist_top"></div>
+
+        <div class="wishlist_middle">
+          <div class="wishlist_content">
+
+            <div class="wishlist_content_wishes_wrap">
+              <div class="content_description">Fill in your Wishes below:</div>
+              <button class="wishlist_share_button invisible js-share-button" disabled>Share Wishlist</button>
+            </div>
+
+            <ol class="wishlist_content_wishes" id="wishes"></ol>
+
+            <div class="wishlist_content_wishes_wrap wishlist_content_wishes_wrap_bottom">
+              <button class="wishlist_share_button invisible js-share-button" disabled>Share Wishlist</button>
+              <button class="wishlist_share_button invisible js-new-button" disabled>Add Wish</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="wishlist_bottom"></div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <footer role="contentinfo" class="footer" id="footer_pos">
+
+    <div class="footer_text">
+      <button id="about_link">ABOUT</button>
+      <div class="about" id="about_text">
+        <p>
+          <em>WUNSCHLOS</em> - the online wishlist
+        </p>
+        <p>
+          Create a wishlist, choose a wishlist design and share the wishlist as a link.
+        </p>
+        <p>
+          If you got ideas, found bugs or like to share your opinion -
+          please <a href="mailto:info@wunsch-los.com">contact us</a>.
+        </p>
+        <p class="right">
+          <a href="xml/sitemap.xml">SiteMap</a>
+        </p>
+      </div>
+    </div>
+
+  </footer>
+
+
+  <!-- Donatestuff -->
+  <div id="donate_wrapper"></div>
+  <div id="donate_bg" class="donate_bg"></div>
+
+  <!-- Comments -->
+  <section class="comments_lightbox_wrap" id="comments_lightbox"></section>
 
 <!-- Scripts -->
 <script src="vendor/jQuery/jquery-2.0.3.min.js"></script>

@@ -340,6 +340,8 @@
     }
 
     CONNECTION.sendLinks($('#email').val(), vipLink, publicLink);
+
+    $('#link_email_description').text("Your e-mail has been sent to : " + $('#email').val());
     $('#email').val('');
   }
 

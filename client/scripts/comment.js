@@ -152,7 +152,7 @@ function loadCommentEntries(){
 
 function createComment(comment, i) {
   //TODO: change tab index
-  var commentEntry = parseTemplate(template_comment_STR, { num: i, tab: tabOffset i * tabsPerComment });
+  var commentEntry = parseTemplate(template_comment_STR, { num: i, tab: tabOffset + i * tabsPerComment });
   $('.comment_entry:eq(0)').after(commentEntry);
 
   if( comment.name ){
