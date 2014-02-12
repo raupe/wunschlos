@@ -359,7 +359,7 @@
     wishlist = param;
 
     document.title = ":: Wunschlos :: " + wishlist.title.toUpperCase()
-      + " :: " + (wishlist.vip ? "VIP Ansicht" : "Public Ansicht");
+      + " :: " + (wishlist.vip ? "VIP" : "Public");
 
     $('.content_description').first().text(wishlist.title).css('font-size','2rem');
     switchDesign(wishlist.design);
